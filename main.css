@@ -1,20 +1,26 @@
 body {
     margin: 0;
     display: flex;
+    font-family: 'PT Sans', sans-serif;
 }
 
 .sidebar {
-    position: fixed;
+    position: relative;
     left: 0;
     top: 0;
     bottom: 0;
-    right: calc(100vw-160px);
+    width: 160px;
+    height: 100vh;
     display: flex;
-    justify-content: column;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    background-color: #1b2d91;
 }
 
 .sidebar a {
-    color: black;
+    color: white;
+    padding: 8px;
 }
 
 .projects {
@@ -22,4 +28,26 @@ body {
     right: 0;
     top: 0;
     left: 160px;
+    padding: 16px;
+}
+
+.joinlogo {
+    width: 40px;
+    height: 51px;
+    object-fit: cover;
+    margin-bottom: 32px;
+}
+
+.profile-picture {
+    position: absolute;
+    bottom: 32px;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: white;
+}
+
+.headline {
+    display: flex;
+    flex-direction: column;
 }
