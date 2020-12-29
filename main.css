@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    display: flex;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: calc(100vw-160px);
+    display: flex;
+    justify-content: column;
+}
+
+.sidebar a {
+    color: black;
+}
+
+.projects {
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 160px;
+}
