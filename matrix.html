@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Matrix</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <script src='main.js'></script>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <img class="joinlogo" src="img/joinlogo.png">
+        <a href="#">Matrix</a>
+        <a href="#">List</a>
+        <a href="#">AddTask</a>
+
+        <div class="profile-picture">
+        </div>
+
+    </div>
+
+    <div class="matrix-container">
+        <div class="arrow-left">
+            <div class="horizontal-caption1">HIGH</div>
+            <div class="arrow-top-left"></div>
+            <div class="arrow-line-horizontal"></div>
+            <div class="horizontal-caption2">URGENCY</div>
+            <div class="arrow-line-horizontal"></div>
+            <div class="horizontal-caption1">LOW</div>
+        </div>
+
+        <div class="arrow-up">
+            <div class="arrow-top-up"></div>
+            <div class="arrow-line-vertical"></div>
+            <div class="vertical-caption">IMPORTANCE</div>
+            <div class="arrow-line-vertical"></div>
+            <div class="horizontal-caption1">LOW</div>
+        </div>
+
+        <div class="matrix">
+
+            <div class="matrix-row">
+                <div class="text-center">
+                    <span>DO</span>
+                    <div class="do matrix-bg"></div>
+                </div>
+
+                <div class="text-center">
+                    <span>SCHEDULE</span>
+                    <div class="schedule matrix-bg"></div>
+                </div>
+            </div>
+
+            <div class="matrix-row">
+                <div class="text-center">
+                    <span>DELEGATE</span>
+                    <div class="delegate matrix-bg"></div>
+                </div>
+
+                <div class="text-center">
+                    <span>ELIMINATE</span>
+                    <div class="eliminate matrix-bg"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
