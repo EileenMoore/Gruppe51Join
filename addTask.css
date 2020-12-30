@@ -19,8 +19,29 @@ body {
 }
 
 .sidebar a {
-    color: white;
+    background-color: transparent;
     padding: 8px;
+}
+
+.sidebar a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.menulink {
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: gray;
+}
+
+.link-selected {
+    box-shadow: -5px 0px white;
+    color: white;
+}
+
+.link-unselected {
+    color: gray;
 }
 
 .projects {
