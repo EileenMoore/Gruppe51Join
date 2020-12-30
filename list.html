@@ -7,6 +7,7 @@
     <title>Join</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='list.css'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -16,35 +17,71 @@
 
 <body>
 
+    <div class="task-page">
+        <div class="sidebar">
+            <img class="joinlogo" src="img/joinlogo.png">
+            <a href="#">Matrix</a>
+            <a href="#">List</a>
+            <a href="#">AddTask</a>
 
-    <div class="sidebar">
-        <img class="joinlogo" src="img/joinlogo.png">
-        <a href="#">Matrix</a>
-        <a href="#">List</a>
-        <a href="#">AddTask</a>
-
-        <div class="profile-picture">
-        </div>
-
-    </div>
-
-    <div class="projects">
-        <div class="headline">
-            <span><b>Your Project</b></span>
-            <span>Learning Management System Project</span>
-        </div>
-
-        <div id="task" class="task-container">
-
-            <div class="task-item-description">
-                <p id="assigned">ASSIGNED TO</p>
-                <p id="category">CATEGORY</p>
-                <p id="details">DETAILS</p>
+            <div class="profile-picture">
+                <img src="img/person-24px.svg">
             </div>
 
         </div>
-    </div>
 
+        <div class="projects">
+            <div class="headline">
+                <span><b>Your Project</b></span>
+                <span>Learning Management System Project</span>
+            </div>
+
+            <div id="task" class="task-container">
+
+                <div class="task-item-description">
+                    <p id="assigned">ASSIGNED TO</p>
+                    <p id="category">CATEGORY</p>
+                    <p id="details">DETAILS</p>
+                </div>
+                
+                <div class="task-item-content delegate">
+                    <div class="assigned-content">
+                        <img src="img/person-24px.svg" class="assigned-img rounded-circle">
+                        <div>Name<br>Contact</div>
+                    </div>
+                    <div class="category-content">Sales</div>
+                    <div class="details-content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non quos iste
+                        voluptatibus asperiores in, hic debitis illo facilis voluptate amet? Rem fugit quidem tempore
+                        beatae nulla sequi voluptates laudantium consequatur.
+                    </div>
+                </div>
+
+                <div class="task-item-content do">
+                    <div class="assigned-content">
+                        <img src="img/person-24px.svg" class="assigned-img rounded-circle">
+                        <div>Name<br>Contact</div>
+                    </div>
+                    <div class="category-content">Sales</div>
+                    <div class="details-content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non quos iste
+                        voluptatibus asperiores in, hic debitis illo facilis voluptate amet? Rem fugit quidem tempore
+                        beatae nulla sequi voluptates laudantium consequatur.
+                    </div>
+                </div>
+
+                <div class="task-item-content schedule">
+                    <div class="assigned-content">
+                        <img src="img/person-24px.svg" class="assigned-img rounded-circle">
+                        <div>Name<br>Contact</div>
+                    </div>
+                    <div class="category-content">Sales</div>
+                    <div class="details-content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non quos iste
+                        voluptatibus asperiores in, hic debitis illo facilis voluptate amet? Rem fugit quidem tempore
+                        beatae nulla sequi voluptates laudantium consequatur.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
