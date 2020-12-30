@@ -7,6 +7,7 @@
     <title>Matrix</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='matrix.css'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -18,9 +19,9 @@
 
     <div class="sidebar">
         <img class="joinlogo" src="img/joinlogo.png">
-        <a href="#">Matrix</a>
-        <a href="#">List</a>
-        <a href="#">AddTask</a>
+        <a href="matrix.html">Matrix</a>
+        <a href="list.html">List</a>
+        <a href="addTask.html">AddTask</a>
 
         <div class="profile-picture">
         </div>
@@ -28,49 +29,90 @@
     </div>
 
     <div class="matrix-container">
-        <div class="arrow-left">
+
+        <div class="arrow-left-container">
             <div class="horizontal-caption1">HIGH</div>
-            <div class="arrow-top-left"></div>
-            <div class="arrow-line-horizontal"></div>
+            <div class="arrow-left flex-grow">
+                <div class="arrow-top-left"></div>
+                <div class="arrow-line-horizontal width100"></div>
+            </div>
             <div class="horizontal-caption2">URGENCY</div>
-            <div class="arrow-line-horizontal"></div>
+            <div class="arrow-line-horizontal flex-grow"></div>
             <div class="horizontal-caption1">LOW</div>
         </div>
 
-        <div class="arrow-up">
-            <div class="arrow-top-up"></div>
-            <div class="arrow-line-vertical"></div>
-            <div class="vertical-caption">IMPORTANCE</div>
-            <div class="arrow-line-vertical"></div>
-            <div class="horizontal-caption1">LOW</div>
-        </div>
+        <div class="matrix-bottom-container">
 
-        <div class="matrix">
-
-            <div class="matrix-row">
-                <div class="text-center">
-                    <span>DO</span>
-                    <div class="do matrix-bg"></div>
+            <div class="arrow-up-container">
+                <div class="arrow-up flex-grow">
+                    <div class="arrow-top-up"></div>
+                    <div class="arrow-line-vertical height100"></div>
                 </div>
-
-                <div class="text-center">
-                    <span>SCHEDULE</span>
-                    <div class="schedule matrix-bg"></div>
-                </div>
+                <div class="vertical-caption">IMPORTANCE</div>
+                <div class="arrow-line-vertical flex-grow"></div>
+                <div class="horizontal-caption1">LOW</div>
             </div>
 
-            <div class="matrix-row">
-                <div class="text-center">
-                    <span>DELEGATE</span>
-                    <div class="delegate matrix-bg"></div>
+            <div class="matrix">
+
+                <div class="matrix-row">
+                    <div class="matrix-quarter">
+                        <span class="matrix-quarter-headline">DO</span>
+                        <div id="do" class="matrix-bg">
+
+                            <div class="task-card-container">
+                                <div class="orange-color-marker"></div>
+                                <div class="task-card">
+                                    <span class="date">12.05.20</span>
+                                    <span class="task-card-headline">Prepare Presentation</span>
+                                    <span class="task-card-description">Some description goes here ...</span>
+                                    <div class="task-card-bottom">
+                                        <button type="button" class="btn btn-primary">Marketing</button>
+                                        <div class="profile-picture-small"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="task-card-container">
+                                <div class="orange-color-marker"></div>
+                                <div class="task-card">
+                                    <span class="date">12.05.20</span>
+                                    <span class="task-card-headline">Prepare Presentation</span>
+                                    <span class="task-card-description">Some description goes here ...</span>
+                                    <div class="task-card-bottom">
+                                        <button type="button" class="btn btn-primary">Marketing</button>
+                                        <div class="profile-picture-small"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="matrix-quarter">
+                        <span class="matrix-quarter-headline">SCHEDULE</span>
+                        <div id="schedule" class="matrix-bg">
+
+                        </div>
+                    </div>
                 </div>
 
-                <div class="text-center">
-                    <span>ELIMINATE</span>
-                    <div class="eliminate matrix-bg"></div>
+                <div class="matrix-row">
+                    <div class="matrix-quarter">
+                        <span class="matrix-quarter-headline">DELEGATE</span>
+                        <div id="delegate" class="matrix-bg">
+
+                        </div>
+                    </div>
+
+                    <div class="matrix-quarter">
+                        <span class="matrix-quarter-headline">ELIMINATE</span>
+                        <div id="eliminate" class="matrix-bg">
+
+                        </div>
+                    </div>
                 </div>
+
             </div>
-
         </div>
 
     </div>
