@@ -112,6 +112,8 @@ p {
     width: 50%;
     display: flex;
     flex-direction: column;
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 
 .title-section {
@@ -121,26 +123,27 @@ p {
     justify-content: center;
 }
 
-.catergory-section {
+.category-section {
     height: 25%;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
 
 .title-section input {
     height: 25%;
-    width: 80%;
+    width: 100%;
 }
 
 .discripion-section {
     height: 25%;
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
 
 .form-select {
-    width: 90%;
+    width: 100%;
     height: 50%;
 }
 
@@ -149,6 +152,8 @@ p {
     width: 50%;
     display: flex;
     flex-direction: column;
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 
 .date-section {
@@ -222,4 +227,35 @@ p {
 
 .assign-commit button {
     margin: 8px;
+}
+
+.user-picker {
+    z-index: 10;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#user-picker-container {
+    height: 45vh;
+    overflow-y: auto;
+    width: 40vw;
+    background-color: rgb(244, 243, 251);
+    border-radius: 16px !important;
+    padding: 16px;
+}
+
+.back-btn {
+    width: 5vw;
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
