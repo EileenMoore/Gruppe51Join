@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
-    <script src="main.js"></script>
+    <script src="addTask.js"></script>
 </head>
 
 <body>
@@ -23,7 +23,7 @@
         <div class="profile-picture"></div>
     </div>
 
-    <form class="projects">
+    <form class="projects" onsubmit="createTask(event)">
         <div class="title-text-container">
             <h2>Add Task</h2>
             <p>Learning Management System Project</p>
@@ -75,15 +75,15 @@
                         <div class="overall-user-div">
                             <div id="assign-person"></div>
                             <div class="assign-perosn-btn">
-                                <button class="btn btn-primary" type="submit">
+                                <button class="btn btn-primary" type="button" onclick="addPerson()">
                     Add Person
                   </button>
-                                <button class="btn btn-danger" type="submit">Remove</button>
+                                <button class="btn btn-danger" type="submit" onclick="removePerson()">Remove</button>
                             </div>
                         </div>
 
                         <div class="assign-commit">
-                            <button class="btn btn-danger" type="submit">Cancel</button>
+                            <button class="btn btn-danger" type="button" onclick="cancelTask()">Cancel</button>
                             <button class="btn btn-primary" type="submit">
                   Create Task
                 </button>
@@ -98,7 +98,7 @@
         <div id="userPickerBlend" class="user-picker">
             <div id="user-picker-container"></div>
 
-            <button class="btn btn-primary back-btn" type="submit">Back</button>
+            <button class="btn btn-primary back-btn" type="submit" onclick="removePersonBlend()">Back</button>
         </div>
     </div>
 </body>
