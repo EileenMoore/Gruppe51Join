@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Add Task</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <link rel="stylesheet" type="text/css" media="screen" href="addTask.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
     <script src="addTask.js"></script>
@@ -21,7 +23,11 @@
         <a href="#" class="menulink link-selected">Add Task</a>
 
         <div class="profile-picture"></div>
+
+        <a href="impressum.html" class="impressumlink link-unselected">Impressum</a>
     </div>
+
+    
 
     <form class="projects" onsubmit="createTask(event)">
         <div class="title-text-container">
@@ -41,18 +47,19 @@
                         <h3>Category</h3>
 
                         <select class="form-select" aria-label="Default select example">
-                <option selected>Choose Category</option>
-                <option value="1">Management</option>
-                <option value="2">Sales</option>
-                <option value="3">HR</option>
-                <option value="4">IT</option>
-                <option value="5">Private</option>
-              </select>
+                            <option selected>Choose Category</option>
+                            <option value="1">Management</option>
+                            <option value="2">Sales</option>
+                            <option value="3">HR</option>
+                            <option value="4">IT</option>
+                            <option value="5">Private</option>
+                        </select>
                     </div>
                     <div class="discripion-section">
                         <h3>Description</h3>
                         <div class="form-floating">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                                style="height: 100px"></textarea>
                         </div>
                     </div>
                 </div>
@@ -65,10 +72,10 @@
                     <div class="importance-section">
                         <h3>Importance</h3>
                         <select class="form-select" aria-label="Default select example">
-                <option selected>Choose Category</option>
-                <option value="1">High</option>
-                <option value="2">Low</option>
-              </select>
+                            <option selected>Choose Category</option>
+                            <option value="1">High</option>
+                            <option value="2">Low</option>
+                        </select>
                     </div>
                     <div class="assign-section">
                         <h3>Assign To</h3>
@@ -76,8 +83,8 @@
                             <div id="assign-person"></div>
                             <div class="assign-perosn-btn">
                                 <button class="btn btn-primary" type="button" onclick="addPerson()">
-                    Add Person
-                  </button>
+                                    Add Person
+                                </button>
                                 <button class="btn btn-danger" type="submit" onclick="removePerson()">Remove</button>
                             </div>
                         </div>
@@ -85,8 +92,8 @@
                         <div class="assign-commit">
                             <button class="btn btn-danger" type="button" onclick="cancelTask()">Cancel</button>
                             <button class="btn btn-primary" type="submit">
-                  Create Task
-                </button>
+                                Create Task
+                            </button>
                         </div>
                     </div>
                 </div>
