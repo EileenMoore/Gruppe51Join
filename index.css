@@ -1,0 +1,83 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    background-color: #1b2d91;
+    width: 140px;
+    height: 140px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 32px;
+}
+
+.joinlogo-large {
+    width: 60px;
+    height: 71px;
+}
+
+.login-container {
+    background-color: #f4f3fb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    margin: 24px;
+    border-radius: 8px;
+}
+
+.btn {
+    margin: 16px;
+    width: 240px;
+}
+
+input {
+    width: 240px;
+    height: 32px;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: none;
+}
+
+input:focus {
+    outline: 0;
+}
+
+
+.input-container {
+    margin: 8px;
+    display: flex;
+}
+
+.input-container-img {
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    height: 32px;
+    width: 32px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-container-img img {
+    width: 16px;
+    height: 16px;
+}
+
+.registration {
+    border-top: 1px solid rgba(0, 0, 0, 0.3)!important;
+    display: flex;
+    justify-content: center;
+}

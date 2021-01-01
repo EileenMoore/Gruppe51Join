@@ -53,14 +53,6 @@ body {
     color: gray;
 }
 
-.projects {
-    position: absolute;
-    right: 0;
-    top: 0;
-    left: 160px;
-    padding: 16px;
-}
-
 .joinlogo {
     width: 40px;
     height: 51px;
@@ -87,6 +79,13 @@ body {
     flex-direction: column;
 }
 
+.projects {
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 160px;
+    padding: 16px;
+}
 
 /********************Task_Container_RELATED_SETTINGS********************/
 
