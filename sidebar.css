@@ -86,3 +86,11 @@ body {
     left: 160px;
     padding: 16px;
 }
+
+.log-out {
+    top: 600px;
+    color: gray;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+}
