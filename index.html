@@ -13,6 +13,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
     <script src='main.js'></script>
+    <script src='index.js'></script>
+
 </head>
 
 <body>
@@ -45,11 +47,15 @@
 
         </div>
 
-        <button class="btn btn-primary">Login</button>
+        <button id="login" onclick="login()" class="btn btn-primary">Login</button>
 
         <div class=" registration">
-            <button class=" btn btn-primary">Registration</button>
+            <button onclick="openRegistration()" class=" btn btn-primary">Create Account</button>
+        </div>
+
     </div>
+
+    <div class="registration-container-overlay">
 
     </div>
 
