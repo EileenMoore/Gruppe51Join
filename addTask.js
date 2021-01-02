@@ -2,17 +2,17 @@
 let persons = [{
         name: "Alexander Kummerer",
         mail: "alexander@kummerer.mail",
-        img: "img/nutzer.svg",
+        img: "img/alex.jpg ",
     },
     {
         name: "Eileen Moore",
         mail: "eileen@moore.mail",
-        img: "img/nutzer.svg",
+        img: "img/nutzer.svg ",
     },
     {
         name: "Dan Mercurean",
         mail: "dan@mercurean.mail",
-        img: "img/nutzer.svg",
+        img: "img/nutzer.svg ",
     },
     {
         name: "Jaci jack",
@@ -22,23 +22,22 @@ let persons = [{
     {
         name: "Junus Ergin",
         mail: "junus@ergin.mail",
-        img: "img/nutzer.svg",
+        img: "img/nutzer.svg ",
     },
     {
         name: "Manuel Thaler",
         mail: "manuel@thaler.maill",
-        img: "img/nutzer.svg",
+        img: "img/nutzer.svg ",
     },
 ];
+
+let selectedUsers = [];
 
 // personBlen with users to selct will displayed
 
 function addPersonBlend() {
     document.getElementById("addPersonBlend").classList.remove("d-none");
 }
-
-
-
 
 function displayperson() {
     for (let i = 0; i < persons.length; i++) {
@@ -49,11 +48,20 @@ function displayperson() {
     }
 }
 
-function selectUser(person) {
-    document.getElementById("user-picker-row{i}").classList.toggle("user-picker-row-select");
-
+function selectUser(i) {
+    id = "user-picker-row" + i;
+    document.getElementById(id).classList.toggle("user-picker-row-select");
+    document.getElementById("assign-person").innerHTML += `
+    <img src="${persons[i]["img"]}">`;
+    console.log(persons[i]);
 }
 
+function removePerson() {
+    document.getElementById("assign-person").innerHTML = "";
+    document
+        .getElementById("user-picker-row")
+        .classList.remove("user-picker-row-select");
+}
 
 //personBlend will removed
 
