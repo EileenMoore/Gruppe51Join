@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Join</title>
+    <title>JOIN</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='sidebar.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='index.css'>
@@ -49,13 +49,41 @@
         <button id="login" onclick="login()" class="btn btn-primary">Login</button>
 
         <div class=" registration">
-            <button onclick="openRegistration()" class=" btn btn-primary">Create Account</button>
+            <button onclick="openRegistration()" class=" btn btn-primary">Sign Up</button>
         </div>
 
     </div>
 
-    <div class="registration-container-overlay">
+    <div id="registration-container-overlay" class="registration-container-overlay  d-none">
 
+        <div class="registration-container">
+
+            <h2>Sign Up for JOIN</h2>
+
+            <div class="new-profile-picture"> 
+                <img src="img/nutzer.svg">
+            </div>
+
+            <a class="add-profile-picture" href="#">Add Profile Picture</a>
+
+            <span>Username</span>
+            <input />
+
+            <span>E-Mail</span>
+            <input />
+            <span>Password</span>
+            <input />
+
+            <button onclick="closeRegistration()" class="btn btn-primary">Sign Up</button>
+
+            <a onclick="closeRegistration()" href="#">Close</a>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <a href="impressum.html" class="link-unselected impressum">Impressum</a>
     </div>
 
 </body>
