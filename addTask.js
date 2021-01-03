@@ -51,19 +51,23 @@ function displayperson() {
 function selectUser(i) {
     id = "user-picker-row" + i;
     document.getElementById(id).classList.toggle("user-picker-row-select");
-    document.getElementById("assign-person").innerHTML += `
-    <img src="${persons[i]["img"]}">`;
     console.log(persons[i]);
+    selectPerson(i);
+
 }
 
 function removePerson() {
     document.getElementById("assign-person").innerHTML = "";
-    document
-        .getElementById("user-picker-row")
-        .classList.remove("user-picker-row-select");
+    if (document.getElementById("assign-person").contains.innerHTML = `
+    <img src="${persons[i]["img"]}"> `) {
+        document.getElementById("assign-person").remove.innerHTML = `<img src="${persons[i]["img"]}">`;
+    }
+
 }
 
 //personBlend will removed
+
+
 
 function removePersonBlend() {
     document.getElementById("addPersonBlend").classList.add("d-none");
@@ -71,4 +75,20 @@ function removePersonBlend() {
 
 function createTask($event) {
     $event.preventDefault();
+}
+
+function selectPerson(i) {
+    if (
+        document.getElementById(id).classList.contains("user-picker-row-select")
+    ) {
+        document.getElementById(id).classList.add("user-picker-row-select");
+        document.getElementById("assign-person").innerHTML += `
+        <img src="${persons[i]["img"]}">`;
+    } else if (!document.getElementById(id).classList.contains("user-picker-row-select")) {
+        document.getElementById(id).classList.remove("user-picker-row-select");
+        document.getElementById("assign-person").innerHTML -= `
+        <img src="${persons[i]["img"]}">`;
+        document.getElementById("assign-person").innerHTML = ""
+    }
+
 }

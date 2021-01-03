@@ -29,23 +29,23 @@
     </div>
 
     <form class="projects" onsubmit="createTask(event)">
-      <div class="title-text-container">
-        <h2>Add Task</h2>
-        <p>Learning Management System Project</p>
-      </div>
+        <div class="title-text-container">
+            <h2>Add Task</h2>
+            <p>Learning Management System Project</p>
+        </div>
 
-      <div class="task-container">
-        <div class="addtask-container">
-          <div class="right-taskcontainer">
-            <div class="title-section">
-              <h3>Title</h3>
-              <input type="title" name="InputTitle" id="inputTitle" />
-            </div>
+        <div class="task-container">
+            <div class="addtask-container">
+                <div class="right-taskcontainer">
+                    <div class="title-section">
+                        <h3>Title</h3>
+                        <input type="title" name="InputTitle" id="inputTitle" />
+                    </div>
 
-            <div class="category-section">
-              <h3>Category</h3>
+                    <div class="category-section">
+                        <h3>Category</h3>
 
-              <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" aria-label="Default select example">
                 <option selected>Choose Category</option>
                 <option value="1">Management</option>
                 <option value="2">Sales</option>
@@ -53,85 +53,65 @@
                 <option value="4">IT</option>
                 <option value="5">Private</option>
               </select>
-            </div>
-            <div class="discripion-section">
-              <h3>Description</h3>
-              <div class="form-floating">
-                <textarea
-                  class="form-control"
-                  placeholder="Leave a comment here"
-                  id="floatingTextarea2"
-                  style="height: 100px"
-                ></textarea>
-              </div>
-            </div>
-          </div>
+                    </div>
+                    <div class="discripion-section">
+                        <h3>Description</h3>
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                        </div>
+                    </div>
+                </div>
 
-          <div class="left-taskcontainer">
-            <div class="date-section">
-              <h3>Due Date</h3>
-              <input type="date" name="dateInput" id="dateInput" />
-            </div>
-            <div class="importance-section">
-              <h3>Importance</h3>
-              <select class="form-select" aria-label="Default select example">
+                <div class="left-taskcontainer">
+                    <div class="date-section">
+                        <h3>Due Date</h3>
+                        <input type="date" name="dateInput" id="dateInput" />
+                    </div>
+                    <div class="importance-section">
+                        <h3>Importance</h3>
+                        <select class="form-select" aria-label="Default select example">
                 <option selected>Choose Category</option>
                 <option value="1">High</option>
                 <option value="2">Low</option>
               </select>
-            </div>
-            <div class="assign-section">
-              <h3>Assign To</h3>
-              <div class="overall-user-div">
-                <div id="assign-person"></div>
-                <div class="assign-perosn-btn">
-                  <button
-                    class="btn btn-primary"
-                    type="button"
-                    onclick="addPersonBlend()"
-                  >
+                    </div>
+                    <div class="assign-section">
+                        <h3>Assign To</h3>
+                        <div class="overall-user-div">
+                            <div id="assign-person"></div>
+                            <div class="assign-perosn-btn">
+                                <button class="btn btn-primary" type="button" onclick="addPersonBlend()">
                     Add Person
                   </button>
-                  <button
-                    class="btn btn-danger"
-                    type="button"
-                    onclick="removePerson()"
-                  >
+                                <button class="btn btn-danger" type="button" onclick="removePerson()">
                     Remove
                   </button>
-                </div>
-              </div>
+                            </div>
+                        </div>
 
-              <div class="assign-commit">
-                <button
-                  class="btn btn-danger"
-                  type="button"
-                  onclick="cancelTask()"
-                >
+                        <div class="assign-commit">
+                            <button class="btn btn-danger" type="button" onclick="cancelTask()">
                   Cancel
                 </button>
-                <button class="btn btn-primary" type="submit">
+                            <button class="btn btn-primary" type="submit">
                   Create Task
                 </button>
-              </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </form>
 
     <div id="addPersonBlend" class="d-none">
-      <div id="userPickerBlend" class="user-picker">
-        <div id="user-picker-container"></div>
-        <button
-          class="btn btn-primary back-btn"
-          type="button"
-          onclick="removePersonBlend()"
-        >
+        <div id="userPickerBlend" class="user-picker">
+            <div id="user-picker-container"></div>
+            <button class="btn btn-primary back-btn" type="button" onclick="removePersonBlend()">
           Back
         </button>
-      </div>
+        </div>
     </div>
-  </body>
+</body>
+
 </html>
 <img src="" alt="">
