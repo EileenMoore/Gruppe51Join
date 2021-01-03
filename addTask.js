@@ -86,8 +86,7 @@ function selectPerson(i) {
         <img src="${persons[i]["img"]}">`;
     } else if (!document.getElementById(id).classList.contains("user-picker-row-select")) {
         document.getElementById(id).classList.remove("user-picker-row-select");
-        document.getElementById("assign-person").innerHTML -= `
-        <img src="${persons[i]["img"]}">`;
+        document.getElementById("assign-person").remove.innerHTML -= `<img src "${persons[i]["img"]}>" `;
         document.getElementById("assign-person").innerHTML = ""
     }
 
