@@ -13,9 +13,16 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
     padding-top: 16px;
     background-color: #1b2d91;
+}
+
+.sidebar div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 8px;
 }
 
 .sidebar a {
@@ -39,7 +46,6 @@ body {
 .impressumlink {
     top: 496px;
     color: gray;
-    position: absolute;
     text-align: center;
     text-decoration: none;
 }
@@ -61,8 +67,6 @@ body {
 }
 
 .profile-picture {
-    position: absolute;
-    bottom: 200px;
     width: 50px;
     height: 50px;
     border-radius: 100%;
@@ -85,12 +89,4 @@ body {
     top: 0;
     left: 160px;
     padding: 16px;
-}
-
-.log-out {
-    top: 600px;
-    color: gray;
-    position: absolute;
-    text-align: center;
-    text-decoration: none;
 }
