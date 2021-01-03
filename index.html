@@ -16,7 +16,7 @@
 
 </head>
 
-<body>
+<body onload="loadAllUsers()">
 
     <div class="logo-container">
         <img class="joinlogo-large" src="img/joinlogo.png">
@@ -32,7 +32,7 @@
                 <img src="img/nutzer.svg">
             </div>
 
-            <input placeholder="Username" />
+            <input id="currentUsername" placeholder="Username" />
 
         </div>
 
@@ -42,11 +42,11 @@
                 <img src="img/big-lock.svg">
             </div>
 
-            <input placeholder="Password" />
+            <input id="currentPassword" type="password" placeholder="Password" />
 
         </div>
 
-        <button id="login" onclick="login()" class="btn btn-primary">Login</button>
+        <button onclick="login()" class="btn btn-primary">Login</button>
 
         <div class=" registration">
             <button onclick="openRegistration()" class=" btn btn-primary">Sign Up</button>
@@ -60,23 +60,27 @@
 
             <h2>Sign Up for JOIN</h2>
 
-            <div class="new-profile-picture"> 
-                <img src="img/nutzer.svg">
+            <div class="new-profile-picture">
+                <img src="img/nutzer.svg"  id="myImg">
             </div>
 
-            <a class="add-profile-picture" href="#">Add Profile Picture</a>
+            <input type="file" name="file" id="fileInput" class="inputfile" />
+            <label for="fileInput">Add a Profile-Picture</label>
 
-            <span>Username</span>
-            <input />
+            <form onsubmit="signUp()">
+                <label>Username</label>
+                <input type="text" required id="username" />
 
-            <span>E-Mail</span>
-            <input />
-            <span>Password</span>
-            <input />
+                <label>E-Mail</label>
+                <input type="email" required id="email" />
 
-            <button onclick="closeRegistration()" class="btn btn-primary">Sign Up</button>
+                <label>Password</label>
+                <input required type="password" minlength="5" id="password" />
 
-            <a onclick="closeRegistration()" href="#">Close</a>
+                <button class="btn btn-primary">Sign Up</button>
+            </form>
+
+            <a onclick="closeRegistration()" " href="#">Close</a>
 
         </div>
 

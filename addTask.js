@@ -1,35 +1,34 @@
 //Json of person where can selected
 let persons = [{
-        name: "Alexander Kummerer",
-        mail: "alexander@kummerer.mail",
-        img: "img/alex.jpg ",
-    },
-    {
-        name: "Eileen Moore",
-        mail: "eileen@moore.mail",
-        img: "img/nutzer.svg ",
-    },
-    {
-        name: "Dan Mercurean",
-        mail: "dan@mercurean.mail",
-        img: "img/nutzer.svg ",
-    },
-    {
-        name: "Jaci jack",
-        mail: "jaci@jack.maill",
-        img: "img/nutzer.svg",
-    },
-    {
-        name: "Junus Ergin",
-        mail: "junus@ergin.mail",
-        img: "img/nutzer.svg ",
-    },
-    {
-        name: "Manuel Thaler",
-        mail: "manuel@thaler.maill",
-        img: "img/nutzer.svg ",
-    },
-];
+    name: "Alexander Kummerer",
+    mail: "alexander@kummerer.mail",
+    img: "img/alex.jpg"
+},
+{
+    name: "Eileen Moore",
+    mail: "eileen@moore.mail",
+    img: "img/eileen.jpg"
+},
+{
+    name: "Dan Mercurean",
+    mail: "dan@mercurean.mail",
+    img: "img/person-24px.svg"
+},
+{
+    name: "Jaci jack",
+    mail: "jaci@jack.maill",
+    img: "img/nutzer.svg"
+},
+{
+    name: "Junus Ergin",
+    mail: "junus@ergin.mail",
+    img: "img/junus.jpg"
+},
+{
+    name: "Manuel Thaler",
+    mail: "manuel@thaler.maill",
+    img: "img/manuel.jpg"
+}];
 
 let selectedUsers = [];
 
@@ -41,19 +40,37 @@ function addPersonBlend() {
 
 function displayperson() {
     for (let i = 0; i < persons.length; i++) {
-        const person = persons[i];
         document.getElementById("user-picker-container").innerHTML += `
-        <div id="user-picker-row${i}" class ="user-picker-row" onclick="selectUser(${i})"> <img src="${person["img"]}"> <span>${person["name"]} </span> </div>
+        <div id="user-picker-row${i}" class ="user-picker-row" onclick="selectUser(${i})"> <img src="${persons[i]["img"]}"> <span>${persons[i]["name"]} </span> </div>
     `;
     }
 }
 
 function selectUser(i) {
-    id = "user-picker-row" + i;
-    document.getElementById(id).classList.toggle("user-picker-row-select");
-    console.log(persons[i]);
-    selectPerson(i);
+    let id = "user-picker-row" + i;
+    let userImage = persons[i]["img"];
+    let imagefound = false;
 
+    for (let j = 0; j < selectedUsers.length; j++) {
+        if (selectedUsers[j] == persons[i].img) {
+            imagefound = true;
+            document.getElementById(id).classList.remove("user-picker-row-select");
+            selectedUsers.splice(j, 1);
+        }
+    } if (!imagefound) {
+        document.getElementById(id).classList.add("user-picker-row-select");
+        selectedUsers.push(userImage);
+    }
+    console.log(selectedUsers);
+    displaySelectedUsers();
+}
+
+function displaySelectedUsers() {
+    document.getElementById("assign-person").innerHTML = '';
+    for (let j = 0; j < selectedUsers.length; j++) {
+        document.getElementById("assign-person").innerHTML += `
+        <img src="${selectedUsers[j]}">`;
+    }
 }
 
 function removePerson() {
@@ -77,17 +94,3 @@ function createTask($event) {
     $event.preventDefault();
 }
 
-function selectPerson(i) {
-    if (
-        document.getElementById(id).classList.contains("user-picker-row-select")
-    ) {
-        document.getElementById(id).classList.add("user-picker-row-select");
-        document.getElementById("assign-person").innerHTML += `
-        <img src="${persons[i]["img"]}">`;
-    } else if (!document.getElementById(id).classList.contains("user-picker-row-select")) {
-        document.getElementById(id).classList.remove("user-picker-row-select");
-        document.getElementById("assign-person").remove.innerHTML -= `<img src "${persons[i]["img"]}>" `;
-        document.getElementById("assign-person").innerHTML = ""
-    }
-
-}
