@@ -1,36 +1,3 @@
-//Json of person where can selected
-let persons = [{
-        name: "Alexander Kummerer",
-        mail: "alexander@kummerer.mail",
-        img: "img/alex.jpg",
-    },
-    {
-        name: "Eileen Moore",
-        mail: "eileen@moore.mail",
-        img: "img/eileen.jpg",
-    },
-    {
-        name: "Dan Mercurean",
-        mail: "dan@mercurean.mail",
-        img: "img/dan.jpg",
-    },
-    {
-        name: "Jaci jack",
-        mail: "jaci@jack.maill",
-        img: "img/nutzer.svg",
-    },
-    {
-        name: "Junus Ergin",
-        mail: "junus@ergin.mail",
-        img: "img/junus.jpg",
-    },
-    {
-        name: "Manuel Thaler",
-        mail: "manuel@thaler.maill",
-        img: "img/manuel.jpg",
-    },
-];
-
 let selectedUsers = [];
 let allTasks = [];
 
@@ -41,9 +8,10 @@ function addPersonBlend() {
 }
 
 function displayperson() {
-    for (let i = 0; i < persons.length; i++) {
+    loadAllUsers();
+    for (let i = 0; i < users.length; i++) {
         document.getElementById("user-picker-container").innerHTML += `
-        <div id="user-picker-row${i}" class ="user-picker-row" onclick="selectUser(${i})"> <img src="${persons[i]["img"]}"> <span>${persons[i]["name"]} </span> </div>
+        <div id="user-picker-row${i}" class ="user-picker-row" onclick="selectUser(${i})"> <img src="${users[i]["profilePicture"]}"> <span>${users[i]["username"]} </span> </div>
     `;
     }
 }
@@ -74,7 +42,7 @@ function selectUser(i) {
 function checkIfUserIsAlreadySelected(i, id) {
     let userfound = false;
     for (let j = 0; j < selectedUsers.length; j++) {
-        if (selectedUsers[j] == persons[i]) {
+        if (selectedUsers[j] == users[i]) {
             userfound = true;
             document.getElementById(id).classList.remove("user-picker-row-select");
             selectedUsers.splice(j, 1);
@@ -82,7 +50,7 @@ function checkIfUserIsAlreadySelected(i, id) {
     }
     if (!userfound) {
         document.getElementById(id).classList.add("user-picker-row-select");
-        selectedUsers.push(persons[i]);
+        selectedUsers.push(users[i]);
     }
 }
 
@@ -90,9 +58,9 @@ function displaySelectedUsers() {
     document.getElementById("assign-person").innerHTML = "";
     for (let j = 0; j < selectedUsers.length; j++) {
         document.getElementById("assign-person").innerHTML += `
-        <img id="user" src="${selectedUsers[j]["img"]}">`;
+        <img id="user" src="${selectedUsers[j]["profilePicture"]}">`;
     }
-    console.log('selectedUsers');
+    console.log("selectedUsers");
 }
 
 /**
@@ -103,7 +71,7 @@ function displaySelectedUsers() {
 function removePerson() {
     selectedUsers = [];
 
-    for (let i = 0; i < persons.length; i++) {
+    for (let i = 0; i < users.length; i++) {
         let id = "user-picker-row" + i;
         document.getElementById(id).classList.remove("user-picker-row-select");
     }
@@ -133,23 +101,32 @@ function cancelTask() {
 
 function createTask($event) {
     $event.preventDefault();
+    defineUrgency();
+    defineMatrix();
+
+    newTask();
+
+    console.log(task);
+    taskSubmussion(task);
+}
+
+function newTask() {
     let title = document.getElementById("inputTitle");
     let category = document.getElementById("category");
     let discription = document.getElementById("floatingTextarea2");
     let date = document.getElementById("dateInput");
     let importance = document.getElementById("importance");
 
-    let task = {
+    task = {
         title: title.value,
         category: category.value,
         discription: discription.value,
         date: date.value,
         importance: importance.value,
         assignedPerson: selectedUsers,
+        urgency: urgency,
+        section: section,
     };
-
-    console.log(task);
-    taskSubmussion(task);
 }
 
 /**
@@ -178,6 +155,47 @@ function taskSubmussion(task) {
 function loadAllTasks() {
     let allTasksAsString = localStorage.getItem("allTasks");
     allTasks = JSON.parse(allTasksAsString) || [];
+}
+
+/**
+ * Defines urgency and Section
+ *
+ *
+ *
+ */
+
+let dateSelected;
+let dayTime = 86400000;
+let urgency;
+let section;
+
+function getDate() {
+    dateSelected = new Date(
+        document.getElementById("datePickerInput").value
+    ).getTime();
+}
+
+function defineUrgency() {
+    let createdDate = new Date().getTime();
+    let Datedifference = dateSelected - createdDate;
+
+    if (Datedifference < dayTime) {
+        urgency = "High";
+    } else {
+        urgency = "Low";
+    }
+}
+
+function defineMatrix() {
+    if (importance == "High" && urgency == "High") {
+        section = "Do";
+    } else if (importance == "High" && urgency == "Low") {
+        section = "Schedule";
+    } else if (importance == "Low" && urgency == "High") {
+        section = "Delegate";
+    } else if (importance == "Low" && urgency == "Low") {
+        section = "Delegate";
+    }
 }
 
 /**
