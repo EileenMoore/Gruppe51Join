@@ -97,6 +97,7 @@ input:focus {
 }
 
 .registration-container {
+    position:absolute;
     z-index: 20;
     background-color: #f4f3fb;
     width: 300px;

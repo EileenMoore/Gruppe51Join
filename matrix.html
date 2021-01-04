@@ -12,10 +12,11 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
-
+    <script src="js/matrix.js"></script>
+    <script src="js/addTask.js"></script>
 </head>
 
-<body>
+<body onload="insertTaskInDo()">
 
     <div class="sidebar">
 
@@ -69,52 +70,12 @@
                         <span class="matrix-quarter-headline">DO</span>
                         <div id="do" class="matrix-bg">
 
-                            <div class="task-card do">
-                                <span class="date">12.05.20</span>
-                                <span class="task-card-headline">Prepare Presentation</span>
-                                <span class="task-card-description">Some description goes here ...</span>
-                                <div class="task-card-bottom">
-                                    <button type="button" class="btn btn-primary">Marketing</button>
-                                    <div class="profile-picture-small"></div>
-                                </div>
-                            </div>
-
-                            <div class="task-card do">
-                                <span class="date">12.05.20</span>
-                                <span class="task-card-headline">Prepare Presentation</span>
-                                <span class="task-card-description">Some description goes here ...</span>
-                                <div class="task-card-bottom">
-                                    <button type="button" class="btn btn-primary">Marketing</button>
-                                    <div class="profile-picture-small"></div>
-                                </div>
-                            </div>
-
-                            <div class="task-card do">
-                                <span class="date">12.05.20</span>
-                                <span class="task-card-headline">Prepare Presentation</span>
-                                <span class="task-card-description">Some description goes here ...</span>
-                                <div class="task-card-bottom">
-                                    <button type="button" class="btn btn-primary">Marketing</button>
-                                    <div class="profile-picture-small"></div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
 
                     <div class="matrix-quarter">
                         <span class="matrix-quarter-headline">SCHEDULE</span>
                         <div id="schedule" class="matrix-bg">
-
-                            <div class="task-card schedule">
-                                <span class="date">12.05.20</span>
-                                <span class="task-card-headline">Prepare Presentation</span>
-                                <span class="task-card-description">Some description goes here ...</span>
-                                <div class="task-card-bottom">
-                                    <button type="button" class="btn btn-primary">Marketing</button>
-                                    <div class="profile-picture-small"></div>
-                                </div>
-                            </div>
 
                         </div>
                     </div>
@@ -125,32 +86,12 @@
                         <span class="matrix-quarter-headline">DELEGATE</span>
                         <div id="delegate" class="matrix-bg">
 
-                            <div class="task-card delegate">
-                                <span class="date">12.05.20</span>
-                                <span class="task-card-headline">Prepare Presentation</span>
-                                <span class="task-card-description">Some description goes here ...</span>
-                                <div class="task-card-bottom">
-                                    <button type="button" class="btn btn-primary">Marketing</button>
-                                    <div class="profile-picture-small"></div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
 
                     <div class="matrix-quarter">
                         <span class="matrix-quarter-headline">ELIMINATE</span>
                         <div id="eliminate" class="matrix-bg">
-
-                            <div class="task-card eliminate">
-                                <span class="date">12.05.20</span>
-                                <span class="task-card-headline">Prepare Presentation</span>
-                                <span class="task-card-description">Some description goes here ...</span>
-                                <div class="task-card-bottom">
-                                    <button type="button" class="btn btn-primary">Marketing</button>
-                                    <div class="profile-picture-small"></div>
-                                </div>
-                            </div>
 
                         </div>
                     </div>

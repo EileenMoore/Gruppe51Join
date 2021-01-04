@@ -135,17 +135,19 @@ function loadAllUsers() {
 }
 
 /**
- * This function opens the window for the sign up.
+ * This function opens the window and the background for the sign up.
  */
 function openRegistration() {
     document.getElementById('registration-container-overlay').classList.remove('d-none');
+    document.getElementById('registration-container').classList.remove('d-none');
 }
 
 /**
- * This function closes the window for the sign up.
+ * This function closes the window and the background for the sign up.
  */
 function closeRegistration() {
     document.getElementById('registration-container-overlay').classList.add('d-none');
+    document.getElementById('registration-container').classList.add('d-none');
 }
 
 /**
