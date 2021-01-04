@@ -47,7 +47,8 @@ function checkIfLoginIsCorrect(userfound, currentUsername, currentPassword) {
             generateUserLogin(currentUsername, currentPassword);
             location.href = "matrix.html";
         }
-    } if (!userfound) {
+    }
+    if (!userfound) {
         alert('Wrong Username or Password!');
     }
 }
@@ -59,7 +60,7 @@ function findProfile(i) {
 
 function generateUserLogin(currentUsername, currentPassword) {
     findProfile(i);
-    let userLogin =  {
+    let userLogin = {
         'username': currentUsername,
         'email': currentEmail,
         'password': currentPassword,
@@ -93,10 +94,10 @@ function closeRegistration() {
     document.getElementById('registration-container-overlay').classList.add('d-none');
 }
 
-window.addEventListener('load', function () {
-    document.querySelector('input[type="file"]').addEventListener('change', function () {
+window.addEventListener('load', function() {
+    document.querySelector('input[type="file"]').addEventListener('change', function() {
         if (this.files && this.files[0]) {
-            image = document.getElementById('myImg');  // $('img')[0]
+            image = document.getElementById('myImg'); // $('img')[0]
             image.src = URL.createObjectURL(this.files[0]); // set src to blob url
 
             let imgCanvas = document.createElement("canvas"),

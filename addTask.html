@@ -6,20 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>JOIN | Add Task</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel='stylesheet' type='text/css' media='screen' href='sidebar.css'>
-    <link rel="stylesheet" type="text/css" media="screen" href="addTask.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/sidebar.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/addTask.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
-    <script src="addTask.js"></script>
+    <script src="js/addTask.js"></script>
 </head>
 
 <body onload="displayperson()">
-
     <div class="sidebar">
-
         <div>
-            <img class="joinlogo" src="img/joinlogo.png">
+            <img class="joinlogo" src="img/joinlogo.png" />
             <a href="matrix.html" class="menulink link-unselected">Matrix</a>
             <a href="list.html" class="menulink link-unselected">List</a>
             <a href="addTask.html" class="menulink link-selected">AddTask</a>
@@ -27,13 +25,12 @@
 
         <div>
             <div class="profile-picture">
-                <img src="img/person-24px.svg">
+                <img src="img/person-24px.svg" />
             </div>
 
             <a href="impressum.html" class="menulink link-unselected">Impressum</a>
             <a href="index.html" class="menulink link-unselected">Log Out</a>
         </div>
-
     </div>
 
     <form class="projects" onsubmit="createTask(event)">
@@ -53,7 +50,7 @@
                     <div class="category-section">
                         <h3>Category</h3>
 
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" aria-label="Default select example" id="category">
                 <option selected>Choose Category</option>
                 <option value="1">Management</option>
                 <option value="2">Sales</option>
@@ -77,7 +74,7 @@
                     </div>
                     <div class="importance-section">
                         <h3>Importance</h3>
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" aria-label="Default select example" id="importance">
                 <option selected>Choose Category</option>
                 <option value="1">High</option>
                 <option value="2">Low</option>
@@ -122,4 +119,4 @@
 </body>
 
 </html>
-<img src="" alt="">
+<img src="" alt="" />
