@@ -92,6 +92,7 @@ function displaySelectedUsers() {
         document.getElementById("assign-person").innerHTML += `
         <img id="user" src="${selectedUsers[j]["img"]}">`;
     }
+    console.log('selectedUsers');
 }
 
 /**
@@ -197,4 +198,8 @@ function pickOnlyfutureDays() {
     }
     today = yyyy + "-" + mm + "-" + dd;
     document.getElementById("dateInput").setAttribute("min", today);
+}
+
+function showAllTasks() {
+    console.log(allTasks);
 }

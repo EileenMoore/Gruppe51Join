@@ -54,6 +54,7 @@ function signUp() {
 
     users.push(user);
     console.log(user);
+    console.log(currentUser);
     alert('Your registration was succsessful. You can now login!')
     saveUsersInLocalStorage();
 }
@@ -90,14 +91,12 @@ function login() {
     let currentUsername = document.getElementById('currentUsername').value;
     let currentPassword = document.getElementById('currentPassword').value;
     let userfound = false;
-
     checkIfLoginIsCorrect(userfound, currentUsername, currentPassword);
-    saveCurrentUserInLocalStorage();
 }
 
 /**
  * This function checks if the entered login data matches with the data of the signed up users. If the data is correct the user is located
- * to the matrix. If the data is incorrect the user gets an alert.
+ * to the matrix and saved as the current user in the local storage. If the data is incorrect the user gets an alert.
  * 
  * 
  * @param {boolean} userfound - This value expresses if the login data is correct.
@@ -109,6 +108,7 @@ function checkIfLoginIsCorrect(userfound, currentUsername, currentPassword) {
         if (currentUsername == users[i].username && currentPassword == users[i].password) {
             userfound = true;
             generateUserLogin(currentUsername, currentPassword);
+            saveCurrentUserInLocalStorage();
             location.href = "matrix.html";
         }
     }
@@ -157,17 +157,22 @@ function saveCurrentUserInLocalStorage() {
 
 /**
  * This function loads the data of all signed up users from the local storage and saves them in the users array when the page is loaded. 
- * It also deletes the currently logged in user.
+ * 
  */
 function loadAllUsers() {
     let allUsersAsString = localStorage.getItem('users');
-    currentUser = [];
-    saveCurrentUserInLocalStorage();
-
     if (allUsersAsString) {
         users = JSON.parse(allUsersAsString);
         console.log(users);
     }
+}
+
+/**
+ * This function deletes the currently logged in user.
+ */
+function logOutCurrentUser() {
+    currentUser = [];
+    saveCurrentUserInLocalStorage();
 }
 
 /**
