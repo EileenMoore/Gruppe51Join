@@ -12,7 +12,7 @@ let persons = [{
     {
         name: "Dan Mercurean",
         mail: "dan@mercurean.mail",
-        img: "img/person-24px.svg",
+        img: "img/dan.jpg",
     },
     {
         name: "Jaci jack",
