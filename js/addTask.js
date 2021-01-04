@@ -57,13 +57,7 @@ function displayperson() {
 
 function selectUser(i) {
     let id = "user-picker-row" + i;
-    let user = {
-        username: persons[i]["name"],
-        userImage: persons[i]["img"],
-        usermail: persons[i]["mail"],
-    };
-
-    checkIfUserIsAlreadySelected(i, id, user);
+    checkIfUserIsAlreadySelected(i, id);
     console.log(selectedUsers);
     displaySelectedUsers();
 }
@@ -74,13 +68,13 @@ function selectUser(i) {
  *
  * @param {number} i - defines the postion of the array persons
  * @param {string} id  - defines the row of the selected user
- * @param {object} user - defines the username and userImage
+ *
  */
 
-function checkIfUserIsAlreadySelected(i, id, user) {
+function checkIfUserIsAlreadySelected(i, id) {
     let userfound = false;
     for (let j = 0; j < selectedUsers.length; j++) {
-        if (selectedUsers[j].username == persons[i].name) {
+        if (selectedUsers[j] == persons[i]) {
             userfound = true;
             document.getElementById(id).classList.remove("user-picker-row-select");
             selectedUsers.splice(j, 1);
@@ -88,7 +82,7 @@ function checkIfUserIsAlreadySelected(i, id, user) {
     }
     if (!userfound) {
         document.getElementById(id).classList.add("user-picker-row-select");
-        selectedUsers.push(user);
+        selectedUsers.push(persons[i]);
     }
 }
 
@@ -96,9 +90,14 @@ function displaySelectedUsers() {
     document.getElementById("assign-person").innerHTML = "";
     for (let j = 0; j < selectedUsers.length; j++) {
         document.getElementById("assign-person").innerHTML += `
-        <img id="user" src="${selectedUsers[j]["userImage"]}">`;
+        <img id="user" src="${selectedUsers[j]["img"]}">`;
     }
 }
+
+/**
+ * This function is used to remove all Selected Persons
+ *
+ */
 
 function removePerson() {
     selectedUsers = [];
@@ -126,7 +125,7 @@ function cancelTask() {
 }
 
 /**
- *This function create a Task
+ * This function create a new Task with provided Info
  *
  * @param {*} $event
  */
@@ -148,14 +147,54 @@ function createTask($event) {
         assignedPerson: selectedUsers,
     };
 
-    allTasks.push(task);
-
-    let allTasksAsString = JSON.stringify(allTasks);
-    localStorage.setItem("allTasks", allTasksAsString);
+    console.log(task);
+    taskSubmussion(task);
 }
+
+/**
+ *  push task to allTasks-array, if an user is selected,  push task to allTasks-array
+ *
+ * @param {object} task - object with information of the task
+ *
+ */
+
+function taskSubmussion(task) {
+    if (selectedUsers < 1) {
+        alert("Please select at least one person for the task");
+    } else {
+        allTasks.push(task);
+        let allTasksAsString = JSON.stringify(allTasks);
+        localStorage.setItem("allTasks", allTasksAsString);
+        console.log(allTasks);
+    }
+}
+
+/**
+ * Load all Task
+ *
+ */
 
 function loadAllTasks() {
     let allTasksAsString = localStorage.getItem("allTasks");
-    allTasks = JSON.parse(allTasksAsString);
-    console.log("allTasks");
+    allTasks = JSON.parse(allTasksAsString) || [];
+}
+
+/**
+ *  You can pick only future Days
+ *
+ */
+
+function pickOnlyfutureDays() {
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth() + 1; //January is 0!
+    let yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = "0" + dd;
+    }
+    if (mm < 10) {
+        mm = "0" + mm;
+    }
+    today = yyyy + "-" + mm + "-" + dd;
+    document.getElementById("dateInput").setAttribute("min", today);
 }
