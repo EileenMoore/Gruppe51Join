@@ -61,7 +61,7 @@ function login() {
 
 /**
  * This function checks if the entered login data matches with the data of the signed up users. If the data is correct the user is located
- * to the matrix. If the data is incorrect the user get an alert.
+ * to the matrix. If the data is incorrect the user gets an alert.
  * 
  * 
  * @param {boolean} userfound - This value expresses if the login data is correct.
