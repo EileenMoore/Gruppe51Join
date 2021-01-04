@@ -1,4 +1,40 @@
-let users = [];
+let users = [{
+    'username': "Alexander Kummerer",
+    'email': "alexander@kummerer.mail",
+    'password': "passwort",
+    'profilePicture': "img/alex.jpg"
+},
+{
+    'username': "Eileen Moore",
+    'email': "eileen@moore.mail",
+    'password': "passwort",
+    'profilePicture': "img/eileen.jpg"
+},
+{
+    'username': "Dan Mercurean",
+    'email': "dan@mercurean.mail",
+    'password': "passwort",
+    'profilePicture': "img/dan.jpg"
+},
+{
+    'username': "Jaci jack",
+    'email': "jaci@jack.mail",
+    'password': "passwort",
+    'profilePicture': "img/nutzer.svg"
+},
+{
+    'username': "Junus Ergin",
+    'email': "junus@ergin.mail",
+    'password': "passwort",
+    'profilePicture': "img/junus.jpg"
+},
+{
+    'username': "Manuel Thaler",
+    'email': "manuel@thaler.maill",
+    'password': "passwort",
+    'profilePicture': "img/manuel.jpg"
+}];
+
 let currentUser = [];
 
 let profilePictureAsDataURL = [];
@@ -153,8 +189,8 @@ function closeRegistration() {
 /**
  * This function is used to upload a profile picture from the file-inputfield and display it in the sign-up window.
  */
-window.addEventListener('load', function() {
-    document.querySelector('input[type="file"]').addEventListener('change', function() {
+window.addEventListener('load', function () {
+    document.querySelector('input[type="file"]').addEventListener('change', function () {
         if (this.files && this.files[0]) {
             image = document.getElementById('myImg'); // $('img')[0]
             image.src = URL.createObjectURL(this.files[0]); // set src to blob url
