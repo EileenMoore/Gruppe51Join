@@ -148,28 +148,21 @@ function closeRegistration() {
     document.getElementById('registration-container-overlay').classList.add('d-none');
 }
 
-<<<<<<< HEAD:index.js
 /**
  * This function is used to upload a profile picture from the file-inputfield and display it in the sign-up window.
  */
-window.addEventListener('load', function () {
-    document.querySelector('input[type="file"]').addEventListener('change', function () {
-=======
 window.addEventListener('load', function() {
     document.querySelector('input[type="file"]').addEventListener('change', function() {
->>>>>>> b569641f91e71fb82118a36a302b6b709c50feb3:js/index.js
         if (this.files && this.files[0]) {
             image = document.getElementById('myImg'); // $('img')[0]
             image.src = URL.createObjectURL(this.files[0]); // set src to blob url
             getCanvas(image);
-            profilePictureAsDataURL = imgCanvas.toDataURL("image/png");
         }
     });
-<<<<<<< HEAD:index.js
 });
 
 /**
- * This function creates a canvas for the image.
+ * This function creates a canvas for the image and converts it to an URL.
  */
 function getCanvas(image) {
     let imgCanvas = document.createElement("canvas"),
@@ -178,7 +171,5 @@ function getCanvas(image) {
     imgCanvas.width = image.width;
     imgCanvas.height = image.height;
     imgContext.drawImage(image, 0, 0, image.width, image.height);
+    profilePictureAsDataURL = imgCanvas.toDataURL("image/png");
 }
-=======
-});
->>>>>>> b569641f91e71fb82118a36a302b6b709c50feb3:js/index.js
