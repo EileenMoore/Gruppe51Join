@@ -60,6 +60,7 @@ function selectUser(i) {
     let user = {
         username: persons[i]["name"],
         userImage: persons[i]["img"],
+        usermail: persons[i]["mail"],
     };
 
     checkIfUserIsAlreadySelected(i, id, user);
@@ -137,7 +138,6 @@ function createTask($event) {
     let discription = document.getElementById("floatingTextarea2");
     let date = document.getElementById("dateInput");
     let importance = document.getElementById("importance");
-    let assignedPerson = document.getElementById("assign-person");
 
     let task = {
         title: title.value,
@@ -145,7 +145,7 @@ function createTask($event) {
         discription: discription.value,
         date: date.value,
         importance: importance.value,
-        assignedPerson: assignedPerson.value,
+        assignedPerson: selectedUsers,
     };
 
     allTasks.push(task);
