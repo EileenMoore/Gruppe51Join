@@ -32,8 +32,9 @@ let persons = [{
 ];
 
 let selectedUsers = [];
+let allTasks = [];
 
-// personBlen with users to selct will displayed
+// personBlend with users to select will displayed
 
 function addPersonBlend() {
     document.getElementById("addPersonBlend").classList.remove("d-none");
@@ -47,6 +48,13 @@ function displayperson() {
     }
 }
 
+/**
+ * This function is used to select an user
+ *
+ *
+ * @param {number} i - defines the row number
+ */
+
 function selectUser(i) {
     let id = "user-picker-row" + i;
     let user = {
@@ -58,6 +66,15 @@ function selectUser(i) {
     console.log(selectedUsers);
     displaySelectedUsers();
 }
+
+/**
+ *
+ * This function is used to check if an User is Selected
+ *
+ * @param {number} i - defines the postion of the array persons
+ * @param {string} id  - defines the row of the selected user
+ * @param {object} user - defines the username and userImage
+ */
 
 function checkIfUserIsAlreadySelected(i, id, user) {
     let userfound = false;
@@ -78,7 +95,7 @@ function displaySelectedUsers() {
     document.getElementById("assign-person").innerHTML = "";
     for (let j = 0; j < selectedUsers.length; j++) {
         document.getElementById("assign-person").innerHTML += `
-        <img src="${selectedUsers[j]["userImage"]}">`;
+        <img id="user" src="${selectedUsers[j]["userImage"]}">`;
     }
 }
 
@@ -107,6 +124,38 @@ function cancelTask() {
     removePerson();
 }
 
+/**
+ *This function create a Task
+ *
+ * @param {*} $event
+ */
+
 function createTask($event) {
     $event.preventDefault();
+    let title = document.getElementById("inputTitle");
+    let category = document.getElementById("category");
+    let discription = document.getElementById("floatingTextarea2");
+    let date = document.getElementById("dateInput");
+    let importance = document.getElementById("importance");
+    let assignedPerson = document.getElementById("assign-person");
+
+    let task = {
+        title: title.value,
+        category: category.value,
+        discription: discription.value,
+        date: date.value,
+        importance: importance.value,
+        assignedPerson: assignedPerson.value,
+    };
+
+    allTasks.push(task);
+
+    let allTasksAsString = JSON.stringify(allTasks);
+    localStorage.setItem("allTasks", allTasksAsString);
+}
+
+function loadAllTasks() {
+    let allTasksAsString = localStorage.getItem("allTasks");
+    allTasks = JSON.parse(allTasksAsString);
+    console.log("allTasks");
 }

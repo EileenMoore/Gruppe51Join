@@ -14,7 +14,7 @@
     <script src="js/addTask.js"></script>
 </head>
 
-<body onload="displayperson()">
+<body onload="displayperson(), loadAllTasks()">
     <div class="sidebar">
         <div>
             <img class="joinlogo" src="img/joinlogo.png" />
@@ -44,25 +44,25 @@
                 <div class="right-taskcontainer">
                     <div class="title-section">
                         <h3>Title</h3>
-                        <input type="title" name="InputTitle" id="inputTitle" />
+                        <input type="title" placeholder="Title" required name="InputTitle" id="inputTitle" />
                     </div>
 
                     <div class="category-section">
                         <h3>Category</h3>
 
-                        <select class="form-select" aria-label="Default select example" id="category">
-                <option selected>Choose Category</option>
-                <option value="1">Management</option>
-                <option value="2">Sales</option>
-                <option value="3">HR</option>
-                <option value="4">IT</option>
-                <option value="5">Private</option>
+                        <select class="form-select" aria-required ria-label="Default select example" aria-placeholder="Choose Category" id="category">
+                <option selected>Management</option>
+                <
+                <option>Sales</option>
+                <option>HR</option>
+                <option>IT</option>
+                <option>Private</option>
               </select>
                     </div>
                     <div class="discripion-section">
                         <h3>Description</h3>
                         <div class="form-floating">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                            <textarea class="form-control" required placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
                         </div>
                     </div>
                 </div>
@@ -70,14 +70,13 @@
                 <div class="left-taskcontainer">
                     <div class="date-section">
                         <h3>Due Date</h3>
-                        <input type="date" name="dateInput" id="dateInput" />
+                        <input type="date" name="dateInput" required id="dateInput" />
                     </div>
                     <div class="importance-section">
                         <h3>Importance</h3>
-                        <select class="form-select" aria-label="Default select example" id="importance">
-                <option selected>Choose Category</option>
-                <option value="1">High</option>
-                <option value="2">Low</option>
+                        <select class="form-select" required aria-label="Default select example" id="importance">
+                <option selected>High</option>
+                <option>Low</option>
               </select>
                     </div>
                     <div class="assign-section">
@@ -119,4 +118,3 @@
 </body>
 
 </html>
-<img src="" alt="" />
