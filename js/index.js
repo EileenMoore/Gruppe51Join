@@ -75,7 +75,8 @@ function checkIfLoginIsCorrect(userfound, currentUsername, currentPassword) {
             generateUserLogin(currentUsername, currentPassword);
             location.href = "matrix.html";
         }
-    } if (!userfound) {
+    }
+    if (!userfound) {
         alert('Wrong Username or Password!');
     }
 }
@@ -147,18 +148,24 @@ function closeRegistration() {
     document.getElementById('registration-container-overlay').classList.add('d-none');
 }
 
+<<<<<<< HEAD:index.js
 /**
  * This function is used to upload a profile picture from the file-inputfield and display it in the sign-up window.
  */
 window.addEventListener('load', function () {
     document.querySelector('input[type="file"]').addEventListener('change', function () {
+=======
+window.addEventListener('load', function() {
+    document.querySelector('input[type="file"]').addEventListener('change', function() {
+>>>>>>> b569641f91e71fb82118a36a302b6b709c50feb3:js/index.js
         if (this.files && this.files[0]) {
-            image = document.getElementById('myImg');  // $('img')[0]
+            image = document.getElementById('myImg'); // $('img')[0]
             image.src = URL.createObjectURL(this.files[0]); // set src to blob url
             getCanvas(image);
             profilePictureAsDataURL = imgCanvas.toDataURL("image/png");
         }
     });
+<<<<<<< HEAD:index.js
 });
 
 /**
@@ -172,3 +179,6 @@ function getCanvas(image) {
     imgCanvas.height = image.height;
     imgContext.drawImage(image, 0, 0, image.width, image.height);
 }
+=======
+});
+>>>>>>> b569641f91e71fb82118a36a302b6b709c50feb3:js/index.js
