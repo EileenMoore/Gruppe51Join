@@ -100,6 +100,11 @@ function displaySelectedUsers() {
     }
 }
 
+/**
+ * This function is used to remove all Selected Persons
+ *
+ */
+
 function removePerson() {
     selectedUsers = [];
 
@@ -126,7 +131,7 @@ function cancelTask() {
 }
 
 /**
- *This function create a Task
+ * This function create a new Task with provided Info
  *
  * @param {*} $event
  */
@@ -147,15 +152,52 @@ function createTask($event) {
         importance: importance.value,
         assignedPerson: selectedUsers,
     };
-
-    allTasks.push(task);
-
-    let allTasksAsString = JSON.stringify(allTasks);
-    localStorage.setItem("allTasks", allTasksAsString);
+    taskSubmussion(task);
 }
+
+/**
+ * Check if all mandatory info is provided an push task to allTasks-array
+ *
+ * @param {*} task
+ */
+
+function taskSubmussion(task) {
+    if (selectedUsers < 1) {
+        alert("Please select at least one person for the task");
+    } else {
+        allTasks.push(task);
+        let allTasksAsString = JSON.stringify(allTasks);
+        localStorage.setItem("allTasks", allTasksAsString);
+        console.log(allTasks);
+    }
+}
+
+/**
+ * Load all Task
+ *
+ */
 
 function loadAllTasks() {
     let allTasksAsString = localStorage.getItem("allTasks");
     allTasks = JSON.parse(allTasksAsString);
-    console.log("allTasks");
+}
+
+/**
+ *  You can pick only future Days
+ *
+ */
+
+function pickOnlyfutureDays() {
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth() + 1; //January is 0!
+    let yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = "0" + dd;
+    }
+    if (mm < 10) {
+        mm = "0" + mm;
+    }
+    today = yyyy + "-" + mm + "-" + dd;
+    document.getElementById("dateInput").setAttribute("min", today);
 }
