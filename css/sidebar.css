@@ -1,92 +1,155 @@
-body {
-    margin: 0;
-    display: flex;
-    font-family: 'PT Sans', sans-serif;
-}
-
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 160px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding-top: 16px;
-    background-color: #1b2d91;
-}
-
-.sidebar div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
-.sidebar a {
-    background-color: transparent;
-    padding: 8px;
-    width: 90%;
-}
-
-.sidebar a:hover {
-    text-decoration: none;
-    color: white;
-}
-
-.menulink {
-    margin-top: 10px;
-    text-align: center;
-    text-decoration: none;
-    color: gray;
-}
-
-.impressumlink {
-    top: 496px;
-    color: gray;
-    text-align: center;
-    text-decoration: none;
-}
-
-.link-selected {
-    box-shadow: -6px 0px white;
-    color: white;
-}
-
-.link-unselected {
-    color: gray;
-}
-
-.joinlogo {
-    width: 40px;
-    height: 51px;
-    object-fit: cover;
-    margin-bottom: 32px;
-}
-
-.profile-picture {
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    background-color: white;
-}
-
-.profile-picture img {
-    height: 46px;
-    width: 50px;
-}
-
-.headline {
-    display: flex;
-    flex-direction: column;
-}
-
-.projects {
-    position: absolute;
-    right: 0;
-    top: 0;
-    left: 160px;
-    padding: 16px;
-}
+    body {
+        margin: 0;
+        display: flex;
+        font-family: 'PT Sans', sans-serif;
+    }
+    
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 160px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-top: 16px;
+        background-color: #1b2d91;
+    }
+    
+    .sidebar div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+    
+    .sidebar a {
+        background-color: transparent;
+        padding: 8px;
+        width: 90%;
+    }
+    
+    .sidebar a:hover {
+        text-decoration: none;
+        color: white;
+    }
+    
+    .menulink {
+        margin-top: 10px;
+        text-align: center;
+        text-decoration: none;
+        color: gray;
+    }
+    
+    .bg-primare {
+        color: #fff;
+        background-color: rgb(30, 49, 144) !important;
+        border-color: rgb(30, 49, 144) !important;
+    }
+    
+    .impressumlink {
+        top: 496px;
+        color: gray;
+        text-align: center;
+        text-decoration: none;
+    }
+    
+    .link-selected {
+        box-shadow: -6px 0px white;
+        color: white;
+    }
+    
+    .link-unselected {
+        color: gray;
+    }
+    
+    .joinlogo {
+        width: 40px;
+        height: 51px;
+        object-fit: cover;
+        margin-bottom: 32px;
+    }
+    
+    .profile-picture {
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        background-color: white;
+    }
+    
+    .profile-picture img {
+        height: 46px;
+        width: 50px;
+    }
+    
+    .headline {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .projects {
+        position: absolute;
+        right: 0;
+        top: 0;
+        left: 160px;
+        padding: 16px;
+    }
+    
+    .media {
+        display: none;
+    }
+    
+    @media ( max-width: 990px) {
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: #eeeded solid 2px;
+            position: fixed;
+            background-color: white;
+            padding-top: 10px;
+            padding-right: 120px;
+            padding-left: 120px;
+            padding-bottom: 10px;
+            width: 100%;
+        }
+        .navbar {
+            padding-right: 1em;
+            padding-left: 1em;
+        }
+        .hide-mobile {
+            display: none;
+        }
+        .nav-image {
+            width: 6em !important;
+        }
+        .navbar-toggler {
+            width: 5em;
+            height: 4em;
+        }
+        .navbar-toggler-icon {
+            width: 3em;
+            height: 3em;
+        }
+    }
+    
+    @media (min-width: 990px) {
+        .show-mobile {
+            display: none !important;
+        }
+        nav {
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: #eeeded solid 2px;
+            position: fixed;
+            background-color: white;
+            padding-top: 10px;
+            padding-right: 120px;
+            padding-left: 120px;
+            padding-bottom: 10px;
+            width: 100%;
+            z-index: 500;
+        }
+    }
