@@ -3,6 +3,9 @@ let scheduleTasks = [];
 let delegateTasks = [];
 let eliminateTasks = [];
 
+/**
+ * This function sorts all Tasks in sub sections.
+ */
 function sortTasks() {
     loadAllTasks();
 
@@ -21,6 +24,9 @@ function sortTasks() {
     }
 }
 
+/**
+ * This function inserts the taks from the sub sections into the matrix fields.
+ */
 function insertTasks() {
     sortTasks();
     let section;
@@ -31,6 +37,12 @@ function insertTasks() {
     insertEliminateTasks(section);
 }
 
+/**
+ * This function inserts the tasks from the do-section into the do-field in the matrix.
+ * 
+ * 
+ * @param {string} section - This string represents a task-section.
+ */
 function insertDoTasks(section) {
     for (i = 0; i < doTasks.length; i++) {
         const task = doTasks[i];
@@ -39,6 +51,13 @@ function insertDoTasks(section) {
             generateTask(task, section);
     }
 }
+
+/**
+ * This function inserts the tasks from the schedule-section into the schedule-field in the matrix.
+ * 
+ * 
+ * @param {string} section - This string represents a task-section.
+ */
 
 function insertScheduleTasks(section) {
     for (i = 0; i < scheduleTasks.length; i++) {
@@ -49,6 +68,12 @@ function insertScheduleTasks(section) {
     }
 }
 
+/**
+ * This function inserts the tasks from the delegate-section into the delegate-field in the matrix.
+ * 
+ * 
+ * @param {string} section - This string represents a task-section.
+ */
 function insertDelegateTasks(section) {
     for (i = 0; i < delegateTasks.length; i++) {
         const task = delegateTasks[i];
@@ -57,6 +82,13 @@ function insertDelegateTasks(section) {
             generateTask(task, section);
     }
 }
+
+/**
+ * This function inserts the tasks from the eliminate-section into the eliminate-field in the matrix.
+ * 
+ * 
+ * @param {string} section - This string represents a task-section.
+ */
 
 function insertEliminateTasks(section) {
     for (i = 0; i < eliminateTasks.length; i++) {
@@ -67,6 +99,13 @@ function insertEliminateTasks(section) {
     }
 }
 
+/**
+ * This function generates a task card for the matrix
+ * 
+ * 
+ * @param {string} task - This is the task that is put into the matrix.
+ * @param {string} section - This string represents a task-section.
+ */
 function generateTask(task, section) {
     return `
     <div class="task-card ${section}">
@@ -82,6 +121,12 @@ function generateTask(task, section) {
 </div>`
 }
 
+/**
+ * This function generates an image-row of the profile pictures that are involved in the task.
+ * 
+ * 
+ * @param {string} task - This is the task that is put into the matrix.
+ */
 function generateImageRow(task) {
     let imgRow = `<div class="profile-pictures">`;
 
