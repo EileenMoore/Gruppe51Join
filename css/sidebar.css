@@ -89,14 +89,6 @@
         flex-direction: column;
     }
     
-    .projects {
-        position: absolute;
-        right: 0;
-        top: 0;
-        left: 160px;
-        padding: 16px;
-    }
-    
     .media {
         display: none;
     }
@@ -107,7 +99,6 @@
             align-items: center;
             justify-content: space-between;
             border-bottom: #eeeded solid 2px;
-            position: fixed;
             background-color: white;
             padding-top: 10px;
             padding-right: 120px;
@@ -116,6 +107,7 @@
             width: 100%;
         }
         .navbar {
+            position: fixed !important;
             padding-right: 1em;
             padding-left: 1em;
         }
@@ -133,23 +125,16 @@
             width: 3em;
             height: 3em;
         }
+        .joinlogo {
+            width: 65px !important;
+            height: 75px !important;
+            object-fit: cover;
+            margin-bottom: 6px;
+        }
     }
     
     @media (min-width: 990px) {
         .show-mobile {
             display: none !important;
-        }
-        nav {
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: #eeeded solid 2px;
-            position: fixed;
-            background-color: white;
-            padding-top: 10px;
-            padding-right: 120px;
-            padding-left: 120px;
-            padding-bottom: 10px;
-            width: 100%;
-            z-index: 500;
         }
     }

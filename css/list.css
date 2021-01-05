@@ -3,8 +3,10 @@
     height: 100vh;
 }
 
+
 /********************Task_Container_RELATED_SETTINGS********************/
-.headline-div-container{
+
+.headline-div-container {
     position: fixed;
     top: 0;
     width: 88%;
@@ -19,7 +21,15 @@
     background-color: white;
 }
 
-.headline-container{
+.projects {
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 160px;
+    padding: 16px;
+}
+
+.headline-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -65,6 +75,7 @@
     width: 25%;
     text-align: end;
 }
+
 
 /*colors for the list-item-content depending of the eisenhowerMatrixCategorie value of the assigment*/
 
