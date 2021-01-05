@@ -38,6 +38,8 @@ let users = [{
 
 let currentUser = [];
 
+
+
 let profilePictureAsDataURL = [];
 let currentProfilePicture = [];
 let currentEmail = [];
