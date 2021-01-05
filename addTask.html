@@ -83,21 +83,16 @@
                         <h3>Assign To</h3>
                         <div class="overall-user-div">
                             <div required id="assign-person"></div>
-                            <div class="assign-perosn-btn">
-                                <button class="btn btn-primary" type="button" onclick="addPersonBlend()">
-                    Add Person
-                  </button>
-                                <button class="btn btn-danger" type="button" onclick="removePerson()">
-                    Remove
-                  </button>
+                            <div class="assign-person">
+                                <img src="img/icon plus.png" title="Assign Person" onclick="addPersonBlend()" />
                             </div>
                         </div>
 
                         <div class="assign-commit">
-                            <button class="btn btn-danger" type="button" onclick="cancelTask()">
+                            <button class="btn btn-light" type="button" title="Cancel Task" onclick="cancelTask() ">
                   Cancel
                 </button>
-                            <button class="btn btn-primary" type="submit">
+                            <button class="btn btn-primary" title="Create Task" type="submit">
                   Create Task
                 </button>
                         </div>
@@ -110,7 +105,7 @@
     <div id="addPersonBlend" class="d-none">
         <div id="userPickerBlend" class="user-picker">
             <div id="user-picker-container"></div>
-            <button class="btn btn-primary back-btn" type="button" onclick="removePersonBlend()">
+            <button class="btn btn-primary back-btn" type="button " onclick="removePersonBlend() ">
           Back
         </button>
         </div>
