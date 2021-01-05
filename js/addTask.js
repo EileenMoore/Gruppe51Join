@@ -112,7 +112,7 @@ function createTask($event) {
 function newTask() {
     let title = document.getElementById("inputTitle");
     let category = document.getElementById("category");
-    let discription = document.getElementById("floatingTextarea2");
+    let description = document.getElementById("floatingTextarea2");
     let date = document.getElementById("dateInput");
     let importance = document.getElementById("importance");
 
