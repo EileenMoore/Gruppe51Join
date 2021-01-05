@@ -86,10 +86,10 @@ function removePersonBlend() {
 
 function cancelTask() {
     document.getElementById("inputTitle").value = "";
-    document.getElementById("category").value = "";
+
     document.getElementById("floatingTextarea2").value = "";
     document.getElementById("dateInput").value = "";
-    document.getElementById("importance").value = "";
+
     removePerson();
 }
 
@@ -107,6 +107,9 @@ function createTask($event) {
     newTask();
     console.log(task);
     taskSubmussion(task);
+
+    alert("New Task is created");
+    cancelTask();
 }
 
 function newTask() {
