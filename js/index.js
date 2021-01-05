@@ -169,6 +169,10 @@ function loadAllUsers() {
         users = JSON.parse(allUsersAsString);
         console.log(users);
     }
+    else {
+        saveUsersInLocalStorage();
+    }
+
 }
 
 /**
