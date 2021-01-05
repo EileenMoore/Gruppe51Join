@@ -4,7 +4,8 @@
 }
 
 /********************Task_Container_RELATED_SETTINGS********************/
-.headline-div-container{
+
+.headline-div-container {
     position: fixed;
     top: 0;
     width: 88%;
@@ -19,7 +20,7 @@
     background-color: white;
 }
 
-.headline-container{
+.headline-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -123,4 +124,75 @@
     border-radius: 5px;
     border-left-style: solid;
     border-left-width: 5px;
+}
+
+@media(max-width: 990px) {
+    nav {
+        width: 100%;
+    }
+    .projects {
+        position: relative !important;
+        padding: 16px !important;
+        left: 0px !important;
+    }
+    .headline-div-container {
+        position: relative !important;
+    }
+    .task-item-content {
+        display: flex;
+        align-items: center;
+        height: 70px;
+        width: 100%;
+        background-color: #F4F3FB;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border-left-style: solid;
+        border-left-width: 5px;
+    }
+    .assigned-content {
+        width: 25%;
+        min-width: 190px;
+        overflow: auto;
+        display: flex;
+        align-items: center;
+    }
+    .category-content {
+        width: 25%;
+        min-width: 70px;
+        overflow: auto;
+        text-align: center;
+    }
+    .details-content {
+        width: 50%;
+        max-height: 100%;
+        overflow-y: scroll;
+        overflow-x: scroll;
+        padding: 5px;
+    }
+
+    .task-container {
+        margin-top: 16vh;
+    }
+
+    .task-item-description {
+        background-color: white;
+        top: 30%;
+        display: flex;
+        color: rgb(30, 49, 144);
+    }
+    #assigned {
+        width: 25%;
+        min-width: 140px;
+        overflow: auto;
+    }
+    #category {
+        width: 16%;
+        min-width: 132px;
+        overflow: auto;
+        text-align: center;
+    }
+    #details {
+        width: 50%;
+        text-align: end;
+    }
 }

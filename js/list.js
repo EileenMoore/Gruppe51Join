@@ -14,7 +14,7 @@ function generateListItem() {
         <div>${assignedPeople.username}<br>${assignedPeople.email}</div>
     </div>
     <div class="category-content">${allTasks[i]['category']}</div>
-    <div class="category-content">${allTasks[i]['description']}</div>
+    <div class="details-content">${allTasks[i]['description']}</div>
     </div>`;
         }  }
 }
