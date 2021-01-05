@@ -119,7 +119,7 @@ function newTask() {
     task = {
         title: title.value,
         category: category.value,
-        discription: discription.value,
+        description: description.value,
         date: date.value,
         importance: importance.value,
         assignedPeople: selectedUsers,
