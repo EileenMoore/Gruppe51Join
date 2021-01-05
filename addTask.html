@@ -15,7 +15,7 @@
     <script src="js/index.js"></script>
 </head>
 
-<body onload="displayperson(), loadAllTasks(),pickOnlyfutureDays() ">
+<body onload="displayperson(), loadAllTasks(),pickOnlyfutureDays(); ">
     <div class="sidebar">
         <div>
             <img class="joinlogo" src="img/joinlogo.png" />
@@ -71,7 +71,7 @@
                 <div class="left-taskcontainer">
                     <div class="date-section">
                         <h3>Due Date</h3>
-                        <input type="date" name="dateInput" required id="dateInput" />
+                        <input type="date" name="dateInput" required id="dateInput" onchange="getDate()" />
                     </div>
                     <div class="importance-section">
                         <h3>Importance</h3>

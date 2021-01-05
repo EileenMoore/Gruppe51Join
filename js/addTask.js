@@ -101,11 +101,10 @@ function cancelTask() {
 
 function createTask($event) {
     $event.preventDefault();
-    defineUrgency();
-    defineMatrix();
+
+    defurgency();
 
     newTask();
-
     console.log(task);
     taskSubmussion(task);
 }
@@ -123,9 +122,9 @@ function newTask() {
         discription: discription.value,
         date: date.value,
         importance: importance.value,
-        assignedPerson: selectedUsers,
+        assignedPeople: selectedUsers,
         urgency: urgency,
-        section: section,
+        section: resolveSection(importance.value, urgency),
     };
 }
 
@@ -165,17 +164,13 @@ function loadAllTasks() {
  */
 
 let dateSelected;
-let dayTime = 86400000;
-let urgency;
-let section;
+let dayTime = 259200000;
 
 function getDate() {
-    dateSelected = new Date(
-        document.getElementById("datePickerInput").value
-    ).getTime();
+    dateSelected = new Date(document.getElementById("dateInput").value).getTime();
 }
 
-function defineUrgency() {
+function defurgency() {
     let createdDate = new Date().getTime();
     let Datedifference = dateSelected - createdDate;
 
@@ -186,15 +181,17 @@ function defineUrgency() {
     }
 }
 
-function defineMatrix() {
-    if (importance == "High" && urgency == "High") {
-        section = "Do";
-    } else if (importance == "High" && urgency == "Low") {
-        section = "Schedule";
-    } else if (importance == "Low" && urgency == "High") {
-        section = "Delegate";
-    } else if (importance == "Low" && urgency == "Low") {
-        section = "Delegate";
+function resolveSection(i, u) {
+    if (i == "High" && u == "High") {
+        return "Do";
+    } else if (i == "High" && u == "Low") {
+        return "Schedule";
+    } else if (i == "Low" && u == "High") {
+        return "Delegate";
+    } else if (i == "Low" && u == "Low") {
+        return "Eliminate";
+    } else {
+        return "Section unknown";
     }
 }
 
