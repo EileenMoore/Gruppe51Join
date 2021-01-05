@@ -2,32 +2,30 @@
 <html>
 
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>JOIN | List</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='css/sidebar.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='css/list.css'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/sidebar.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/list.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
     <script src="js/list.js"></script>
     <script src="js/addTask.js"></script>
     <script src="js/matrix.js"></script>
     <script src="js/index.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
 
 <body onload="generateListItem(), loadAllTasks()">
-
     <div class="task-page">
-
         <div class="sidebar hide-mobile">
             <div>
                 <img class="joinlogo" src="img/joinlogo.png" />
                 <a href="matrix.html" class="menulink link-unselected">Matrix</a>
                 <a href="list.html" class="menulink link-selected disabled">List</a>
-                <a href="addTask.html" class="menulink link-unselected ">AddTask</a>
+                <a href="addTask.html" class="menulink link-unselected">AddTask</a>
             </div>
 
             <div>
@@ -35,47 +33,40 @@
                     <img src="img/profileimg/person-24px.svg" />
                 </div>
 
-                <a href="impressum.html" class="menulink link-unselected">Impressum</a>
-                <a href="index.html" class="menulink link-unselected">Log Out</a>
+                <a href="impressum.html" class="menulink link-unselected">Impressum</a
+          >
+          <a href="index.html" class="menulink link-unselected">Log Out</a>
             </div>
         </div>
 
-
         <nav class="navbar navbar-expand-lg navbar-dark bg-primare show-mobile">
             <div class="container-fluid">
-                <img src="img/joinlogo.png" class="joinlogo">
+                <img src="img/joinlogo.png" class="joinlogo" />
                 <img class="profile-picture" src="img/profileimg/person-24px.svg" />
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
+            <span class="navbar-toggler-icon"></span>
+          </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link " aria-current="page" href="matrix.html">Matrix</a>
-                        <a class="nav-link disabled active" href="list.html">List</a>
+                        <a class="nav-link" aria-current="page" href="matrix.html">Matrix</a
+              >
+              <a class="nav-link disabled active" href="list.html">List</a>
                         <a class="nav-link" href="addTask.html">AddTask</a>
                         <a class="nav-link" href="impressum.html">Impressum</a>
                         <a class="nav-link" href="index.html" tabindex="">Log Out</a>
-
-
-
-
                     </div>
                 </div>
             </div>
         </nav>
 
-
         <div class="projects">
             <div class="headline-div-container">
                 <div class="headline-container">
-                    <div class="headline">
-                        <span><b>Your Project</b></span>
-                        <span>Learning Management System Project</span>
-                    </div>
+                    <h2>Your Project</h2>
+                    <p>Learning Management System Project</p>
                 </div>
             </div>
             <div id="taskdelegate" class="task-container">
-
                 <div class="task-item-description">
                     <p id="assigned">ASSIGNED TO</p>
                     <p id="category">CATEGORY</p>
@@ -107,7 +98,6 @@
                     </div>
                 </div>
 -->
-
             </div>
         </div>
     </div>
