@@ -108,7 +108,8 @@ function createTask($event) {
     console.log(task);
     taskSubmussion(task);
 
-    alert("New Task is created");
+    alert("New Task is created. You will be redirected to List");
+    location.replace("list.html")
     cancelTask();
 }
 

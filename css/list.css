@@ -40,12 +40,10 @@ p {
     position: relative;
     top: 25%;
     font-size: 14px;
-    margin-top: 22vh;
 }
 
 .task-item-description {
     background-color: white;
-    position: fixed;
     top: 20%;
     width: 88%;
     display: flex;
@@ -173,15 +171,19 @@ p {
         overflow-x: scroll;
         padding: 5px;
     }
+
     .task-container {
         margin-top: 16vh;
     }
+
     .task-item-description {
         background-color: white;
+        position: relative !important;
         top: 30%;
         display: flex;
         color: rgb(30, 49, 144);
     }
+    
     #assigned {
         width: 25%;
         min-width: 140px;

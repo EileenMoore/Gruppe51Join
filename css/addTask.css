@@ -9,13 +9,6 @@
         font-size: 12px!important;
         color: rgb(30, 49, 144);
     }
-    /*.projects {
-        position: relative;
-        right: 0;
-        top: 0;
-        left: 160px;
-        padding: 16px;
-    }*/
     
     .title-text-container {
         display: flex;
@@ -119,6 +112,10 @@
     
     .assign-section {
         height: 50%;
+    }
+    
+    .assign-person img:hover {
+        cursor: pointer;
     }
     
     .overall-user-div {
