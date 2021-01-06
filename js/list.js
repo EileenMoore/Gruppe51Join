@@ -1,5 +1,5 @@
 /**
- * This function shows the tasks in the list
+ * This function display the tasks in the list
  */
 
 function generateListItem() {
