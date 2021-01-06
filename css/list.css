@@ -36,10 +36,43 @@ p {
     justify-content: center;
 }
 
+.assignee-section{
+    display: flex;
+}
+
 .task-container {
-    position: relative;
-    top: 25%;
-    font-size: 14px;
+    width: 100%;
+    height: auto;
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 30% 20% 38% 8%;
+    grid-auto-rows: min-content;
+    grid-template-areas:
+        "label label label label"
+        "task task task task";
+    align-items: center;
+}
+
+.task-container label {
+    font-size: 1em;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: .5rem;
+    color: rgb(30, 49, 144);
+}
+
+
+
+.task-listed {
+    grid-area: task;
+    display: grid;
+    grid-template-columns: 1.5% 23.5% 20% 50% 5%;
+    grid-row: auto;
+    background-color: #F4F3FB;
+    border-radius: 8px;
+    height: auto;
+    margin-bottom: 10px;
+    transition: all 125ms ease-in-out;
 }
 
 .task-item-description {
@@ -56,7 +89,7 @@ p {
     font-size: 15px;
 }
 
-#assigned {
+/*#assigned {
     width: 25%;
     min-width: 230px;
     overflow: auto;
@@ -72,7 +105,7 @@ p {
 #details {
     width: 25%;
     text-align: end;
-}
+}*/
 
 
 /*colors for the list-item-content depending of the eisenhowerMatrixCategorie value of the assigment*/
@@ -94,33 +127,61 @@ p {
 }
 
 .assigned-content {
-    width: 25%;
-    min-width: 230px;
-    overflow: auto;
     display: flex;
     align-items: center;
+    height: 100%;
 }
 
 .assigned-img {
-    margin-left: 10px;
-    margin-right: 10px;
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
+    display: flex;
+    margin: 0.5rem 0.5rem 0.5rem 0;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-evenly;
+}
+
+.assigned-img img {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 3rem;
+    height: 3rem;
+    margin: 2px 0 0 0;
+    border-radius: 50%;
+}
+
+.contact-data-section{
+    display: flex;
+    margin: 4px 0 0 0;
+    flex-direction: column;
 }
 
 .category-content {
-    width: 25%;
-    min-width: 70px;
-    overflow: auto;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-weight: bolder;
+    font-size: 1.3rem;
+    
 }
 
 .details-content {
-    width: 50%;
-    max-height: 100%;
-    overflow-y: scroll;
-    padding: 5px;
+    margin: unset;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    word-break: break-word;
+    padding: 2% 2%;
+}
+
+#category {
+    display: flex;
+    justify-content: center;
+}
+
+#details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .task-item-content {
@@ -184,7 +245,7 @@ p {
         color: rgb(30, 49, 144);
     }
     
-    #assigned {
+   /* #assigned {
         width: 25%;
         min-width: 140px;
         overflow: auto;
@@ -198,5 +259,5 @@ p {
     #details {
         width: 50%;
         text-align: end;
-    }
+    }*/
 }
