@@ -16,10 +16,11 @@
     <script src="js/matrix.js"></script>
     <script src="js/addTask.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/sidebar.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
 
-<body onload="sortTasks()">
+<body onload="sortTasks(); loadProfilePicture()">
 
     <div class="sidebar hide-mobile">
         <div>
@@ -30,9 +31,7 @@
         </div>
 
         <div>
-            <div class="profile-picture">
-                <img src="img/profileimg/nutzer.svg" />
-            </div>
+            <div class="profile-picture" id="profilePicture"> </div>
 
             <a href="impressum.html" class="menulink link-unselected">Impressum</a>
             <a href="index.html" class="menulink link-unselected">Log Out</a>

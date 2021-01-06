@@ -15,9 +15,10 @@
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
     <script src="js/addTask.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/sidebar.js"></script>
 </head>
 
-<body onload="displayperson(), loadAllTasks(),pickOnlyfutureDays(); ">
+<body onload="displayperson(), loadAllTasks(), pickOnlyfutureDays(); loadProfilePicture()">
     <div class="sidebar hide-mobile">
         <div>
             <img class="joinlogo" src="img/joinlogo.png" />
@@ -27,9 +28,7 @@
         </div>
 
         <div>
-            <div class="profile-picture">
-                <img src="img/profileimg/nutzer.svg" />
-            </div>
+            <div class="profile-picture" id="profilePicture"></div>
 
             <a href="impressum.html" class="menulink link-unselected">Impressum</a>
             <a href="index.html" class="menulink link-unselected">Log Out</a>

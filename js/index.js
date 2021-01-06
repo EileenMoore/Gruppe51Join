@@ -205,3 +205,11 @@ function closeRegistration() {
     document.getElementById("registration-container").classList.add("d-none");
 }
 
+
+function loadCurrentUser() {
+    let currentUserAsString = localStorage.getItem('currentUser');
+
+    if (currentUserAsString) {
+        currentUser = JSON.parse(currentUserAsString);
+    }
+}

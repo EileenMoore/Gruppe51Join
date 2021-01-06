@@ -14,9 +14,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/impressum.css">
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/index.js"></script>
 </head>
 
-<body>
+<body onload="loadProfilePicture()">
 
     <div class="sidebar hide-mobile">
         <div>
@@ -27,9 +29,7 @@
         </div>
 
         <div>
-            <div class="profile-picture">
-                <img src="img/profileimg/nutzer.svg" />
-            </div>
+            <div class="profile-picture" id="profilePicture"> </div>
 
             <a href="impressum.html" class="menulink link-selected">Impressum</a>
             <a href="index.html" class="menulink link-unselected">Log Out</a>
