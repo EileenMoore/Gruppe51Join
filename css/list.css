@@ -40,12 +40,10 @@ p {
     position: relative;
     top: 25%;
     font-size: 14px;
-    margin-top: 22vh;
 }
 
 .task-item-description {
     background-color: white;
-    position: fixed;
     top: 20%;
     width: 88%;
     display: flex;
