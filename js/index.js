@@ -205,7 +205,9 @@ function closeRegistration() {
     document.getElementById("registration-container").classList.add("d-none");
 }
 
-
+/**
+ * This function loads the currently logged in user.
+ */
 function loadCurrentUser() {
     let currentUserAsString = localStorage.getItem('currentUser');
 
