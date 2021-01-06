@@ -6,4 +6,8 @@ function loadProfilePicture() {
     document.getElementById('profilePicture').innerHTML += `
     <img class="profile-picture" src="${currentUser[0].profilePicture}">
     `
+
+    document.getElementById('profilePictureResponsive').innerHTML += `
+    <img class="profile-picture" src="${currentUser[0].profilePicture}">
+    `
 }
