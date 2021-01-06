@@ -186,13 +186,13 @@ function defurgency() {
 
 function resolveSection(i, u) {
     if (i == "High" && u == "High") {
-        return "Do";
+        return "do";
     } else if (i == "High" && u == "Low") {
-        return "Schedule";
+        return "schedule";
     } else if (i == "Low" && u == "High") {
-        return "Delegate";
+        return "delegate";
     } else if (i == "Low" && u == "Low") {
-        return "Eliminate";
+        return "eliminate";
     } else {
         return "Section unknown";
     }
