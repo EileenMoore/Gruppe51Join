@@ -1,46 +1,59 @@
 let users = [{
-        username: "Alexander Kummerer",
-        email: "alexander@kummerer.mail",
-        password: "passwort",
-        profilePicture: "img/profileimg/alex.jpg",
-    },
-    {
-        username: "Eileen Moore",
-        email: "eileen@moore.mail",
-        password: "passwort",
-        profilePicture: "img/profileimg/eileen.jpg",
-    },
-    {
-        username: "Dan Mercurean",
-        email: "dan@mercurean.mail",
-        password: "passwort",
-        profilePicture: "img/profileimg/dan.jpg",
-    },
-    {
-        username: "Jaci jack",
-        email: "jaci@jack.mail",
-        password: "passwort",
-        profilePicture: "img/profileimg/nutzer.svg",
-    },
-    {
-        username: "Junus Ergin",
-        email: "junus@ergin.mail",
-        password: "passwort",
-        profilePicture: "img/profileimg/junus.jpg",
-    },
-    {
-        username: "Manuel Thaler",
-        email: "manuel@thaler.maill",
-        password: "passwort",
-        profilePicture: "img/profileimg/manuel.jpg",
-    },
+    username: "Alexander Kummerer",
+    email: "alexander@kummerer.mail",
+    password: "passwort",
+    profilePicture: "img/profileimg/alex.jpg",
+},
+{
+    username: "Eileen Moore",
+    email: "eileen@moore.mail",
+    password: "passwort",
+    profilePicture: "img/profileimg/eileen.jpg",
+},
+{
+    username: "Dan Mercurean",
+    email: "dan@mercurean.mail",
+    password: "passwort",
+    profilePicture: "img/profileimg/dan.jpg",
+},
+{
+    username: "Jaci jack",
+    email: "jaci@jack.mail",
+    password: "passwort",
+    profilePicture: "img/profileimg/nutzer.svg",
+},
+{
+    username: "Junus Ergin",
+    email: "junus@ergin.mail",
+    password: "passwort",
+    profilePicture: "img/profileimg/junus.jpg",
+},
+{
+    username: "Manuel Thaler",
+    email: "manuel@thaler.maill",
+    password: "passwort",
+    profilePicture: "img/profileimg/manuel.jpg",
+},
 ];
 
 let currentUser = [];
-
 let profilePictureAsDataURL = [];
 let currentProfilePicture = [];
 let currentEmail = [];
+
+/**
+ * This function is used to sign up a new user for JOIN.
+ */
+function signUp() {
+    getProfilePicture();
+    saveUsersInLocalStorage();
+    closeRegistration();
+    alert("Your Sign Up was successful");
+    let i = users.length - 1;
+    let currentUsername = users[i].username;
+    let currentPassword = users[i].password;
+    loginCurrentUser(currentUsername, currentPassword, i);
+}
 
 /**
  * This function is used to set up a profile picture.
@@ -50,21 +63,18 @@ function getProfilePicture() {
     if (profilePictureAsDataURL.length == 0) {
         picture = "img/profileimg/nutzer.svg";
     }
-    signUp(picture);
+    addUser(picture);
 }
 
 /**
- * This function is used to sign up a new user for JOIN.
+ * This function is used to add a new user to the users of JOIN.
  * 
  * 
  * @param {string} picture - This is the profile picture of the new user.
  */
-function signUp(picture) {
+function addUser(picture) {
     let user = generateUser(picture);
     users.push(user);
-    saveUsersInLocalStorage();
-    closeRegistration();
-    location.href = "matrix.html";
 }
 
 /**
@@ -116,14 +126,21 @@ function checkIfLoginIsCorrect(userfound, currentUsername, currentPassword) {
             currentPassword == users[i].password
         ) {
             userfound = true;
-            generateUserLogin(currentUsername, currentPassword);
-            saveCurrentUserInLocalStorage();
-            location.href = "matrix.html";
+            loginCurrentUser(currentUsername, currentPassword, i);
         }
     }
     if (!userfound) {
         alert("Wrong Username or Password!");
     }
+}
+
+/**
+ * This function logs in the current user into the JOIN portal.
+ */
+function loginCurrentUser(currentUsername, currentPassword, i) {
+    generateUserLogin(currentUsername, currentPassword, i);
+    saveCurrentUserInLocalStorage();
+    location.href = "matrix.html";
 }
 
 /**
@@ -133,7 +150,7 @@ function checkIfLoginIsCorrect(userfound, currentUsername, currentPassword) {
  * @param {string} currentUsername - This is the username that the user entered in the login.
  * @param {string} currentPassword - This is the password that the user entered in the login.
  */
-function generateUserLogin(currentUsername, currentPassword) {
+function generateUserLogin(currentUsername, currentPassword, i) {
     findProfile(i);
     let userLogin = {
         username: currentUsername,
@@ -177,7 +194,6 @@ function loadAllUsers() {
     else {
         saveUsersInLocalStorage();
     }
-
 }
 
 /**
@@ -192,9 +208,7 @@ function logOutCurrentUser() {
  * This function opens the window and the background for the sign up.
  */
 function openRegistration() {
-    document
-        .getElementById("registration-container-overlay")
-        .classList.remove("d-none");
+    document.getElementById("registration-container-overlay").classList.remove("d-none");
     document.getElementById("registration-container").classList.remove("d-none");
 }
 
@@ -202,9 +216,11 @@ function openRegistration() {
  * This function closes the window and the background for the sign up.
  */
 function closeRegistration() {
-    document
-        .getElementById("registration-container-overlay")
-        .classList.add("d-none");
+    document.getElementById("username").value = '';
+    document.getElementById("email").value = '';
+    document.getElementById("password").value = '';
+    document.getElementById("myImg").src = "img/profileimg/nutzer.svg";
+    document.getElementById("registration-container-overlay").classList.add("d-none");
     document.getElementById("registration-container").classList.add("d-none");
 }
 
