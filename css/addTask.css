@@ -1,5 +1,11 @@
     /*add Task Style */
     
+    body {
+        margin: 0;
+        font-family: 'PT Sans', sans-serif;
+        font-size: 1.0rem !important;
+    }
+    
     h2 {
         font-size: 32px !important;
         color: rgb(30, 49, 144);
@@ -8,6 +14,10 @@
     p {
         font-size: 12px!important;
         color: rgb(30, 49, 144);
+    }
+    
+    .custom-select {
+        font-size: 1.0rem !important;
     }
     
     .title-text-container {
@@ -190,6 +200,7 @@
         background-color: rgb(244, 243, 251);
         border-radius: 16px !important;
         padding: 16px;
+        height: 50vh;
     }
     
     .btn-primary {
