@@ -3,7 +3,7 @@
         display: flex;
         font-family: 'PT Sans', sans-serif;
     }
-    
+
     .sidebar {
         position: fixed;
         left: 0;
@@ -17,83 +17,81 @@
         padding-top: 16px;
         background-color: #1b2d91;
     }
-    
+
     .sidebar div {
         display: flex;
         flex-direction: column;
         align-items: center;
         margin-bottom: 8px;
     }
-    
+
     .sidebar a {
         background-color: transparent;
         padding: 8px;
         width: 90%;
     }
-    
+
     .sidebar a:hover {
         text-decoration: none;
         color: white;
     }
-    
+
     .menulink {
         margin-top: 10px;
         text-align: center;
         text-decoration: none;
         color: gray;
     }
-    
+
     .bg-primare {
         color: #fff;
         background-color: rgb(30, 49, 144) !important;
         border-color: rgb(30, 49, 144) !important;
     }
-    
+
     .impressumlink {
         top: 496px;
         color: gray;
         text-align: center;
         text-decoration: none;
     }
-    
+
     .link-selected {
         box-shadow: -6px 0px white;
         color: white;
     }
-    
+
     .link-unselected {
         color: gray;
     }
-    
+
     .joinlogo {
         width: 40px;
         height: 51px;
         object-fit: cover;
         margin-bottom: 32px;
     }
-    
+
     .profile-picture {
-        width: 50px;
-        height: 50px;
+        width: 64px;
+        height: 64px;
         object-fit: cover;
         border-radius: 100%;
-        background-color: white;
+        border: 2px solid white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    
-    .profile-picture img {
-        height: 46px;
-        width: 50px;
-    }
-    
+
     .headline {
         display: flex;
         flex-direction: column;
     }
-    
+
     .media {
         display: none;
     }
-    
+
     @media ( max-width: 990px) {
         nav {
             display: flex;
@@ -133,7 +131,7 @@
             margin-bottom: 6px;
         }
     }
-    
+
     @media (min-width: 990px) {
         .show-mobile {
             display: none !important;

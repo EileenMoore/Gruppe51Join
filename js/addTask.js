@@ -9,11 +9,29 @@ function addPersonBlend() {
 
 function displayperson() {
     loadAllUsers();
+    loadCurrentUser();
+    selectedUsers.push(currentUser[0]);
+    console.log(selectedUsers);
+    console.log(users);
+    displaySelectedUsers();
+
     for (let i = 0; i < users.length; i++) {
         document.getElementById("user-picker-container").innerHTML += `
-        <div id="user-picker-row${i}" class ="user-picker-row" onclick="selectUser(${i})"> <img src="${users[i]["profilePicture"]}"> <span>${users[i]["username"]} </span> </div>
-    `;
+        <div id="user-picker-row${i}" class ="user-picker-row" onclick="selectUser(${i})"> 
+        <img src="${users[i]["profilePicture"]}"> 
+        <span>${users[i]["username"]} </span> 
+        </div>`;
     }
+
+    for (let j = 0; j < users.length; j++) {
+
+        for (let k = 0; k < selectedUsers.length; k++) {
+            if (users[j] == selectedUsers[k]) {
+                document.getElementById("user-picker-row" + j).classList.add("user-picker-row-select");
+            }
+        }
+    }
+
 }
 
 /**
@@ -55,12 +73,11 @@ function checkIfUserIsAlreadySelected(i, id) {
 }
 
 function displaySelectedUsers() {
-    document.getElementById("assign-person").innerHTML = "";
+    document.getElementById("assign-person").innerHTML = '';
     for (let j = 0; j < selectedUsers.length; j++) {
         document.getElementById("assign-person").innerHTML += `
         <img id="user" src="${selectedUsers[j]["profilePicture"]}">`;
     }
-    console.log("selectedUsers");
 }
 
 /**
@@ -70,6 +87,7 @@ function displaySelectedUsers() {
 
 function removePerson() {
     selectedUsers = [];
+    selectedUsers.push(currentUser[0]);
 
     for (let i = 0; i < users.length; i++) {
         let id = "user-picker-row" + i;
@@ -86,7 +104,6 @@ function removePersonBlend() {
 
 function cancelTask() {
     document.getElementById("inputTitle").value = "";
-
     document.getElementById("floatingTextarea2").value = "";
     document.getElementById("dateInput").value = "";
 
