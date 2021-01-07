@@ -78,6 +78,7 @@
         object-fit: cover;
         border-radius: 100%;
         border: 2px solid white;
+        background-color: white;
         display: flex;
         justify-content: center;
         align-items: center;

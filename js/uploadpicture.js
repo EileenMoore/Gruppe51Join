@@ -22,6 +22,6 @@ function getCanvas(image) {
 
     imgCanvas.width = image.width;
     imgCanvas.height = image.height;
-    imgContext.drawImage(image, 0, 0, image.width, image.height);
+    imgContext.drawImage(image, 0, 0, 20, 20);
     profilePictureAsDataURL = imgCanvas.toDataURL("image/png");
 }
