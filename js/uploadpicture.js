@@ -9,6 +9,8 @@ window.addEventListener("load", function() {
                 image = document.getElementById("myImg"); // $('img')[0]
                 image.src = URL.createObjectURL(this.files[0]); // set src to blob url
                 getCanvas(image);
+            } else {
+                profilePictureAsDataURL = "img/profileimg/nutzer.svg";
             }
         });
 });

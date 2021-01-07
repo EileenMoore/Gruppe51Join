@@ -1,4 +1,6 @@
-
+/**
+ * This function displays the profile picture of the currently logged in user.
+ */
 function loadProfilePicture() {
 
     loadCurrentUser();

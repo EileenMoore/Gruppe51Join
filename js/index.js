@@ -38,44 +38,47 @@ let users = [{
 
 let currentUser = [];
 
-
-
 let profilePictureAsDataURL = [];
 let currentProfilePicture = [];
 let currentEmail = [];
 
 /**
- * This function is used to create an account for a new user when the user enters username, email and password.
- *
- * @param {}
+ * This function is used to set up a profile picture.
  */
-function signUp() {
-    let username = document.getElementById("username").value;
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
-    let user = generateUser(username, email, password);
+function getProfilePicture() {
+    let picture = profilePictureAsDataURL;
+    if (profilePictureAsDataURL.length == 0) {
+        picture = "img/profileimg/nutzer.svg";
+    }
+    signUp(picture);
+}
 
+/**
+ * This function is used to sign up a new user for JOIN.
+ * 
+ * 
+ * @param {string} picture - This is the profile picture of the new user.
+ */
+function signUp(picture) {
+    let user = generateUser(picture);
     users.push(user);
-    console.log(user);
-    console.log(currentUser);
-    alert("Your registration was succsessful. You can now login!");
     saveUsersInLocalStorage();
+    closeRegistration();
+    location.href = "matrix.html";
 }
 
 /**
  * This function generates the user data for a new user.
  *
  *
- * @param {string} username - This is the name of the user.
- * @param {string} email - This is the email of the user.
- * @param {string} password - This is the password of the user.
+ * @param {string} picture - This is the profile picture of the user.
  */
-function generateUser(username, email, password) {
+function generateUser(picture) {
     return {
-        username: username,
-        email: email,
-        password: password,
-        profilePicture: profilePictureAsDataURL,
+        username: document.getElementById("username").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value,
+        profilePicture: picture,
     };
 }
 
