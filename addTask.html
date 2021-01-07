@@ -72,8 +72,8 @@
                     <div class="category-section">
                         <h3>Category</h3>
 
-                        <select class="form-select" aria-required ria-label="Default select example" aria-placeholder="Choose Category" id="category">
-                <option selected>Management</option>
+                        <select class="custom-select" onchange="validate()" aria-placeholder="Choose a Categorie" aria-required ria-label="Default select example" aria-placeholder="Choose Category" id="category" multiple max="3" size="3">
+                <option >Management</option>
                 <option>Sales</option>
                 <option>HR</option>
                 <option>IT</option>
@@ -95,7 +95,7 @@
                     </div>
                     <div class="importance-section">
                         <h3>Importance</h3>
-                        <select class="form-select" required aria-label="Default select example" id="importance">
+                        <select class="form-select" aria-placeholder="Chosse a Importance" required aria-label="Default select example" id="importance">
                 <option selected>High</option>
                 <option>Low</option>
               </select>
@@ -126,7 +126,7 @@
     <div id="addPersonBlend" class="d-none">
         <div id="userPickerBlend" class="user-picker">
             <div id="user-picker-container"></div>
-            <button class="btn btn-primary back-btn" type="button " onclick="removePersonBlend() ">
+            <button class="btn btn-primary back-btn" type="button " onclick="removePersonBlend()">
           Back
         </button>
         </div>

@@ -1,5 +1,6 @@
 let selectedUsers = [];
 let allTasks = [];
+let selectedCategories = [];
 
 // personBlend with users to select will displayed
 
@@ -104,9 +105,10 @@ function removePersonBlend() {
 
 function cancelTask() {
     document.getElementById("inputTitle").value = "";
+    document.getElementById("category").value = "";
     document.getElementById("floatingTextarea2").value = "";
     document.getElementById("dateInput").value = "";
-
+    selectedCategories = [];
     removePerson();
 }
 
@@ -126,20 +128,20 @@ function createTask($event) {
     taskSubmussion(task);
 
     alert("New Task is created. You will be redirected to List");
-    location.replace("list.html")
+    //location.replace("list.html");
     cancelTask();
 }
 
 function newTask() {
     let title = document.getElementById("inputTitle");
-    let category = document.getElementById("category");
+
     let description = document.getElementById("floatingTextarea2");
     let date = document.getElementById("dateInput");
     let importance = document.getElementById("importance");
 
     task = {
         title: title.value,
-        category: category.value,
+        category: selectedCategories,
         description: description.value,
         date: date.value,
         importance: importance.value,
@@ -238,4 +240,25 @@ function pickOnlyfutureDays() {
 
 function showAllTasks() {
     console.log(allTasks);
+}
+
+function validate() {
+    let selectChoose = document.getElementById("category");
+    let optionCount = 0;
+    let maxOptions = 3;
+    for (let i = 0; i < selectChoose.length; i++) {
+        if (selectChoose[i].selected) {
+            optionCount++;
+            if (optionCount > maxOptions) {
+                alert("You can only Choose 3 Categories");
+                document.getElementById("category").value = "";
+                selectedCategories = [];
+            } else
+            if (!selectedCategories.includes(selectChoose[i].value)) {
+                selectedCategories.push(selectChoose[i].value);
+            }
+
+        }
+    }
+
 }
