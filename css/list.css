@@ -64,6 +64,9 @@ p {
 
 
 .task-listed {
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.1);
+    border-left: 8px;
+    border-left-style: solid;
     grid-area: task;
     display: grid;
     grid-template-columns: 1.5% 23.5% 20% 50% 5%;
@@ -71,7 +74,7 @@ p {
     background-color: #F4F3FB;
     border-radius: 8px;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
     transition: all 125ms ease-in-out;
 }
 
@@ -159,18 +162,17 @@ p {
 .category-content {
     display: flex;
     justify-content: center;
-    font-weight: bolder;
+    align-items: center;
     font-size: 1.3rem;
-    
+    margin-left: 30vw;
 }
 
 .details-content {
-    margin: unset;
     display: flex;
     align-items: center;
     font-size: 1.3rem;
-    word-break: break-word;
     padding: 2% 2%;
+    margin-left: 30vw;
 }
 
 #category {
