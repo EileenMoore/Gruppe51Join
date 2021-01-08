@@ -126,4 +126,3 @@ function generateImageRow(task) {
     imgRow += `</div>`;
     return imgRow;
 }
-
