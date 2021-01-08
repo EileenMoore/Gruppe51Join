@@ -140,7 +140,7 @@ function checkIfLoginIsCorrect(userfound, currentUsername, currentPassword) {
 function loginCurrentUser(currentUsername, currentPassword, i) {
     generateUserLogin(currentUsername, currentPassword, i);
     saveCurrentUserInLocalStorage();
-    location.href = "matrix.html";
+    window.location.href = "matrix.html";
 }
 
 /**

@@ -1,12 +1,12 @@
         /* matrix style */
-        
+
         .matrix-container {
             height: 95vh;
             padding: 24px;
             padding-left: 190px;
             width: 100%;
         }
-        
+
         .arrow-up-container {
             width: 10px;
             display: flex;
@@ -17,7 +17,7 @@
             margin-top: 24px;
             height: 100%;
         }
-        
+
         .arrow-left-container {
             height: 10px;
             display: flex;
@@ -25,7 +25,7 @@
             justify-content: space-around;
             width: 100%;
         }
-        
+
         .arrow-top-up {
             width: 0;
             height: 0;
@@ -33,7 +33,7 @@
             border-right: 5px solid transparent;
             border-bottom: 5px solid black;
         }
-        
+
         .arrow-top-left {
             width: 0;
             height: 0;
@@ -41,57 +41,57 @@
             border-bottom: 5px solid transparent;
             border-right: 5px solid black;
         }
-        
+
         .arrow-line-vertical {
             width: 1px;
             background-color: black;
         }
-        
+
         .arrow-line-horizontal {
             background-color: black;
             height: 1px;
         }
-        
+
         .arrow-left {
             display: flex;
             align-items: center;
         }
-        
+
         .arrow-up {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        
+
         .vertical-caption {
             writing-mode: vertical-lr;
             transform: rotate(180deg);
             padding: 16px;
             color: grey;
         }
-        
+
         .horizontal-caption1 {
             padding: 32px;
             color: grey;
         }
-        
+
         .horizontal-caption2 {
             padding: 16px;
             color: grey;
         }
-        
+
         .flex-grow {
             flex-grow: 1;
         }
-        
+
         .width100 {
             width: 100%;
         }
-        
+
         .height100 {
             height: 100%;
         }
-        
+
         .matrix-bg {
             background-color: #f4f3fb;
             width: 100%;
@@ -99,7 +99,7 @@
             padding: 16px;
             overflow-y: auto;
         }
-        
+
         .matrix {
             width: 100%;
             display: flex;
@@ -109,7 +109,7 @@
             padding-left: 32px;
             padding-bottom: 40px;
         }
-        
+
         .matrix-row {
             display: flex;
             justify-content: space-between;
@@ -118,7 +118,7 @@
             max-height: 50%;
             margin-top: 16px;
         }
-        
+
         .matrix-quarter {
             width: 100%;
             height: 100%;
@@ -127,7 +127,7 @@
             margin-right: 24px;
             margin-left: 24px;
         }
-        
+
         .matrix-quarter-headline {
             text-align: center;
             font-size: 1em;
@@ -135,13 +135,13 @@
             color: #1b2d91;
             font-weight: bold;
         }
-        
+
         .matrix-bottom-container {
             display: flex;
             width: 100%;
             height: 100%;
         }
-        
+
         .task-card {
             box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
@@ -150,47 +150,62 @@
             padding: 12px;
             border-radius: 8px;
             background-color: white;
-            display: flex;
             border-left: 8px;
             border-left-style: solid;
         }
+
         /*colors for the list-item-content depending of the eisenhowerMatrixCategorie value of the assigment*/
-        
+
         .do {
             border-left-color: blue;
         }
-        
+
         .schedule {
             border-left-color: purple;
         }
-        
+
         .delegate {
             border-left-color: green;
         }
-        
+
         .eliminate {
             border-left-color: orange;
         }
-        
+
         .task-card-left {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
-        
+
         .date {
             font-size: 0.6em;
         }
-        
+
+        .delete-icon {
+            width: 14px;
+            height: 14px;
+            cursor: pointer;
+        }
+
+        .task-card-top {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .task-card-bottom {
+            display: flex;
+        }
+
         .task-card-headline {
             font-weight: bold;
             font-size: 0.75em;
         }
-        
+
         .task-card-description {
             font-size: 0.65em;
         }
-        
+
         .btn {
             height: 24px;
             width: 100px;
@@ -199,7 +214,7 @@
             margin-bottom: 7.5px;
             margin-top: 16px;
         }
-        
+
         .profile-picture-small {
             height: 35px;
             width: 35px;
@@ -208,7 +223,7 @@
             border-radius: 100%;
             background-color: #f4f3fb;
         }
-        
+
         .profile-pictures {
             display: flex;
             flex-wrap: wrap-reverse;
@@ -216,7 +231,51 @@
             align-items: flex-start;
             width: 100%;
         }
-        
+
+        .delete-container-overlay {
+            z-index: 2;
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .delete-container {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .delete-window {
+            z-index: 20;
+            background-color: #f4f3fb;
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px;
+            border-radius: 8px;
+        }
+
+        .delete-window button {
+            margin-top: 32px;
+            height: 40px;
+            font-size: 1em!important;
+        }
+
+        .button-order {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+
         @media (max-width: 990px) {
             .matrix-container {
                 padding-top: 150px !important;
@@ -231,7 +290,7 @@
                 height: 0px !important;
             }
         }
-        
+
         @media (max-width:550px) {
             .arrow-up-container {
                 margin-left: 15px !important;

@@ -2,20 +2,30 @@ let selectedUsers = [];
 let allTasks = [];
 let selectedCategories = [];
 
-// personBlend with users to select will displayed
-
+/**
+ * This function displays the user picker.
+ */
 function addPersonBlend() {
     document.getElementById("addPersonBlend").classList.remove("d-none");
 }
 
-function displayperson() {
+/**
+ * This function is used to display all users in the "assigned to" selection.
+ */
+function displayUsers() {
     loadAllUsers();
     loadCurrentUser();
-    selectedUsers.push(currentUser[0]);
-    console.log(selectedUsers);
-    console.log(users);
+    let loggedInUser = users.find(e => e.username == currentUser[0].username);
+    selectedUsers.push(loggedInUser);
     displaySelectedUsers();
+    getUserPicker();
+    blendCurrentUser()
+}
 
+/**
+ * This function is used to generate all users in the user picker.
+ */
+function getUserPicker() {
     for (let i = 0; i < users.length; i++) {
         document.getElementById("user-picker-container").innerHTML += `
         <div id="user-picker-row${i}" class ="user-picker-row" onclick="selectUser(${i})"> 
@@ -23,17 +33,19 @@ function displayperson() {
         <span>${users[i]["username"]} </span> 
         </div>`;
     }
+}
 
+/**
+ * This function is used to highlight the current user in the user picker.
+ */
+function blendCurrentUser() {
     for (let j = 0; j < users.length; j++) {
-
-        for (let k = 0; k < selectedUsers.length; k++) {
-            if (users[j] == selectedUsers[k]) {
-                document.getElementById("user-picker-row" + j).classList.add("user-picker-row-select");
-            }
+        if (users[j]["username"] == selectedUsers[0]["username"]) {
+            document.getElementById("user-picker-row" + j).classList.add("user-picker-row-select");
         }
     }
-
 }
+
 
 /**
  * This function is used to select an user
@@ -41,23 +53,20 @@ function displayperson() {
  *
  * @param {number} i - defines the row number
  */
-
 function selectUser(i) {
     let id = "user-picker-row" + i;
     checkIfUserIsAlreadySelected(i, id);
-    console.log(selectedUsers);
     displaySelectedUsers();
 }
 
 /**
  *
- * This function is used to check if an User is Selected
+ * This function is used to check if an User is Selected in the user picker.
  *
  * @param {number} i - defines the postion of the array persons
  * @param {string} id  - defines the row of the selected user
  *
  */
-
 function checkIfUserIsAlreadySelected(i, id) {
     let userfound = false;
     for (let j = 0; j < selectedUsers.length; j++) {
@@ -73,6 +82,9 @@ function checkIfUserIsAlreadySelected(i, id) {
     }
 }
 
+/**
+ * This function is used to display the selected users in the add tasks section.
+ */
 function displaySelectedUsers() {
     document.getElementById("assign-person").innerHTML = '';
     for (let j = 0; j < selectedUsers.length; j++) {
@@ -85,24 +97,27 @@ function displaySelectedUsers() {
  * This function is used to remove all Selected Persons
  *
  */
-
 function removePerson() {
     selectedUsers = [];
-    selectedUsers.push(currentUser[0]);
 
     for (let i = 0; i < users.length; i++) {
         let id = "user-picker-row" + i;
         document.getElementById(id).classList.remove("user-picker-row-select");
     }
-    displaySelectedUsers();
+    
+    displayUsers();
 }
 
-//personBlend will removed
-
+/**
+ * This function hides the user picker.
+ */
 function removePersonBlend() {
     document.getElementById("addPersonBlend").classList.add("d-none");
 }
 
+/**
+ * This function is used to cancel the task and clear all input fields.
+ */
 function cancelTask() {
     document.getElementById("inputTitle").value = "";
     document.getElementById("category").value = "";
@@ -113,25 +128,23 @@ function cancelTask() {
 }
 
 /**
- * This function create a new Task with provided Info
+ * This function creates a new Task with provided Info
  *
  * @param {*} $event
  */
-
 function createTask($event) {
     $event.preventDefault();
-
     defurgency();
-
     newTask();
-    console.log(task);
-    taskSubmussion(task);
-
+    taskSubmission(task);
     alert("New Task is created. You will be redirected to List");
     //location.replace("list.html");
     cancelTask();
 }
 
+/**
+ * This function generates a new task.
+ */
 function newTask() {
     let title = document.getElementById("inputTitle");
 
@@ -140,6 +153,7 @@ function newTask() {
     let importance = document.getElementById("importance");
 
     task = {
+        id: new Date().getTime(),
         title: title.value,
         category: selectedCategories,
         description: description.value,
@@ -152,13 +166,12 @@ function newTask() {
 }
 
 /**
- *  push task to allTasks-array, if an user is selected,  push task to allTasks-array
+ * This function pushes the task to allTasks-array if an user is selected.
  *
  * @param {object} task - object with information of the task
  *
  */
-
-function taskSubmussion(task) {
+function taskSubmission(task) {
     if (selectedUsers < 1) {
         alert("Please select at least one person for the task");
     } else {
@@ -170,10 +183,9 @@ function taskSubmussion(task) {
 }
 
 /**
- * Load all Task
+ * This function is used to get all tasks from the local storage.
  *
  */
-
 function loadAllTasks() {
     let allTasksAsString = localStorage.getItem("allTasks");
     allTasks = JSON.parse(allTasksAsString) || [];
@@ -254,9 +266,9 @@ function validate() {
                 document.getElementById("category").value = "";
                 selectedCategories = [];
             } else
-            if (!selectedCategories.includes(selectChoose[i].value)) {
-                selectedCategories.push(selectChoose[i].value);
-            }
+                if (!selectedCategories.includes(selectChoose[i].value)) {
+                    selectedCategories.push(selectChoose[i].value);
+                }
 
         }
     }

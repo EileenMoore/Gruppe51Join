@@ -69,7 +69,7 @@
         <input type="file" name="file" id="fileInput" class="inputfile" onchange="readURL(this)"/>
         <label for="fileInput">Add a Profile-Picture</label>
 
-        <form>
+        <form onsubmit="signUp(); return false;">
             <span>Username</span>
             <input type="text" required id="username" />
 
@@ -79,7 +79,7 @@
             <span>Password</span>
             <input required type="password" minlength="5" id="password" />
 
-            <button onclick="signUp()" class="btn btn-primary">Sign Up</button>
+            <button class="btn btn-primary">Sign Up</button>
         </form>
 
         <a onclick="closeRegistration()" href= "#">Close</a>

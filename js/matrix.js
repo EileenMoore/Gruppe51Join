@@ -73,7 +73,6 @@ function sortEliminateTasks(i) {
     }
 }
 
-
 /**
  * This function inserts the tasks from the subsections into the subsection-fields in the matrix.
  * 
@@ -98,15 +97,18 @@ function insertTasks(subTasks) {
 function generateTask(task) {
     return `
     <div class="task-card ${task.section}">
-    <div class="task-card-left">
-        <div>
-            <div class="date">${task['date']}</div>
+        <div class="task-card-top">
+            <div class="date">${task['date']}</div> 
+            <img class="delete-icon" src="./img/delete.png" onclick="openDeleteWindow(${task['id']})">
+        </div>
+    <div class="task-card-bottom">
+        <div class="task-card-left">
             <div class="task-card-headline">${task['title']}</div>
             <div class="task-card-description">${task['description']}</div>
+            <button type="button" class="btn btn-primary">${task['category']}</button>
         </div>
-    <button type="button" class="btn btn-primary">${task['category']}</button>
+        ${generateImageRow(task)}
     </div>
-    ${generateImageRow(task)}
 </div>`
 }
 
@@ -127,3 +129,42 @@ function generateImageRow(task) {
     return imgRow;
 }
 
+/**
+ * This function is used to open the delete window.
+ * 
+ * 
+ * @param {number} taskId - This is the ID of the selected task.
+ */
+function openDeleteWindow(taskId) {
+    let task = allTasks.find(t => t['id'] == taskId);
+    console.log('Deleting task', task);
+    document.getElementById('delete-container-overlay').classList.remove('d-none');
+    document.getElementById('delete-container').classList.remove('d-none');
+
+    document.getElementById('delete-container').innerHTML = `
+    <div class="delete-window">
+        <span>Do you really want to delete this task?</span>
+            <div class="button-order">
+                <button onclick="deleteTask(${task})" class="btn btn-primary">Yes</button>
+                <button onclick="closeDeleteWindow()" class="btn btn-primary">No</button>
+            </div>
+    </div>`;
+}
+
+/**
+ * This function is used to close the delete window.
+ */
+function closeDeleteWindow() {
+    document.getElementById('delete-container-overlay').classList.add('d-none');
+    document.getElementById('delete-container').classList.add('d-none');
+}
+
+/**
+ * This function deletes a task.
+ * 
+ * 
+ * @param {string} task - This is task to be deleted.
+ */
+function deleteTask(task) {
+    newtask = task;
+}
