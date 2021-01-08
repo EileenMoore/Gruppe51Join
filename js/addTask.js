@@ -189,6 +189,8 @@ function taskSubmission(task) {
 function loadAllTasks() {
     let allTasksAsString = localStorage.getItem("allTasks");
     allTasks = JSON.parse(allTasksAsString) || [];
+    updateUrgency();
+    updateSection();
 }
 
 /**
@@ -198,8 +200,41 @@ function loadAllTasks() {
  *
  */
 
-let dateSelected;
 let dayTime = 259200000;
+
+function updateUrgency() {
+    //TODO checkUrgency
+    for (let i = 0; i < allTasks.length; i++) {
+        let thisDate = new Date().getTime();
+        let difference = new Date(allTasks[i].date).getTime() - thisDate;
+        if (difference >= dayTime) {
+            allTasks[i].urgency = "Low";
+        } else {
+            allTasks[i].urgency = "High";
+        }
+
+    }
+}
+
+function updateSection() {
+    for (let i = 0; i < allTasks.length; i++) {
+        const task = allTasks[i];
+        //let createdDate = new Date().getTime();
+        if (task.importance == "High" && task.urgency == "High") {
+            allTasks[i].section = "do";
+        } else if (task.importance == "High" && task.urgency == "Low") {
+            allTasks[i].section = "schedule";
+        } else if (task.importance == "Low" && task.urgency == "High") {
+            allTasks[i].section = "delegate";
+        } else if (task.importance == "Low" && task.urgency == "Low") {
+            allTasks[i].section = "eliminate";
+        } else {
+            allTasks[i].section = "Section unknown";
+        }
+    }
+}
+
+let dateSelected;
 
 function getDate() {
     dateSelected = new Date(document.getElementById("dateInput").value).getTime();
@@ -207,9 +242,9 @@ function getDate() {
 
 function defurgency() {
     let createdDate = new Date().getTime();
-    let Datedifference = dateSelected - createdDate;
+    let dateDifference = dateSelected - createdDate;
 
-    if (Datedifference < dayTime) {
+    if (dateDifference < dayTime) {
         urgency = "High";
     } else {
         urgency = "Low";
@@ -265,12 +300,9 @@ function validate() {
                 alert("You can only Choose 3 Categories");
                 document.getElementById("category").value = "";
                 selectedCategories = [];
-            } else
-                if (!selectedCategories.includes(selectChoose[i].value)) {
-                    selectedCategories.push(selectChoose[i].value);
-                }
-
+            } else if (!selectedCategories.includes(selectChoose[i].value)) {
+                selectedCategories.push(selectChoose[i].value);
+            }
         }
     }
-
 }

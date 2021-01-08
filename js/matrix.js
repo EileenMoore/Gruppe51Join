@@ -101,15 +101,15 @@ function generateTask(task) {
             <div class="date">${task['date']}</div> 
             <img class="delete-icon" src="./img/delete.png" onclick="openDeleteWindow(${task['id']})">
         </div>
-    <div class="task-card-bottom">
-        <div class="task-card-left">
-            <div class="task-card-headline">${task['title']}</div>
-            <div class="task-card-description">${task['description']}</div>
-            <button type="button" class="btn btn-primary">${task['category']}</button>
-        </div>
+        <div class="task-card-bottom">
+            <div class="task-card-left">
+                <div class="task-card-headline">${task['title']}</div>
+                <div class="task-card-description">${task['description']}</div>
+                <button type="button" class="btn btn-primary">${task['category']}</button>
+            </div>
         ${generateImageRow(task)}
-    </div>
-</div>`
+         </div>
+    </div>`
 }
 
 /**
