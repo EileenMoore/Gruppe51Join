@@ -219,7 +219,8 @@ function closeRegistration() {
     document.getElementById("username").value = '';
     document.getElementById("email").value = '';
     document.getElementById("password").value = '';
-    document.getElementById("myImg").src = "img/profileimg/nutzer.svg";
+    document.getElementById("standardProfilePicture").classList.remove('d-none');
+    document.getElementById("newProfilePicture").classList.add('d-none');
     document.getElementById("registration-container-overlay").classList.add("d-none");
     document.getElementById("registration-container").classList.add("d-none");
 }

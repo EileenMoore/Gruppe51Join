@@ -61,11 +61,12 @@
 
         <h2>Sign Up for JOIN</h2>
 
-        <div class="new-profile-picture">
-            <img src="img/profileimg/nutzer.svg" id="myImg">
+        <div class="new-profile-picture" id="standardProfilePicture">
+            <img src="img/profileimg/nutzer.svg">
         </div>
+        <canvas class="new-profile-picture d-none" id="newProfilePicture"></canvas>
 
-        <input type="file" name="file" id="fileInput" class="inputfile" />
+        <input type="file" name="file" id="fileInput" class="inputfile" onchange="readURL(this)"/>
         <label for="fileInput">Add a Profile-Picture</label>
 
         <form>

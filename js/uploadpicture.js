@@ -1,27 +1,46 @@
 /**
- * This function is used to upload a profile picture from the file-inputfield and display it in the sign-up window.
+ * This function is used to upload a profile picture and display it on a canvas.
+ * 
+ * 
+ * @param {string} input - The profile picture.
  */
-window.addEventListener("load", function() {
-    document
-        .querySelector('input[type="file"]')
-        .addEventListener("change", function() {
-            if (this.files && this.files[0]) {
-                image = document.getElementById("myImg"); // $('img')[0]
-                image.src = URL.createObjectURL(this.files[0]); // set src to blob url
-                getCanvas(image);
-            } 
-        });
-});
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.addEventListener("load",function() {
+        let profileImg = new Image();
+        let src = reader.result;
+        profileImg.src = src;
+        profilePictureAsDataURL = src;
+        profileImg.onload = function() {
+          let c = document.getElementById("newProfilePicture");
+          let ctx = c.getContext("2d");
+          ctx.canvas.width = profileImg.width;
+          ctx.canvas.height = profileImg.height;
+          
+          ctx.drawImage(profileImg, 0, 0);
+        };
+      },
+      false
+    );
+
+    reader.readAsDataURL(input.files[0]);
+    showNewProfilePicture();
+    hideOldProfilePicture();
+  }
+}
 
 /**
- * This function creates a canvas for the image and converts it to an URL.
+ * This function displays the new profile picture in the signup box.
  */
-function getCanvas(image) {
-    let imgCanvas = document.createElement("canvas"),
-        imgContext = imgCanvas.getContext("2d");
+function showNewProfilePicture() {
+    document.getElementById('newProfilePicture').classList.remove('d-none');
+}
 
-    imgCanvas.width = image.width;
-    imgCanvas.height = image.height;
-    imgContext.drawImage(image, 0, 0, 20, 20);
-    profilePictureAsDataURL = imgCanvas.toDataURL("image/png");
+/**
+ * This function hides the standard profile picture in the signup box.
+ */
+function hideOldProfilePicture() {
+    document.getElementById('standardProfilePicture').classList.add('d-none');
 }
