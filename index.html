@@ -61,15 +61,14 @@
 
         <h2>Sign Up for JOIN</h2>
 
-        <div class="new-profile-picture" id="standardProfilePicture">
-            <img src="img/profileimg/nutzer.svg">
+        <div class="new-profile-picture">
+            <img src="img/profileimg/nutzer.svg" id="myImg">
         </div>
-        <canvas class="new-profile-picture d-none" id="newProfilePicture"></canvas>
 
-        <input type="file" name="file" id="fileInput" class="inputfile" onchange="readURL(this)"/>
+        <input type="file" name="file" id="fileInput" class="inputfile" />
         <label for="fileInput">Add a Profile-Picture</label>
 
-        <form onsubmit="signUp(); return false;">
+        <form onsubmit="getProfilePicture()">
             <span>Username</span>
             <input type="text" required id="username" />
 
@@ -82,9 +81,9 @@
             <button class="btn btn-primary">Sign Up</button>
         </form>
 
-        <a onclick="closeRegistration()" href="#">Close</a>
+        <a onclick="closeRegistration()" href=" # ">Close</a>
 
-    </div>
+        </div>
 
 
     <div class=" footer ">
