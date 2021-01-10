@@ -8,36 +8,13 @@ let eliminateTasks = [];
  */
 function sortTasks() {
     loadAllTasks();
-    clearSubTasks();
-    clearMatrixFields();
 
     for (let i = 0; i < allTasks.length; i++) {
         sortDoTasks(i);
         sortScheduleTasks(i);
         sortDelegateTasks(i);
         sortEliminateTasks(i);
-
     }
-}
-
-/**
- * This function empties the sub tasks arrays.
- */
-function clearSubTasks() {
-    doTasks = [];
-    scheduleTasks = [];
-    delegateTasks = [];
-    eliminateTasks = [];
-}
-
-/**
- * Thus functions empties all the fields in the matrix.
- */
-function clearMatrixFields() {
-    document.getElementById('do').innerHTML = '';
-    document.getElementById('schedule').innerHTML = '';
-    document.getElementById('delegate').innerHTML = '';
-    document.getElementById('eliminate').innerHTML = '';
 }
 
 /**
@@ -50,6 +27,7 @@ function sortDoTasks(i) {
     if (allTasks[i].section == 'do') {
         doTasks.push(allTasks[i]);
         let subTasks = doTasks;
+        document.getElementById('do').innerHTML = '';
         insertTasks(subTasks);
     }
 }
@@ -64,6 +42,7 @@ function sortScheduleTasks(i) {
     if (allTasks[i].section == 'schedule') {
         scheduleTasks.push(allTasks[i]);
         let subTasks = scheduleTasks;
+        document.getElementById('schedule').innerHTML = '';
         insertTasks(subTasks);
     }
 }
@@ -78,6 +57,7 @@ function sortDelegateTasks(i) {
     if (allTasks[i].section == 'delegate') {
         delegateTasks.push(allTasks[i]);
         let subTasks = delegateTasks;
+        document.getElementById('delegate').innerHTML = '';
         insertTasks(subTasks);
     }
 }
@@ -92,6 +72,7 @@ function sortEliminateTasks(i) {
     if (allTasks[i].section == 'eliminate') {
         eliminateTasks.push(allTasks[i]);
         let subTasks = eliminateTasks;
+        document.getElementById('eliminate').innerHTML = '';
         insertTasks(subTasks);
     }
 }

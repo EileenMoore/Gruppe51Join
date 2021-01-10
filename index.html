@@ -61,30 +61,25 @@
 
         <h2>Sign Up for JOIN</h2>
 
-        <div class="new-profile-picture">
-            <img src="img/profileimg/nutzer.svg" id="myImg">
+        <div class="new-profile-picture" id="standardProfilePicture">
+            <img src="img/profileimg/nutzer.svg">
         </div>
-
-        <input type="file" name="file" id="fileInput" class="inputfile" />
+        <canvas class="new-profile-picture d-none" id="newProfilePicture"></canvas>
+        <input type="file" name="file" id="fileInput" class="inputfile" onchange="readURL(this)"/>
         <label for="fileInput">Add a Profile-Picture</label>
-
-        <form onsubmit="getProfilePicture()">
+        <form onsubmit="signUp(); return false;">
             <span>Username</span>
             <input type="text" required id="username" />
-
             <span>E-Mail</span>
             <input type="email" required id="email" />
-
             <span>Password</span>
             <input required type="password" minlength="5" id="password" />
-
             <button class="btn btn-primary">Sign Up</button>
         </form>
 
-        <a onclick="closeRegistration()" href=" # ">Close</a>
+        <a onclick="closeRegistration()" href= "#">Close</a>
 
-        </div>
-
+    </div>
 
     <div class=" footer ">
         <a href=" impressum.html " class=" link-unselected impressum ">Impressum</a>
