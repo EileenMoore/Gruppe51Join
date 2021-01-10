@@ -8,13 +8,24 @@ let eliminateTasks = [];
  */
 function sortTasks() {
     loadAllTasks();
-
+    clearSubTasks();
+    
     for (let i = 0; i < allTasks.length; i++) {
         sortDoTasks(i);
         sortScheduleTasks(i);
         sortDelegateTasks(i);
         sortEliminateTasks(i);
     }
+}
+
+/**
+ * This function empties the sub tasks arrays.
+ */
+function clearSubTasks() {
+    doTasks = [];
+    scheduleTasks = [];
+    delegateTasks = [];
+    eliminateTasks = [];
 }
 
 /**
