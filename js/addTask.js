@@ -15,11 +15,11 @@ function addPersonBlend() {
 function displayUsers() {
     loadAllUsers();
     loadCurrentUser();
-    let loggedInUser = users.find(e => e.username == currentUser[0].username);
+    let loggedInUser = users.find((e) => e.username == currentUser[0].username);
     selectedUsers.push(loggedInUser);
     displaySelectedUsers();
     getUserPicker();
-    blendCurrentUser()
+    blendCurrentUser();
 }
 
 /**
@@ -41,11 +41,12 @@ function getUserPicker() {
 function blendCurrentUser() {
     for (let j = 0; j < users.length; j++) {
         if (users[j]["username"] == selectedUsers[0]["username"]) {
-            document.getElementById("user-picker-row" + j).classList.add("user-picker-row-select");
+            document
+                .getElementById("user-picker-row" + j)
+                .classList.add("user-picker-row-select");
         }
     }
 }
-
 
 /**
  * This function is used to select an user
@@ -86,7 +87,7 @@ function checkIfUserIsAlreadySelected(i, id) {
  * This function is used to display the selected users in the add tasks section.
  */
 function displaySelectedUsers() {
-    document.getElementById("assign-person").innerHTML = '';
+    document.getElementById("assign-person").innerHTML = "";
     for (let j = 0; j < selectedUsers.length; j++) {
         document.getElementById("assign-person").innerHTML += `
         <img id="user" src="${selectedUsers[j]["profilePicture"]}">`;
@@ -104,7 +105,7 @@ function removePerson() {
         let id = "user-picker-row" + i;
         document.getElementById(id).classList.remove("user-picker-row-select");
     }
-    
+
     displayUsers();
 }
 
@@ -135,10 +136,11 @@ function cancelTask() {
 function createTask($event) {
     $event.preventDefault();
     defurgency();
+    validateCategories();
     newTask();
     taskSubmission(task);
     alert("New Task is created. You will be redirected to List");
-    //location.replace("list.html");
+    location.replace("list.html");
     cancelTask();
 }
 
@@ -203,7 +205,6 @@ function loadAllTasks() {
 let dayTime = 259200000;
 
 function updateUrgency() {
-    //TODO checkUrgency
     for (let i = 0; i < allTasks.length; i++) {
         let thisDate = new Date().getTime();
         let difference = new Date(allTasks[i].date).getTime() - thisDate;
@@ -212,14 +213,12 @@ function updateUrgency() {
         } else {
             allTasks[i].urgency = "High";
         }
-
     }
 }
 
 function updateSection() {
     for (let i = 0; i < allTasks.length; i++) {
         const task = allTasks[i];
-        //let createdDate = new Date().getTime();
         if (task.importance == "High" && task.urgency == "High") {
             allTasks[i].section = "do";
         } else if (task.importance == "High" && task.urgency == "Low") {
@@ -289,20 +288,46 @@ function showAllTasks() {
     console.log(allTasks);
 }
 
-function validate() {
-    let selectChoose = document.getElementById("category");
+/**
+ *
+ * You can only Choose 3 Categories
+ *
+ *
+ */
+
+function selectOnlyThreeCategories() {
+    let opt;
+    let selectChoose = document.getElementById("category").options;
     let optionCount = 0;
     let maxOptions = 3;
     for (let i = 0; i < selectChoose.length; i++) {
-        if (selectChoose[i].selected) {
+        opt = selectChoose[i];
+
+        if (opt.selected) {
             optionCount++;
             if (optionCount > maxOptions) {
                 alert("You can only Choose 3 Categories");
                 document.getElementById("category").value = "";
                 selectedCategories = [];
-            } else if (!selectedCategories.includes(selectChoose[i].value)) {
-                selectedCategories.push(selectChoose[i].value);
             }
+        }
+    }
+}
+
+/**
+ *
+ * Selected Categories will add to the Task
+ *
+ *
+ */
+
+function validateCategories() {
+    let opt;
+    let options = document.getElementById("category").options;
+    for (let i = 0; i < options.length; i++) {
+        opt = options[i];
+        if (opt.selected) {
+            selectedCategories.push(opt.value || opt.text);
         }
     }
 }
