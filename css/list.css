@@ -155,18 +155,18 @@ p {
 
 .category-content {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     font-size: 1.3rem;
-    margin-left: 30vw;
+    grid-column: 3;
 }
 
 .details-content {
     display: flex;
+    justify-content: center;
     align-items: center;
     font-size: 1.3rem;
     padding: 2% 2%;
-    margin-left: 30vw;
 }
 
 #category {
@@ -189,6 +189,72 @@ p {
     border-radius: 5px;
     border-left-style: solid;
     border-left-width: 5px;
+}
+
+.delete-container-overlay-list {
+    z-index: 2;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.delete-container-list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.d-none {
+    display: none;
+}
+
+.delete-img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    grid-column: 5;
+    margin-top: 20px;
+    vertical-align: middle;
+}
+
+.delete-window {
+    z-index: 30;
+    background-color: #f4f3fb;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    border-radius: 8px;
+}
+
+.delete-window button {
+    margin-top: 32px;
+    height: 40px;
+    font-size: 1em!important;
+}
+
+.button-order {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn {
+    height: 24px;
+    min-width: 100px;
+    font-size: 0.6em!important;
+    padding: 2px!important;
+    margin-bottom: 7.5px;
+    margin-top: 16px;
 }
 
 @media(max-width: 990px) {
@@ -261,6 +327,7 @@ p {
     #details {
         padding-left: 50px;
     }
+
     /* #assigned {
         width: 25%;
         min-width: 140px;
