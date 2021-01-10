@@ -1,10 +1,11 @@
         /* matrix style */
 
         .matrix-container {
-            height: 95vh;
+            height: 100vh;
             padding: 24px;
             padding-left: 190px;
             width: 100%;
+overflow: hidden;
         }
 
         .arrow-up-container {
@@ -208,7 +209,7 @@
 
         .btn {
             height: 24px;
-            width: 100px;
+            min-width: 100px;
             font-size: 0.6em!important;
             padding: 2px!important;
             margin-bottom: 7.5px;
@@ -281,6 +282,7 @@
                 padding-top: 150px !important;
                 width: 130% !important;
                 padding-left: 0px;
+                overflow: auto;
             }
             .arrow-up-container {
                 margin-left: 15px !important;

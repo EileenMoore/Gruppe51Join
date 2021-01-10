@@ -30,7 +30,6 @@
 
     .task-container {
         width: 100%;
-        height: 70vh;
         display: flex;
         padding-left: 30px;
         padding-right: 60px;
@@ -39,7 +38,6 @@
     .addtask-container {
         display: flex;
         width: 100%;
-        height: 100%!important;
         background-color: rgb(244, 243, 251) !important;
         align-items: center;
         border-radius: 1.50rem;
@@ -56,17 +54,17 @@
     }
 
     .title-section {
-        height: 25%;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        margin-bottom: 20px;
     }
 
     .category-section {
-        height: 25%;
         width: 100%;
         display: flex;
         flex-direction: column;
+        margin-bottom: 20px;
     }
 
     .title-section input {
@@ -75,10 +73,10 @@
     }
 
     .discripion-section {
-        height: 25%;
         width: 100%;
         display: flex;
         flex-direction: column;
+        margin-bottom: 20px;
     }
 
     .task-section {
@@ -92,7 +90,6 @@
     }
 
     .left-taskcontainer {
-        height: 100%;
         width: 50%;
         display: flex;
         flex-direction: column;
@@ -100,17 +97,17 @@
     }
 
     .date-section {
-        height: 25%;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        margin-bottom: 20px;
     }
 
     .importance-section {
-        height: 25%;
         width: 100%;
         display: flex;
         flex-direction: column;
+        margin-bottom: 20px;
     }
 
     .assign-person img:hover {
