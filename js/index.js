@@ -46,13 +46,6 @@ let currentEmail = [];
  */
 function signUp() {
     getProfilePicture();
-    saveUsersInLocalStorage();
-    closeRegistration();
-    alert("Your Sign Up was successful");
-    let i = users.length - 1;
-    let currentUsername = users[i].username;
-    let currentPassword = users[i].password;
-    loginCurrentUser(currentUsername, currentPassword, i);
 }
 
 /**
@@ -73,8 +66,20 @@ function getProfilePicture() {
  * @param {string} picture - This is the profile picture of the new user.
  */
 function addUser(picture) {
-    let user = generateUser(picture);
-    users.push(user);
+    newUsername = document.getElementById("username").value;
+    newPassword = document.getElementById("password").value;
+
+    if (users.find(e => e['username'] == newUsername)) {
+        alert('This user is already taken');
+    } else {
+        let user = generateUser(picture);
+        users.push(user);
+        saveUsersInLocalStorage();
+        closeRegistration();
+        alert("Your Sign Up was successful!");
+        let i = users.length - 1;
+        loginCurrentUser(i);
+    }
 }
 
 /**
@@ -126,7 +131,7 @@ function checkIfLoginIsCorrect(userfound, currentUsername, currentPassword) {
             currentPassword == users[i].password
         ) {
             userfound = true;
-            loginCurrentUser(currentUsername, currentPassword, i);
+            loginCurrentUser(i);
         }
     }
     if (!userfound) {
@@ -137,7 +142,9 @@ function checkIfLoginIsCorrect(userfound, currentUsername, currentPassword) {
 /**
  * This function logs in the current user into the JOIN portal.
  */
-function loginCurrentUser(currentUsername, currentPassword, i) {
+function loginCurrentUser(i) {
+    let currentUsername = users[i].username;
+    let currentPassword = users[i].password;
     generateUserLogin(currentUsername, currentPassword, i);
     saveCurrentUserInLocalStorage();
     window.location.href = "matrix.html";
@@ -149,6 +156,7 @@ function loginCurrentUser(currentUsername, currentPassword, i) {
  *
  * @param {string} currentUsername - This is the username that the user entered in the login.
  * @param {string} currentPassword - This is the password that the user entered in the login.
+ * @param {integer} i - This is the numeration of the users JSON.
  */
 function generateUserLogin(currentUsername, currentPassword, i) {
     findProfile(i);
@@ -166,7 +174,7 @@ function generateUserLogin(currentUsername, currentPassword, i) {
  * This function is used to find the profile picture and email of the user that enteres his/hers login data.
  *
  *
- * @param {number} i - Numeration of all users.
+ * @param {integer} i - Numeration of all users.
  */
 function findProfile(i) {
     currentProfilePicture = users[i].profilePicture;

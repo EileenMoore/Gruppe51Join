@@ -132,7 +132,7 @@ function generateTask(task) {
             <div class="task-card-left">
                 <div class="task-card-headline">${task['title']}</div>
                 <div class="task-card-description">${task['description']}</div>
-                <button type="button" class="btn btn-primary">${task['category']}</button>
+                <div class="category"><span>${task['category']}</span></div>
             </div>
         ${generateImageRow(task)}
          </div>
