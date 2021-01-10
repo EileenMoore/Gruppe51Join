@@ -9,7 +9,8 @@ let eliminateTasks = [];
 function sortTasks() {
     loadAllTasks();
     clearSubTasks();
-    
+    clearMatrixFields();
+
     for (let i = 0; i < allTasks.length; i++) {
         sortDoTasks(i);
         sortScheduleTasks(i);
@@ -26,6 +27,16 @@ function clearSubTasks() {
     scheduleTasks = [];
     delegateTasks = [];
     eliminateTasks = [];
+}
+
+/**
+ * This function empties the tasks in matrix fields.
+ */
+function clearMatrixFields() {
+    document.getElementById('do').innerHTML = '';
+    document.getElementById('schedule').innerHTML = '';
+    document.getElementById('delegate').innerHTML = '';
+    document.getElementById('eliminate').innerHTML = '';
 }
 
 /**
