@@ -52,13 +52,6 @@ let currentEmail = [];
  * This function is used to sign up a new user for JOIN.
  */
 function signUp() {
-    getProfilePicture();
-}
-
-/**
- * This function is used to set up a profile picture.
- */
-function getProfilePicture() {
     let picture = profilePictureAsDataURL;
     if (profilePictureAsDataURL.length == 0) {
         picture = "img/profileimg/nutzer.svg";
