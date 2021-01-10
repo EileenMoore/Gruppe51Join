@@ -26,6 +26,7 @@ function displayUsers() {
  * This function is used to generate all users in the user picker.
  */
 function getUserPicker() {
+    document.getElementById("user-picker-container").innerHTML = '';
     for (let i = 0; i < users.length; i++) {
         document.getElementById("user-picker-container").innerHTML += `
         <div id="user-picker-row${i}" class ="user-picker-row" onclick="selectUser(${i})"> 
@@ -52,7 +53,7 @@ function blendCurrentUser() {
  * This function is used to select an user
  *
  *
- * @param {number} i - defines the row number
+ * @param {integer} i - defines the row number
  */
 function selectUser(i) {
     let id = "user-picker-row" + i;
@@ -64,7 +65,7 @@ function selectUser(i) {
  *
  * This function is used to check if an User is Selected in the user picker.
  *
- * @param {number} i - defines the postion of the array persons
+ * @param {integer} i - defines the postion of the array persons
  * @param {string} id  - defines the row of the selected user
  *
  */

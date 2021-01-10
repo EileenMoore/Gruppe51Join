@@ -34,9 +34,16 @@ let users = [{
     password: "passwort",
     profilePicture: "img/profileimg/manuel.jpg",
 },
+{
+    username: "Guest",
+    email: "guest@join.maill",
+    password: "passwort",
+    profilePicture: "img/profileimg/nutzer.svg"
+}
 ];
 
 let currentUser = [];
+let currentPassword = [];
 let profilePictureAsDataURL = [];
 let currentProfilePicture = [];
 let currentEmail = [];
@@ -45,20 +52,6 @@ let currentEmail = [];
  * This function is used to sign up a new user for JOIN.
  */
 function signUp() {
-    getProfilePicture();
-    saveUsersInLocalStorage();
-    closeRegistration();
-    alert("Your Sign Up was successful");
-    let i = users.length - 1;
-    let currentUsername = users[i].username;
-    let currentPassword = users[i].password;
-    loginCurrentUser(currentUsername, currentPassword, i);
-}
-
-/**
- * This function is used to set up a profile picture.
- */
-function getProfilePicture() {
     let picture = profilePictureAsDataURL;
     if (profilePictureAsDataURL.length == 0) {
         picture = "img/profileimg/nutzer.svg";
@@ -70,18 +63,30 @@ function getProfilePicture() {
  * This function is used to add a new user to the users of JOIN.
  * 
  * 
- * @param {string} picture - This is the profile picture of the new user.
+ * @param {string} picture - This is the URL of the profile picture of the user.
  */
 function addUser(picture) {
-    let user = generateUser(picture);
-    users.push(user);
+    newUsername = document.getElementById("username").value;
+    newPassword = document.getElementById("password").value;
+
+    if (users.find(e => e['username'] == newUsername)) {
+        alert('This user is already taken');
+    } else {
+        let user = generateUser(picture);
+        users.push(user);
+        saveUsersInLocalStorage();
+        closeRegistration();
+        alert("Your Sign Up was successful!");
+        let i = users.length - 1;
+        loginCurrentUser(i);
+    }
 }
 
 /**
  * This function generates the user data for a new user.
  *
  *
- * @param {string} picture - This is the profile picture of the user.
+ * @param {string} picture - This is the URL of the profile picture of the user.
  */
 function generateUser(picture) {
     return {
@@ -104,8 +109,8 @@ function saveUsersInLocalStorage() {
  * This function is used to login the user into the JOIN website by getting the username and password of the user.
  */
 function login() {
-    let currentUsername = document.getElementById("currentUsername").value;
-    let currentPassword = document.getElementById("currentPassword").value;
+    currentUsername = document.getElementById("currentUsername").value;
+    currentPassword = document.getElementById("currentPassword").value;
     let userfound = false;
     checkIfLoginIsCorrect(userfound, currentUsername, currentPassword);
 }
@@ -126,7 +131,7 @@ function checkIfLoginIsCorrect(userfound, currentUsername, currentPassword) {
             currentPassword == users[i].password
         ) {
             userfound = true;
-            loginCurrentUser(currentUsername, currentPassword, i);
+            loginCurrentUser(i);
         }
     }
     if (!userfound) {
@@ -136,9 +141,12 @@ function checkIfLoginIsCorrect(userfound, currentUsername, currentPassword) {
 
 /**
  * This function logs in the current user into the JOIN portal.
+ * 
+ * 
+ * @param {integer} i - This is the numeration of the users JSON.
  */
-function loginCurrentUser(currentUsername, currentPassword, i) {
-    generateUserLogin(currentUsername, currentPassword, i);
+function loginCurrentUser(i) {
+    generateUserLogin(i);
     saveCurrentUserInLocalStorage();
     window.location.href = "matrix.html";
 }
@@ -147,10 +155,9 @@ function loginCurrentUser(currentUsername, currentPassword, i) {
  * This function generates the user login data.
  *
  *
- * @param {string} currentUsername - This is the username that the user entered in the login.
- * @param {string} currentPassword - This is the password that the user entered in the login.
+ * @param {integer} i - This is the numeration of the users JSON.
  */
-function generateUserLogin(currentUsername, currentPassword, i) {
+function generateUserLogin(i) {
     findProfile(i);
     let userLogin = {
         username: currentUsername,
@@ -159,16 +166,17 @@ function generateUserLogin(currentUsername, currentPassword, i) {
         profilePicture: currentProfilePicture,
     };
     currentUser.push(userLogin);
-    console.log(currentUser);
 }
 
 /**
  * This function is used to find the profile picture and email of the user that enteres his/hers login data.
  *
  *
- * @param {number} i - Numeration of all users.
+ * @param {integer} i - Numeration of all users.
  */
 function findProfile(i) {
+    currentUsername = users[i].username;
+    currentPassword = users[i].password;
     currentProfilePicture = users[i].profilePicture;
     currentEmail = users[i].email;
 }
@@ -234,4 +242,11 @@ function loadCurrentUser() {
     if (currentUserAsString) {
         currentUser = JSON.parse(currentUserAsString);
     }
+}
+
+/**
+ * This function is used to login with the guest profile.
+ */
+function loginAsGuest() {
+    loginCurrentUser(6);
 }

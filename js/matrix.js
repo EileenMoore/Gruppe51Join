@@ -8,6 +8,8 @@ let eliminateTasks = [];
  */
 function sortTasks() {
     loadAllTasks();
+    clearSubTasks();
+    clearMatrixFields();
 
     for (let i = 0; i < allTasks.length; i++) {
         sortDoTasks(i);
@@ -15,6 +17,26 @@ function sortTasks() {
         sortDelegateTasks(i);
         sortEliminateTasks(i);
     }
+}
+
+/**
+ * This function empties the sub tasks arrays.
+ */
+function clearSubTasks() {
+    doTasks = [];
+    scheduleTasks = [];
+    delegateTasks = [];
+    eliminateTasks = [];
+}
+
+/**
+ * This function empties the tasks in matrix fields.
+ */
+function clearMatrixFields() {
+    document.getElementById('do').innerHTML = '';
+    document.getElementById('schedule').innerHTML = '';
+    document.getElementById('delegate').innerHTML = '';
+    document.getElementById('eliminate').innerHTML = '';
 }
 
 /**
@@ -27,6 +49,7 @@ function sortDoTasks(i) {
     if (allTasks[i].section == 'do') {
         doTasks.push(allTasks[i]);
         let subTasks = doTasks;
+        document.getElementById('do').innerHTML = '';
         insertTasks(subTasks);
     }
 }
@@ -41,6 +64,7 @@ function sortScheduleTasks(i) {
     if (allTasks[i].section == 'schedule') {
         scheduleTasks.push(allTasks[i]);
         let subTasks = scheduleTasks;
+        document.getElementById('schedule').innerHTML = '';
         insertTasks(subTasks);
     }
 }
@@ -55,6 +79,7 @@ function sortDelegateTasks(i) {
     if (allTasks[i].section == 'delegate') {
         delegateTasks.push(allTasks[i]);
         let subTasks = delegateTasks;
+        document.getElementById('delegate').innerHTML = '';
         insertTasks(subTasks);
     }
 }
@@ -69,6 +94,7 @@ function sortEliminateTasks(i) {
     if (allTasks[i].section == 'eliminate') {
         eliminateTasks.push(allTasks[i]);
         let subTasks = eliminateTasks;
+        document.getElementById('eliminate').innerHTML = '';
         insertTasks(subTasks);
     }
 }
@@ -80,6 +106,7 @@ function sortEliminateTasks(i) {
  * @param {string} subTasks - This string represents a task-section.
  */
 function insertTasks(subTasks) {
+
     for (i = 0; i < subTasks.length; i++) {
         let task = subTasks[i];
         document.getElementById(task.section).innerHTML +=
@@ -105,7 +132,7 @@ function generateTask(task) {
             <div class="task-card-left">
                 <div class="task-card-headline">${task['title']}</div>
                 <div class="task-card-description">${task['description']}</div>
-                <button type="button" class="btn btn-primary">${task['category']}</button>
+                <div class="category"><span>${task['category']}</span></div>
             </div>
         ${generateImageRow(task)}
          </div>
@@ -136,8 +163,6 @@ function generateImageRow(task) {
  * @param {number} taskId - This is the ID of the selected task.
  */
 function openDeleteWindow(taskId) {
-    let task = allTasks.find(t => t['id'] == taskId);
-    console.log('Deleting task', task);
     document.getElementById('delete-container-overlay').classList.remove('d-none');
     document.getElementById('delete-container').classList.remove('d-none');
 
@@ -145,7 +170,7 @@ function openDeleteWindow(taskId) {
     <div class="delete-window">
         <span>Do you really want to delete this task?</span>
             <div class="button-order">
-                <button onclick="deleteTask(${task})" class="btn btn-primary">Yes</button>
+                <button onclick="deleteTask(${taskId})" class="btn btn-primary">Yes</button>
                 <button onclick="closeDeleteWindow()" class="btn btn-primary">No</button>
             </div>
     </div>`;
@@ -163,8 +188,12 @@ function closeDeleteWindow() {
  * This function deletes a task.
  * 
  * 
- * @param {string} task - This is task to be deleted.
+ * @param {string} task - This is the task to be deleted.
  */
-function deleteTask(task) {
-    newtask = task;
+function deleteTask(taskId) {
+    allTasks = allTasks.filter(t => t['id'] != taskId);
+    let allTasksAsString = JSON.stringify(allTasks);
+    localStorage.setItem("allTasks", allTasksAsString);
+    closeDeleteWindow();
+    sortTasks();
 }
