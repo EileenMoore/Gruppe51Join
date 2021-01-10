@@ -26,6 +26,7 @@ function displayUsers() {
  * This function is used to generate all users in the user picker.
  */
 function getUserPicker() {
+    document.getElementById("user-picker-container").innerHTML = '';
     for (let i = 0; i < users.length; i++) {
         document.getElementById("user-picker-container").innerHTML += `
         <div id="user-picker-row${i}" class ="user-picker-row" onclick="selectUser(${i})"> 
