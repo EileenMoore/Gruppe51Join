@@ -145,6 +145,7 @@ p {
     height: 3rem;
     margin: 2px 0 0 0;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .contact-data-section {
