@@ -1,45 +1,45 @@
 let users = [{
-    username: "Alexander Kummerer",
-    email: "alexander@kummerer.mail",
-    password: "passwort",
-    profilePicture: "img/profileimg/alex.jpg",
-},
-{
-    username: "Eileen Moore",
-    email: "eileen@moore.mail",
-    password: "passwort",
-    profilePicture: "img/profileimg/eileen.jpg",
-},
-{
-    username: "Dan Mercurean",
-    email: "dan@mercurean.mail",
-    password: "passwort",
-    profilePicture: "img/profileimg/dan.jpg",
-},
-{
-    username: "Jaci jack",
-    email: "jaci@jack.mail",
-    password: "passwort",
-    profilePicture: "img/profileimg/nutzer.svg",
-},
-{
-    username: "Junus Ergin",
-    email: "junus@ergin.mail",
-    password: "passwort",
-    profilePicture: "img/profileimg/junus.jpg",
-},
-{
-    username: "Manuel Thaler",
-    email: "manuel@thaler.maill",
-    password: "passwort",
-    profilePicture: "img/profileimg/manuel.jpg",
-},
-{
-    username: "Guest",
-    email: "guest@join.maill",
-    password: "passwort",
-    profilePicture: "img/profileimg/nutzer.svg"
-}
+        username: "Alexander Kummerer",
+        email: "alexander@kummerer.mail",
+        password: "sha256('passwort')",
+        profilePicture: "img/profileimg/alex.jpg",
+    },
+    {
+        username: "Eileen Moore",
+        email: "eileen@moore.mail",
+        password: "passwort",
+        profilePicture: "img/profileimg/eileen.jpg",
+    },
+    {
+        username: "Dan Mercurean",
+        email: "dan@mercurean.mail",
+        password: "passwort",
+        profilePicture: "img/profileimg/dan.jpg",
+    },
+    {
+        username: "Jaci jack",
+        email: "jaci@jack.mail",
+        password: "passwort",
+        profilePicture: "img/profileimg/nutzer.svg",
+    },
+    {
+        username: "Junus Ergin",
+        email: "junus@ergin.mail",
+        password: "passwort",
+        profilePicture: "img/profileimg/junus.jpg",
+    },
+    {
+        username: "Manuel Thaler",
+        email: "manuel@thaler.maill",
+        password: "passwort",
+        profilePicture: "img/profileimg/manuel.jpg",
+    },
+    {
+        username: "Guest",
+        email: "guest@join.maill",
+        password: "passwort",
+        profilePicture: "img/profileimg/nutzer.svg",
+    },
 ];
 
 let currentUser = [];
@@ -56,21 +56,23 @@ function signUp() {
     if (profilePictureAsDataURL.length == 0) {
         picture = "img/profileimg/nutzer.svg";
     }
+
     addUser(picture);
+    console.log("password", newPassword);
 }
 
 /**
  * This function is used to add a new user to the users of JOIN.
- * 
- * 
+ *
+ *
  * @param {string} picture - This is the URL of the profile picture of the user.
  */
 function addUser(picture) {
-    newUsername = document.getElementById("username").value;
-    newPassword = document.getElementById("password").value;
-
-    if (users.find(e => e['username'] == newUsername)) {
-        alert('This user is already taken');
+    newUsername = document.getElementById("username");
+    newPassword = document.getElementById("password");
+    newEmail = document.getElementById("email");
+    if (users.find((e) => e["username"] == newUsername)) {
+        alert("This user is already taken");
     } else {
         let user = generateUser(picture);
         users.push(user);
@@ -90,9 +92,9 @@ function addUser(picture) {
  */
 function generateUser(picture) {
     return {
-        username: document.getElementById("username").value,
-        email: document.getElementById("email").value,
-        password: document.getElementById("password").value,
+        username: newUsername.value,
+        email: newEmail.value,
+        password: sha256(newPassword.value),
         profilePicture: picture,
     };
 }
@@ -109,8 +111,8 @@ function saveUsersInLocalStorage() {
  * This function is used to login the user into the JOIN website by getting the username and password of the user.
  */
 function login() {
-    currentUsername = document.getElementById("currentUsername").value;
-    currentPassword = document.getElementById("currentPassword").value;
+    currentUsername = document.getElementById("currentUsername");
+    currentPassword = document.getElementById("currentPassword");
     let userfound = false;
     checkIfLoginIsCorrect(userfound, currentUsername, currentPassword);
 }
@@ -127,8 +129,8 @@ function login() {
 function checkIfLoginIsCorrect(userfound, currentUsername, currentPassword) {
     for (i = 0; i < users.length; i++) {
         if (
-            currentUsername == users[i].username &&
-            currentPassword == users[i].password
+            currentUsername.value == users[i].username &&
+            sha256(currentPassword.value) == users[i].password
         ) {
             userfound = true;
             loginCurrentUser(i);
@@ -141,8 +143,8 @@ function checkIfLoginIsCorrect(userfound, currentUsername, currentPassword) {
 
 /**
  * This function logs in the current user into the JOIN portal.
- * 
- * 
+ *
+ *
  * @param {integer} i - This is the numeration of the users JSON.
  */
 function loginCurrentUser(i) {
@@ -162,7 +164,6 @@ function generateUserLogin(i) {
     let userLogin = {
         username: currentUsername,
         email: currentEmail,
-        password: currentPassword,
         profilePicture: currentProfilePicture,
     };
     currentUser.push(userLogin);
@@ -198,8 +199,7 @@ function loadAllUsers() {
     if (allUsersAsString) {
         users = JSON.parse(allUsersAsString);
         console.log(users);
-    }
-    else {
+    } else {
         saveUsersInLocalStorage();
     }
 }
@@ -216,7 +216,9 @@ function logOutCurrentUser() {
  * This function opens the window and the background for the sign up.
  */
 function openRegistration() {
-    document.getElementById("registration-container-overlay").classList.remove("d-none");
+    document
+        .getElementById("registration-container-overlay")
+        .classList.remove("d-none");
     document.getElementById("registration-container").classList.remove("d-none");
 }
 
@@ -224,12 +226,14 @@ function openRegistration() {
  * This function closes the window and the background for the sign up.
  */
 function closeRegistration() {
-    document.getElementById("username").value = '';
-    document.getElementById("email").value = '';
-    document.getElementById("password").value = '';
-    document.getElementById("standardProfilePicture").classList.remove('d-none');
-    document.getElementById("newProfilePicture").classList.add('d-none');
-    document.getElementById("registration-container-overlay").classList.add("d-none");
+    document.getElementById("username").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("standardProfilePicture").classList.remove("d-none");
+    document.getElementById("newProfilePicture").classList.add("d-none");
+    document
+        .getElementById("registration-container-overlay")
+        .classList.add("d-none");
     document.getElementById("registration-container").classList.add("d-none");
 }
 
@@ -237,7 +241,7 @@ function closeRegistration() {
  * This function loads the currently logged in user.
  */
 function loadCurrentUser() {
-    let currentUserAsString = localStorage.getItem('currentUser');
+    let currentUserAsString = localStorage.getItem("currentUser");
 
     if (currentUserAsString) {
         currentUser = JSON.parse(currentUserAsString);

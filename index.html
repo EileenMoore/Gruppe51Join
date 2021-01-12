@@ -2,90 +2,85 @@
 <html>
 
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>JOIN</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='css/sidebar.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='css/index.css'>
-    <link rel="icon" href="img/logo.png" type="image/png">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <script src='js/index.js'></script>
-    <script src='js/uploadpicture.js'></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/sidebar.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/index.css" />
+    <link rel="icon" href="img/logo.png" type="image/png" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
+    <script src="js/index.js"></script>
+    <script src="js/uploadpicture.js"></script>
+    <script src="js/sha256.js"></script>
 
 </head>
 
 <body onload="loadAllUsers(); logOutCurrentUser()">
 
     <div class="logo-container">
-        <img class="joinlogo-large" src="img/joinlogo.png">
+        <img class="joinlogo-large" src="img/joinlogo.png" />
     </div>
 
     <h1>Welcome to JOIN</h1>
 
     <div class="login-container">
-
         <div class="input-container">
-
             <div class="input-container-img">
-                <img src="img/profileimg/nutzer.svg">
+                <img src="img/profileimg/nutzer.svg" />
             </div>
 
             <input id="currentUsername" placeholder="Username" />
-
         </div>
 
         <div class="input-container">
-
             <div class="input-container-img">
-                <img src="img/big-lock.svg">
+                <img src="img/big-lock.svg" />
             </div>
 
             <input id="currentPassword" type="password" placeholder="Password" />
-
         </div>
 
         <button onclick="login()" class="btn btn-primary">Login</button>
 
-        <div class=" registration">
-            <button onclick="openRegistration()" class=" btn btn-primary">Sign Up</button>
-            <a onclick="loginAsGuest()" href= "#">Login as guest</a>
+        <div class="registration">
+            <button onclick="openRegistration()" class="btn btn-primary">
+          Sign Up
+        </button>
+            <a onclick="loginAsGuest()" href="#">Login as Guest</a>
         </div>
-
     </div>
 
-    <div id="registration-container-overlay" class="registration-container-overlay d-none" onclick="closeRegistration()"> </div>
+    <div id="registration-container-overlay" class="registration-container-overlay d-none" onclick="closeRegistration()"></div>
 
     <div id="registration-container" class="registration-container d-none">
-
         <h2>Sign Up for JOIN</h2>
 
         <div class="new-profile-picture" id="standardProfilePicture">
-            <img src="img/profileimg/nutzer.svg">
+            <img src="img/profileimg/nutzer.svg" />
         </div>
         <canvas class="new-profile-picture d-none" id="newProfilePicture"></canvas>
-        <input type="file" name="file" id="fileInput" class="inputfile" onchange="readURL(this)"/>
+        <input type="file" name="file" id="fileInput" class="inputfile" onchange="readURL(this)" />
         <label for="fileInput">Add a Profile-Picture</label>
-        <form onsubmit="signUp(); return false;">
+        <form onsubmit="  signUp(); return false;">
             <span>Username</span>
             <input type="text" required id="username" />
             <span>E-Mail</span>
             <input type="email" required id="email" />
             <span>Password</span>
             <input required type="password" minlength="5" id="password" />
+
             <button class="btn btn-primary">Sign Up</button>
         </form>
 
-        <a onclick="closeRegistration()" href= "#">Close</a>
-
+        <a onclick="closeRegistration()" href="#">Close</a>
     </div>
 
-    <div class=" footer ">
-        <a href=" impressum.html " class=" link-unselected impressum ">Impressum</a>
+    <div class="footer">
+        <a href="impressum.html" class="link-unselected impressum">Impressum</a>
     </div>
-
 </body>
 
 </html>

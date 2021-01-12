@@ -31,6 +31,11 @@
         width: 90%;
     }
 
+    .logoPosition {
+        display: flex;
+        justify-content: center;
+    }
+
     .sidebar a:hover {
         text-decoration: none;
         color: white;
@@ -68,7 +73,7 @@
     .joinlogo {
         width: 40px;
         height: 51px;
-        object-fit: cover;
+        object-fit: contain;
         margin-bottom: 32px;
     }
 
@@ -95,24 +100,23 @@
 
     @media ( max-width: 990px) {
         nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
             border-bottom: #eeeded solid 2px;
-            background-color: white;
-            padding-top: 10px;
-            padding-right: 120px;
-            padding-left: 120px;
-            padding-bottom: 10px;
-            width: 100%;
+            width: 100vw;
+        }
+        .container-fluid {
+            display: flex!important;
+            align-items: center!important;
+            justify-content: space-between!important;
         }
         .navbar {
-            position: fixed !important;
-            padding-right: 1em;
-            padding-left: 1em;
+            position: fixed!important;
+            padding-right: 1em!important;
+            padding-left: 1em!important;
         }
         .hide-mobile {
             display: none;
+            width: 0;
+            height: 0;
         }
         .nav-image {
             width: 6em !important;
@@ -126,10 +130,11 @@
             height: 3em;
         }
         .joinlogo {
-            width: 65px !important;
-            height: 75px !important;
-            object-fit: cover;
-            margin-bottom: 6px;
+            margin-bottom: 0;
+        }
+        .profile-picture {
+            width: 48px;
+            height: 48px;
         }
     }
 
