@@ -11,6 +11,7 @@ function generateListItem() {
 <div class="task-listed ${allTasks[i].section}">
 <div class="assigned-content"><div>${generateImgRow(allTasks[i])}</div></div>
 <div class="category-content">${allTasks[i]['category']}</div>
+<div class="title-content">${allTasks[i]['title']}</div>
 <div class="details-content">${allTasks[i]['description']}</div>
 <img class="delete-img" src="img/delete.svg" onclick="openDeleteWindowList(${task['id']})">
 </div>`;
