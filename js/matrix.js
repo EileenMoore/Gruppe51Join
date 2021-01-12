@@ -123,7 +123,7 @@ function insertTasks(subTasks) {
  */
 function generateTask(task) {
     return `
-    <div class="task-card ${task.section}">
+    <div class="task-card ${task.section}" draggable="true" ondragstart="dragTask(event)">
         <div class="task-card-top">
             <div class="date">${task['date']}</div> 
             <img class="delete-icon" src="./img/delete.png" onclick="openDeleteWindow(${task['id']})">
@@ -196,4 +196,46 @@ function deleteTask(taskId) {
     localStorage.setItem("allTasks", allTasksAsString);
     closeDeleteWindow();
     sortTasks();
+}
+
+/**
+ * This method allows to drop an element over an area
+ * @param {DataTransfer} ev - The event created from an HTML5 drop down event
+ */
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+
+/**
+ * This method saves the id of the element that is being dragged
+ * @param {DataTransfer} ev - The event created from an HTML5 drop down event
+ */
+function dragTask(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+
+/**
+ * This method controls if drop is performed inside the correct area marked with "drop-area"
+ * @param {DataTransfer} ev - The event created from an HTML5 drop down event
+ */
+function dropTask(ev) {
+    ev.target.classList.forEach(cssClass => {
+        if (cssClass === 'drop-area') {
+            performDropTask(ev);
+        }
+    });
+}
+
+
+/**
+ * This method performs drop of the dropdown 
+ * and switches the task to its new place & calls the update function
+ * @param {DataTransfer} ev - The event created from an HTML5 drop down event
+ */
+function performDropTask(ev) {
+    ev.preventDefault();
+    let id = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(id));
 }
