@@ -103,6 +103,10 @@
         margin-bottom: 20px;
     }
 
+    #dateInput {
+        height: 30px;
+    }
+
     .importance-section {
         width: 100%;
         display: flex;
@@ -258,6 +262,7 @@
             display: flex !important;
             flex-direction: column !important;
             height: 100%!important;
+            padding: 2rem;
         }
         .right-taskcontainer {
             height: 100%;

@@ -252,6 +252,7 @@ p {
 .delete-window button {
     margin-top: 32px;
     height: 40px;
+    width: 80px;
     font-size: 1em!important;
 }
 
