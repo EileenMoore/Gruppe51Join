@@ -1,2 +1,2 @@
 # Gruppe51Join
-Gruop project
+Group project
