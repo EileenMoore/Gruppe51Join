@@ -121,9 +121,7 @@ function insertTasks(subTasks) {
  */
 function generateTask(task) {
     return `
-    <div class="task-card ${
-      task.section
-    }" draggable="true" ondragstart="dragTask(event)">
+    <div class="task-card ${task.section}" id="drag" draggable="true" ondragstart="drag(event)">
         <div class="task-card-top">
             <div class="date">${task["date"]}</div> 
             <img class="delete-icon" src="./img/delete.png" onclick="openDeleteWindow(${
@@ -204,7 +202,7 @@ function deleteTask(taskId) {
 
 /**
  * This method allows to drop an element over an area
- * @param {DataTransfer} ev - The event created from an HTML5 drop down event
+ * @param {DataTransfer} ev
  */
 function allowDrop(ev) {
     ev.preventDefault();
@@ -212,17 +210,17 @@ function allowDrop(ev) {
 
 /**
  * This method saves the id of the element that is being dragged
- * @param {DataTransfer} ev - The event created from an HTML5 drop down event
+ * @param {DataTransfer} ev
  */
-function dragTask(ev) {
+function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
 }
 
 /**
  * This method controls if drop is performed inside the correct area marked with "drop-area"
- * @param {DataTransfer} ev - The event created from an HTML5 drop down event
+ * @param {DataTransfer} ev
  */
-function dropTask(ev) {
+function drop(ev) {
     ev.target.classList.forEach((cssClass) => {
         if (cssClass === "drop-area") {
             performDropTask(ev);
@@ -233,10 +231,16 @@ function dropTask(ev) {
 /**
  * This method performs drop of the dropdown
  * and switches the task to its new place & calls the update function
- * @param {DataTransfer} ev - The event created from an HTML5 drop down event
+ * @param {DataTransfer} ev 
  */
 function performDropTask(ev) {
     ev.preventDefault();
     let id = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(id));
+}
+
+//ich würde onclick="dropToScheduleHigh(event)", onclick="dropToScheduleLow(event)" usw machen
+//dann brauchst du nur noch die ID von jedem Element, das du droppst
+function dropToScheduleHigh(event) {
+    event
 }
