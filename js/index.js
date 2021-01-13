@@ -1,45 +1,45 @@
 let users = [{
-        username: "Alexander Kummerer",
-        email: "alexander@kummerer.mail",
-        password: "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
-        profilePicture: "img/profileimg/alex.jpg",
-    },
-    {
-        username: "Eileen Moore",
-        email: "eileen@moore.mail",
-        password: "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
-        profilePicture: "img/profileimg/eileen.jpg",
-    },
-    {
-        username: "Dan Mercurean",
-        email: "dan@mercurean.mail",
-        password: "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
-        profilePicture: "img/profileimg/dan.jpg",
-    },
-    {
-        username: "Jaci jack",
-        email: "jaci@jack.mail",
-        password: "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
-        profilePicture: "img/profileimg/nutzer.svg",
-    },
-    {
-        username: "Junus Ergin",
-        email: "junus@ergin.mail",
-        password: "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2t",
-        profilePicture: "img/profileimg/junus.jpg",
-    },
-    {
-        username: "Manuel Thaler",
-        email: "manuel@thaler.maill",
-        password: "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
-        profilePicture: "img/profileimg/manuel.jpg",
-    },
-    {
-        username: "Guest",
-        email: "guest@join.maill",
-        password: "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
-        profilePicture: "img/profileimg/nutzer.svg",
-    },
+    "username": "Guest",
+    "email": "guest@join.maill",
+    "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
+    "profilePicture": "img/profileimg/nutzer.svg"
+},
+{
+    "username": "Alexander Kummerer",
+    "email": "alexander@kummerer.mail",
+    "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
+    "profilePicture": "img/profileimg/alex.jpg"
+},
+{
+    "username": "Eileen Moore",
+    "email": "eileen@moore.mail",
+    "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
+    "profilePicture": "img/profileimg/eileen.jpg"
+},
+{
+    "username": "Dan Mercurean",
+    "email": "dan@mercurean.mail",
+    "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
+    "profilePicture": "img/profileimg/dan.jpg"
+},
+{
+    "username": "Jaci jack",
+    "email": "jaci@jack.mail",
+    "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
+    "profilePicture": "img/profileimg/nutzer.svg"
+},
+{
+    "username": "Junus Ergin",
+    "email": "junus@ergin.mail",
+    "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2t",
+    "profilePicture": "img/profileimg/junus.jpg"
+},
+{
+    "username": "Manuel Thaler",
+    "email": "manuel@thaler.maill",
+    "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
+    "profilePicture": "img/profileimg/manuel.jpg"
+}
 ];
 
 let currentUser = [];
@@ -47,6 +47,8 @@ let currentPassword = [];
 let profilePictureAsDataURL = [];
 let currentProfilePicture = [];
 let currentEmail = [];
+
+setURL('http://gruppe-51b.developerakademie.com/json_to_server');
 
 /**
  * This function is used to sign up a new user for JOIN.
@@ -58,7 +60,6 @@ function signUp() {
     }
 
     addUser(picture);
-    console.log("password", newPassword);
 }
 
 /**
@@ -76,9 +77,10 @@ function addUser(picture) {
     } else {
         let user = generateUser(picture);
         users.push(user);
-        saveUsersInLocalStorage();
+        backend.setItem('users', JSON.stringify(users));
         closeRegistration();
         alert("Your Sign Up was successful!");
+
         let i = users.length - 1;
         loginCurrentUser(i);
     }
@@ -97,14 +99,6 @@ function generateUser(picture) {
         password: sha256(newPassword.value),
         profilePicture: picture,
     };
-}
-
-/**
- * This function saves the user data (username, password, email, profile-picture) of alle users in the local storage.
- */
-function saveUsersInLocalStorage() {
-    let allUsersAsString = JSON.stringify(users);
-    localStorage.setItem("users", allUsersAsString);
 }
 
 /**
@@ -194,14 +188,9 @@ function saveCurrentUserInLocalStorage() {
  * This function loads the data of all signed up users from the local storage and saves them in the users array when the page is loaded.
  *
  */
-function loadAllUsers() {
-    let allUsersAsString = localStorage.getItem("users");
-    if (allUsersAsString) {
-        users = JSON.parse(allUsersAsString);
-        console.log(users);
-    } else {
-        saveUsersInLocalStorage();
-    }
+async function loadAllUsers() {
+    await downloadFromServer();
+    users = JSON.parse(backend.getItem('users')) || [];
 }
 
 /**
@@ -248,9 +237,3 @@ function loadCurrentUser() {
     }
 }
 
-/**
- * This function is used to login with the guest profile.
- */
-function loginAsGuest() {
-    loginCurrentUser(6);
-}
