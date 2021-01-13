@@ -2,18 +2,17 @@
 <html>
 
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>JOIN | Matrix</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='css/sidebar.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='css/matrix.css'>
-    <link rel="icon" href="img/logo.png" type="image/png">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/sidebar.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/matrix.css" />
+    <link rel="icon" href="img/logo.png" type="image/png" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
     <script src="js/matrix.js"></script>
     <script src="js/addTask.js"></script>
     <script src="js/index.js"></script>
@@ -22,7 +21,6 @@
 </head>
 
 <body onload="sortTasks(); loadProfilePicture(); ">
-
     <div class="sidebar hide-mobile">
         <div>
             <a class="" href="matrix.html"><img class="joinlogo" src="img/joinlogo.png" /></a>
@@ -32,26 +30,25 @@
         </div>
 
         <div>
-            <div class="profile-picture" id="profilePicture"> </div>
+            <div class="profile-picture" id="profilePicture"></div>
 
             <a href="impressum.html" class="menulink link-unselected">Impressum</a>
             <a href="index.html" class="menulink link-unselected">Log Out</a>
         </div>
     </div>
 
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-primare show-mobile">
         <div class="container-fluid">
             <a href="matrix.html"><img src="img/joinlogo.png" class="joinlogo" /></a>
-            <div class="profile-picture" id="profilePictureResponsive"> </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="profile-picture" id="profilePictureResponsive"></div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active disabled" aria-current="page" href="matrix.html">Matrix</a>
-                    <a class="nav-link" href="list.html">List</a>
+                    <a class="nav-link active disabled" aria-current="page" href="matrix.html">Matrix</a
+            >
+            <a class="nav-link" href="list.html">List</a>
                     <a class="nav-link" href="addTask.html">AddTask</a>
                     <a class="nav-link" href="impressum.html">Impressum</a>
                     <a class="nav-link" href="index.html" tabindex="">Log Out</a>
@@ -60,9 +57,7 @@
         </div>
     </nav>
 
-
     <div class="matrix-container">
-
         <div class="arrow-left-container">
             <div class="horizontal-caption1">HIGH</div>
             <div class="arrow-left flex-grow">
@@ -75,7 +70,6 @@
         </div>
 
         <div class="matrix-bottom-container">
-
             <div class="arrow-up-container">
                 <div class="arrow-up flex-grow">
                     <div class="arrow-top-up"></div>
@@ -87,47 +81,35 @@
             </div>
 
             <div class="matrix">
-
                 <div class="matrix-row">
-                    <div class="matrix-quarter drop-area" ondrop="dropTask(event)" ondragover="allowDrop(event)">
+                    <div class="matrix-quarter drop-area">
                         <span class="matrix-quarter-headline">DO</span>
-                        <div id="do" class="matrix-bg">
-
-                        </div>
+                        <div id="do" class="matrix-bg" ondrop="dropTask(event)" ondragover="allowDrop(event)"></div>
                     </div>
 
-                    <div class="matrix-quarter drop-area" ondrop="dropTask(event)" ondragover="allowDrop(event)">
+                    <div class="matrix-quarter drop-area">
                         <span class="matrix-quarter-headline">SCHEDULE</span>
-                        <div id="schedule" class="matrix-bg">
-
-                        </div>
+                        <div id="schedule" class="matrix-bg" ondrop="dropTask(event)" ondragover="allowDrop(event)"></div>
                     </div>
                 </div>
 
                 <div class="matrix-row">
-                    <div class="matrix-quarter drop-area" ondrop="dropTask(event)" ondragover="allowDrop(event)">
+                    <div class="matrix-quarter drop-area">
                         <span class="matrix-quarter-headline">DELEGATE</span>
-                        <div id="delegate" class="matrix-bg" >
-
-                        </div>
+                        <div id="delegate" class="matrix-bg" ondrop="dropTask(event)" ondragover="allowDrop(event)"></div>
                     </div>
 
-                    <div class="matrix-quarter drop-area" ondrop="dropTask(event)" ondragover="allowDrop(event)">
+                    <div class="matrix-quarter drop-area">
                         <span class="matrix-quarter-headline">ELIMINATE</span>
-                        <div id="eliminate" class="matrix-bg">
-
-                        </div>
+                        <div id="eliminate" class="matrix-bg" ondrop="dropTask(event)" ondragover="allowDrop(event)"></div>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
 
-    <div id="delete-container-overlay" class="delete-container-overlay d-none" onclick="closeDeleteWindow()"> </div>
-    <div class="delete-container d-none" id="delete-container"> </div>
-
+    <div id="delete-container-overlay" class="delete-container-overlay d-none" onclick="closeDeleteWindow()"></div>
+    <div class="delete-container d-none" id="delete-container"></div>
 </body>
 
 </html>

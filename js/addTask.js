@@ -26,7 +26,7 @@ function displayUsers() {
  * This function is used to generate all users in the user picker.
  */
 function getUserPicker() {
-    document.getElementById("user-picker-container").innerHTML = '';
+    document.getElementById("user-picker-container").innerHTML = "";
     for (let i = 0; i < users.length; i++) {
         document.getElementById("user-picker-container").innerHTML += `
         <div id="user-picker-row${i}" class ="user-picker-row" onclick="selectUser(${i})"> 
@@ -140,7 +140,7 @@ function createTask($event) {
     validateCategories();
     newTask();
     taskSubmission(task);
-    alert("New Task is created. You will be redirected to List");
+    alert("New Task is created. You will be redirected to list.");
     location.replace("list.html");
     cancelTask();
 }
@@ -197,44 +197,15 @@ function loadAllTasks() {
 }
 
 /**
- * Defines urgency and Section
+ *
+ *  Defines Urgency and Section after creating a Task
  *
  *
  *
  */
 
-let dayTime = 259200000;
-
-function updateUrgency() {
-    for (let i = 0; i < allTasks.length; i++) {
-        let thisDate = new Date().getTime();
-        let difference = new Date(allTasks[i].date).getTime() - thisDate;
-        if (difference >= dayTime) {
-            allTasks[i].urgency = "Low";
-        } else {
-            allTasks[i].urgency = "High";
-        }
-    }
-}
-
-function updateSection() {
-    for (let i = 0; i < allTasks.length; i++) {
-        const task = allTasks[i];
-        if (task.importance == "High" && task.urgency == "High") {
-            allTasks[i].section = "do";
-        } else if (task.importance == "High" && task.urgency == "Low") {
-            allTasks[i].section = "schedule";
-        } else if (task.importance == "Low" && task.urgency == "High") {
-            allTasks[i].section = "delegate";
-        } else if (task.importance == "Low" && task.urgency == "Low") {
-            allTasks[i].section = "eliminate";
-        } else {
-            allTasks[i].section = "Section unknown";
-        }
-    }
-}
-
 let dateSelected;
+let dayTime = 259200000;
 
 function getDate() {
     dateSelected = new Date(document.getElementById("dateInput").value).getTime();
@@ -262,6 +233,42 @@ function resolveSection(i, u) {
         return "eliminate";
     } else {
         return "Section unknown";
+    }
+}
+
+/**
+ *
+ *
+ * Update urgency and Section before onloading on list and Matrix
+ *
+ */
+
+function updateUrgency() {
+    for (let i = 0; i < allTasks.length; i++) {
+        let thisDate = new Date().getTime();
+        let difference = new Date(allTasks[i].date).getTime() - thisDate;
+        if (difference >= dayTime) {
+            allTasks[i].urgency = "Low";
+        } else {
+            allTasks[i].urgency = "High";
+        }
+    }
+}
+
+function updateSection() {
+    for (let i = 0; i < allTasks.length; i++) {
+        const task = allTasks[i];
+        if (task.importance == "High" && task.urgency == "High") {
+            allTasks[i].section = "do";
+        } else if (task.importance == "High" && task.urgency == "Low") {
+            allTasks[i].section = "schedule";
+        } else if (task.importance == "Low" && task.urgency == "High") {
+            allTasks[i].section = "delegate";
+        } else if (task.importance == "Low" && task.urgency == "Low") {
+            allTasks[i].section = "eliminate";
+        } else {
+            allTasks[i].section = "Section unknown";
+        }
     }
 }
 
