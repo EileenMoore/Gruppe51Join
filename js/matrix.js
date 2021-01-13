@@ -123,7 +123,7 @@ function insertTasks(subTasks) {
  */
 function generateTask(task) {
     return `
-    <div class="task-card ${task.section}" id="drag" draggable="true" ondragstart="drag(event)">
+    <div class="task-card ${task.section}" draggable="true" ondragstart="drag(event)">
         <div class="task-card-top">
             <div class="date">${task['date']}</div> 
             <img class="delete-icon" src="./img/delete.png" onclick="openDeleteWindow(${task['id']})">
@@ -198,35 +198,36 @@ function deleteTask(taskId) {
     sortTasks();
 }
 
+
+/* 
 /**
  * This method allows to drop an element over an area
  * @param {DataTransfer} ev 
  */
-function allowDrop(ev) {
+/* function allowDrop(ev) {
     ev.preventDefault();
-}
+} */
 
 /**
 * This method saves the id of the element that is being dragged
 * @param {DataTransfer} ev 
 */
-function drag(ev) {
+/* function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
-}
+} */
 
 /**
  * This method controls if drop is performed inside the correct area
  * @param {DataTransfer} ev 
  */
-function drop(ev) {
+/* function drop(ev) {
     ev.preventDefault();
     let id = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(id));
-}
+} */
 
-//ich würde onclick="dropToScheduleHigh(event)", onclick="dropToScheduleLow(event)" usw machen
-//dann brauchst du nur noch die ID von jedem Element, das du droppst
-function dropToScheduleHigh(event) {
+/* function dropToScheduleHigh(event) {
 event
-}
+} */
+
 
