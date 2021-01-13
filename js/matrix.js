@@ -6,8 +6,8 @@ let eliminateTasks = [];
 /**
  * This function sorts the entries of the allTasks array into subsections.
  */
-function sortTasks() {
-    loadAllTasks();
+async function sortTasks() {
+    await loadAllTasks();
     clearSubTasks();
     clearMatrixFields();
 
@@ -192,8 +192,7 @@ function closeDeleteWindow() {
  */
 function deleteTask(taskId) {
     allTasks = allTasks.filter(t => t['id'] != taskId);
-    let allTasksAsString = JSON.stringify(allTasks);
-    localStorage.setItem("allTasks", allTasksAsString);
+    backend.setItem('allTasks', JSON.stringify(allTasks));
     closeDeleteWindow();
     sortTasks();
 }
@@ -227,6 +226,6 @@ function drop(ev) {
 //ich würde onclick="dropToScheduleHigh(event)", onclick="dropToScheduleLow(event)" usw machen
 //dann brauchst du nur noch die ID von jedem Element, das du droppst
 function dropToScheduleHigh(event) {
-event
+    event
 }
 

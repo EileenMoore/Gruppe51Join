@@ -12,8 +12,8 @@ function addPersonBlend() {
 /**
  * This function is used to display all users in the "assigned to" selection.
  */
-function displayUsers() {
-    loadAllUsers();
+async function displayUsers() {
+    await loadAllUsers();
     loadCurrentUser();
     let loggedInUser = users.find((e) => e.username == currentUser[0].username);
     selectedUsers.push(loggedInUser);
@@ -179,19 +179,14 @@ function taskSubmission(task) {
         alert("Please select at least one person for the task");
     } else {
         allTasks.push(task);
-        let allTasksAsString = JSON.stringify(allTasks);
-        localStorage.setItem("allTasks", allTasksAsString);
+        backend.setItem('allTasks', JSON.stringify(allTasks));
         console.log(allTasks);
     }
 }
 
-/**
- * This function is used to get all tasks from the local storage.
- *
- */
-function loadAllTasks() {
-    let allTasksAsString = localStorage.getItem("allTasks");
-    allTasks = JSON.parse(allTasksAsString) || [];
+async function loadAllTasks() {
+    await downloadFromServer();
+    allTasks = JSON.parse(backend.getItem('allTasks')) || [];
     updateUrgency();
     updateSection();
 }

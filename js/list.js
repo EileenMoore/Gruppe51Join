@@ -1,8 +1,8 @@
 /**
  * This function display the tasks in the list
  */
-function generateListItem() {
-    loadAllTasks();
+async function generateListItem() {
+    await loadAllTasks();
 
     for (i = 0; i < allTasks.length; i++) {
         let task = allTasks[i];
@@ -72,8 +72,7 @@ function closeDeleteWindowList() {
  */
 function deleteTaskList(taskId) {
     allTasks = allTasks.filter(t => t['id'] != taskId);
-    let allTasksAsString = JSON.stringify(allTasks);
-    localStorage.setItem("allTasks", allTasksAsString);
+    backend.setItem('allTasks', JSON.stringify(allTasks));
     closeDeleteWindowList();
     document.getElementById('taskdelegate').innerHTML = '';
     generateListItem();
