@@ -17,8 +17,8 @@ async function displayUsers() {
     loadCurrentUser();
     let loggedInUser = users.find((e) => e.username == currentUser[0].username);
     selectedUsers.push(loggedInUser);
-    displaySelectedUsers();
     getUserPicker();
+    displaySelectedUsers();
     blendCurrentUser();
 }
 
@@ -157,9 +157,9 @@ function newTask() {
 
     task = {
         id: new Date().getTime(),
-        title: title.value.replace('<', ''),
+        title: title.value.replace("<", ""),
         category: selectedCategories,
-        description: description.value.replace('<', ''),
+        description: description.value.replace("<", ""),
         date: date.value,
         importance: importance.value,
         assignedPeople: selectedUsers,
@@ -179,14 +179,14 @@ function taskSubmission(task) {
         alert("Please select at least one person for the task");
     } else {
         allTasks.push(task);
-        backend.setItem('allTasks', JSON.stringify(allTasks));
+        backend.setItem("allTasks", JSON.stringify(allTasks));
         console.log(allTasks);
     }
 }
 
 async function loadAllTasks() {
     await downloadFromServer();
-    allTasks = JSON.parse(backend.getItem('allTasks')) || [];
+    allTasks = JSON.parse(backend.getItem("allTasks")) || [];
     updateUrgency();
     updateSection();
 }
@@ -194,9 +194,7 @@ async function loadAllTasks() {
 /**
  *
  *  Defines Urgency and Section after creating a Task
- *
- *
- *
+ 
  */
 
 let dateSelected;
