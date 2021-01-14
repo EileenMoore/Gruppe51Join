@@ -13,6 +13,7 @@ p {
     color: rgb(30, 49, 144);
 }
 
+
 /********************Task_Container_RELATED_SETTINGS********************/
 
 .headline-div-container {
@@ -86,6 +87,7 @@ p {
     width: 100%;
 }
 
+
 /*colors for the list-item-content depending of the eisenhowerMatrixCategorie value of the assigment*/
 
 .do {
@@ -143,6 +145,8 @@ p {
     display: flex;
     width: 50%;
     align-items: center;
+    overflow: hidden;
+    word-break: break-all;
 }
 
 .task-item-content {
