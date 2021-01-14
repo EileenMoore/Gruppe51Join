@@ -112,6 +112,7 @@
             position: fixed!important;
             padding-right: 1em!important;
             padding-left: 1em!important;
+            z-index: 20;
         }
         .hide-mobile {
             display: none;
