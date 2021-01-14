@@ -59,6 +59,7 @@ function selectUser(i) {
     let id = "user-picker-row" + i;
     checkIfUserIsAlreadySelected(i, id);
     displaySelectedUsers();
+    Array.Sort(selectedUsers);
 }
 
 /**
