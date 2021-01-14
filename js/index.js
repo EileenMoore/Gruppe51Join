@@ -236,4 +236,3 @@ function loadCurrentUser() {
         currentUser = JSON.parse(currentUserAsString);
     }
 }
-

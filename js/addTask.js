@@ -157,9 +157,9 @@ function newTask() {
 
     task = {
         id: new Date().getTime(),
-        title: title.value,
+        title: title.value.replace('<', ''),
         category: selectedCategories,
-        description: description.value,
+        description: description.value.replace('<', ''),
         date: date.value,
         importance: importance.value,
         assignedPeople: selectedUsers,

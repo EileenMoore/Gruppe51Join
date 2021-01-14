@@ -42,7 +42,6 @@ function generateImgRow(task) {
  * @param {number} taskId - This is the ID of the selected task.
  */
 function openDeleteWindowList(taskId) {
-    document.getElementById('delete-container-overlay-list').classList.remove('d-none');
     document.getElementById('delete-container-list').classList.remove('d-none');
 
     document.getElementById('delete-container-list').innerHTML = `
@@ -59,7 +58,6 @@ function openDeleteWindowList(taskId) {
  * This function is used to close the delete window.
  */
 function closeDeleteWindowList() {
-    document.getElementById('delete-container-overlay-list').classList.add('d-none');
     document.getElementById('delete-container-list').classList.add('d-none');
 }
 
