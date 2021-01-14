@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    font-family: 'PT Sans', sans-serif;
+}
+
+h2 {
+    font-size: 32px !important;
+    color: rgb(30, 49, 144);
+}
+
+p {
+    font-size: 15px!important;
+    color: rgb(30, 49, 144);
+    margin-bottom: 1rem;
+}
+
+.projects {
+    padding-left: 190px;
+    padding-right: 30px;
+    width: 100%;
+}
+
+.headline-container {
+    padding: 2.0rem;
+}
+
+.help-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: rgb(244, 243, 251) !important;
+    align-items: center;
+    border-radius: 1.50rem;
+    color: rgb(30, 49, 144);
+    padding: 2.0rem;
+    padding: 2.0rem;
+    margin-bottom: 5rem;
+}
+
+.exlain-addTask {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.exlain-addTask img {
+    width: 90%;
+    object-fit: cover;
+    border: 5px solid rgb(175, 22, 22);
+    margin-top: 12px;
+    margin-bottom: 20px;
+}
+
+.explain-matrix {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.explain-matrix img {
+    width: 90%;
+    object-fit: cover;
+    border: 5px solid rgb(175, 22, 22);
+    margin-top: 12px;
+    margin-bottom: 20px;
+}
+
+.explain-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.explain-list img {
+    width: 90%;
+    object-fit: cover;
+    border: 5px solid rgb(175, 22, 22);
+    margin-top: 12px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 990px) {
+    .projects {
+        padding-top: 100px !important;
+        width: 100% !important;
+        padding: 5px;
+    }
+}
