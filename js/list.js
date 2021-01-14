@@ -9,11 +9,11 @@ async function generateListItem() {
 
         document.getElementById('taskdelegate').innerHTML += `
 <div class="task-listed ${allTasks[i].section}">
-<div class="assigned-content"><div>${generateImgRow(allTasks[i])}</div></div>
+<div class="assigned-content">${generateImgRow(allTasks[i])}</div>
 <div class="category-content">${allTasks[i]['category']}</div>
 <div class="title-content">${allTasks[i]['title']}</div>
 <div class="details-content">${allTasks[i]['description']}</div>
-<img class="delete-img" src="img/delete.svg" onclick="openDeleteWindowList(${task['id']})">
+<img title="delete" class="delete-img" src="img/delete.svg" onclick="openDeleteWindowList(${task['id']})">
 </div>`;
     }
 }

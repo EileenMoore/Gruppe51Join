@@ -124,7 +124,7 @@ function generateTask(task) {
     <div class="task-card ${task.section}" id="drag" draggable="true" ondragstart="drag(event)">
         <div class="task-card-top">
             <div class="date">${task["date"]}</div> 
-            <img class="delete-icon" src="./img/delete.png" onclick="openDeleteWindow(${
+            <img title="delete" class="delete-icon" src="./img/delete.png" onclick="openDeleteWindow(${
               task["id"]
             })">
         </div>
