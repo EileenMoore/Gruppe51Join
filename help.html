@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>JOIN | Help</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/sidebar.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/help.css" />
+    <link rel="icon" href="img/logo.png" type="image/png" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
+    <script src="./js/mini_backend.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/list.js"></script>
+    <script src="js/addTask.js"></script>
+    <script src="js/matrix.js"></script>
+    <script src="js/sidebar.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</head>
+
+<body onload="loadProfilePicture()">
+    <div class="sidebar hide-mobile">
+        <div>
+            <a class="logoPosition" href="matrix.html"><img class="joinlogo" src="img/joinlogo.png" /></a>
+            <a href="matrix.html" class="menulink link-unselected">Matrix</a>
+            <a href="list.html" class="menulink link-unselected">List</a>
+            <a href="addTask.html" class="menulink link-unselected">AddTask</a>
+        </div>
+
+        <div>
+            <div class="profile-picture" id="profilePicture"></div>
+            <a href="help.html" class="menulink link-selected disabled">Help</a>
+            <a href="impressum.html" class="menulink link-unselected disabled">Impressum</a
+        >
+        <a href="datenschutz.html" class="menulink link-unselected"
+          >Datenschutz</a
+        >
+        <a href="index.html" class="menulink link-unselected">Log Out</a>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primare show-mobile">
+        <div class="container-fluid">
+            <a href="matrix.html"><img src="img/joinlogo.png" class="joinlogo" /></a>
+            <div class="profile-picture" id="profilePictureResponsive"></div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="matrix.html">Matrix</a>
+                    <a class="nav-link" href="list.html">List</a>
+                    <a class="nav-link" href="addTask.html">AddTask</a>
+                    <a class="nav-link active disabled" aria-current="page" href="help.html">Help</a
+            >
+            <a class="nav-link active disabled" href="impressum.html"
+              >Impressum</a
+            >
+            <a class="nav-link" href="datenschutz.html">Datenschutz</a>
+                    <a class="nav-link" href="index.html" tabindex="">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="projects">
+        <div class="headline-container">
+            <h2>Your Project</h2>
+            <p>Learning Management System Project</p>
+        </div>
+
+        <div class="help-container">
+            <div class="exlain-addTask">
+                <h3>How do you add a new Task ?</h3>
+                <img src="img/addTask.png" />
+                <p>1. In this section you can enter the title of your new task.</p>
+                <p>
+                    2. Here you can select a Maximum of 3 Categories for your task. Click with Ctrl and Right Click and choose one,two or three of the tasks.
+                </p>
+                <p>3. In this section you can describe the task in more detail.</p>
+                <p>
+                    4. Set a deadline for your task here. The date influences the urgency.
+                </p>
+                <p>
+                    5. Here you can choose if your task is of high or low importance.
+                </p>
+                <p>
+                    6. Press the Plus image to assign users to your task. You can select several. The task will be displayed in each users list and matrix.
+                </p>
+                <p>
+                    7. Press the Create button to create the task. It is now displayed in your list and matrix. Please fill in each field to enable the create-button. Use the cancel button to clear all fields.
+                </p>
+            </div>
+
+            <div class="explain-matrix">
+                <h3>How do you use the Matrix ?</h3>
+                <img src="img/matrix.png" />
+                <p>
+                    1. If Due Date in the next 3 days urgency is High. Tasks can be edited by drag and drop one element from one area to another area. When dropping an element to a new area a function is activated that updates the status of the element to the server.
+                </p>
+                <p>
+                    2. Drag all tasks to "Do" that are both urgent and important and therefore have a high priority.
+                </p>
+                <p>
+                    3. You can move tasks to Delegate that should be done by colleagues or other team members.
+                </p>
+                <p>
+                    4. The tasks that are not urgent or don't have a deadline are placed on "Schedule".
+                </p>
+                <p>
+                    5. Drag all Tasks to "Eliminate" that should not be done or are no longer relevant.
+                </p>
+            </div>
+            <div class="explain-list">
+                <h3>What is shown on the list ?</h3>
+                <img src="img/list.png" />
+                <p>
+                    1. Each task you create is listed here. Below you can see the assigned persons, the category and the details.
+                </p>
+                <p>
+                    2. The color indicates where the tasks are arranged in the matrix. The blue ones are the "Do" tasks and all the greens are those that belong to "Delegate". The purple tasks are arranged in "Schedule" and all those in "eliminate" are Yellow.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
