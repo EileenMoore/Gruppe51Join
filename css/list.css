@@ -241,8 +241,8 @@ p {
     .task-container {
         margin-top: 4px;
     }
-    .assignee-content {
-        width: 100%;
+    .assigned-content {
+        width: 90%;
     }
     .category-content {
         width: 100%;
@@ -268,4 +268,8 @@ p {
         display: flex;
         flex-direction: column-reverse;
     }
+    .list-column {
+        width: 100%;
+    }
+    
 }
