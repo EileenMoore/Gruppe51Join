@@ -199,19 +199,19 @@ async function loadAllTasks() {
  *
  *
  */
-
 function sortAssignePeople() {
     for (let i = 0; i < allTasks.length; i++) {
-        allTasks[i].assignedPeople = allTasks[i].assignedPeople.sort((a, b) => a['username'].localeCompare(b['username']));
+        allTasks[i].assignedPeople = allTasks[i].assignedPeople.sort((a, b) =>
+            a["username"].localeCompare(b["username"])
+        );
     }
 }
 
 /**
  *
  *  Defines Urgency and Section after creating a Task
- 
+ *
  */
-
 let dateSelected;
 let dayTime = 259200000;
 
@@ -250,7 +250,6 @@ function resolveSection(i, u) {
  * Update urgency and Section before onloading on list and Matrix
  *
  */
-
 function updateUrgency() {
     for (let i = 0; i < allTasks.length; i++) {
         let thisDate = new Date().getTime();
@@ -284,7 +283,6 @@ function updateSection() {
  *  You can pick only future Days
  *
  */
-
 function pickOnlyfutureDays() {
     let today = new Date();
     let dd = today.getDate();
@@ -310,7 +308,6 @@ function showAllTasks() {
  *
  *
  */
-
 function selectOnlyThreeCategories() {
     let opt;
     let selectChoose = document.getElementById("category").options;
@@ -336,7 +333,6 @@ function selectOnlyThreeCategories() {
  *
  *
  */
-
 function validateCategories() {
     let opt;
     let options = document.getElementById("category").options;
