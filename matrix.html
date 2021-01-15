@@ -89,14 +89,14 @@
             <div class="matrix">
 
                 <div class="matrix-row">
-                    <div class="matrix-quarter" id="containerDO" ondragover="allowDrop(event)" ondrop="dropToDoList()">
+                    <div class="matrix-quarter" id="containerDO" ondragover="moveTo('do')" ondrop="drop()">
                         <span class="matrix-quarter-headline">DO</span>
                         <div id="do" class="matrix-bg">
 
                         </div>
                     </div>
 
-                    <div class="matrix-quarter" id="containerSCHEDULE" ondragover="allowDrop(event)" ondrop="dropToScheduleList()">
+                    <div class="matrix-quarter" id="containerSCHEDULE" ondragover="moveTo('schedule')" ondrop="drop()">
                         <span class="matrix-quarter-headline">SCHEDULE</span>
                         <div id="schedule" class="matrix-bg">
 
@@ -105,14 +105,14 @@
                 </div>
 
                 <div class="matrix-row">
-                    <div class="matrix-quarter" id="containerDELEGATE" ondragover="allowDrop(event)" ondrop="dropToDelegateList()">
+                    <div class="matrix-quarter" id="containerDELEGATE" ondragover="moveTo('delegate')" ondrop="drop()">
                         <span class="matrix-quarter-headline">DELEGATE</span>
                         <div id="delegate" class="matrix-bg" >
 
                         </div>
                     </div>
 
-                    <div class="matrix-quarter" id="containerELIMINATE" ondragover="allowDrop(event)" ondrop="dropToEliminateList()">
+                    <div class="matrix-quarter" id="containerELIMINATE" ondragover="moveTo('eliminate')" ondrop="drop()">
                         <span class="matrix-quarter-headline">ELIMINATE</span>
                         <div id="eliminate" class="matrix-bg">
 
