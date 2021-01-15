@@ -1,0 +1,11 @@
+.projects {
+    padding-left: 190px;
+    width: 100%;
+}
+
+@media (max-width: 990px) {
+    .projects {
+        padding-top: 100px !important;
+        padding: 16px;
+    }
+}
