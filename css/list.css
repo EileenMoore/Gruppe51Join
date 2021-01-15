@@ -108,7 +108,7 @@ p {
     display: flex;
     flex-direction: column;
     width: 35%;
-    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 
 .assigned-img img {
@@ -144,7 +144,7 @@ p {
     display: flex;
     width: 50%;
     align-items: center;
-    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 
 .task-item-content {
