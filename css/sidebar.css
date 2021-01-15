@@ -55,10 +55,7 @@
     }
 
     .impressumlink {
-        top: 496px;
-        color: gray;
-        text-align: center;
-        text-decoration: none;
+        padding-right: 8px;
     }
 
     .link-selected {
