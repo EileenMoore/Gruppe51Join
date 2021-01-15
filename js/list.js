@@ -9,11 +9,20 @@ async function generateListItem() {
 
         document.getElementById('taskdelegate').innerHTML += `
 <div class="task-listed ${allTasks[i].section}">
-<div class="assigned-content"><div>${generateImgRow(allTasks[i])}</div></div>
-<div class="category-content">${allTasks[i]['category']}</div>
-<div class="title-content">${allTasks[i]['title']}</div>
-<div class="details-content">${allTasks[i]['description']}</div>
-<img class="delete-img" src="img/delete.svg" onclick="openDeleteWindowList(${task['id']})">
+    <div class="list-first-line">
+        <div class="assigned-content">${generateImgRow(allTasks[i])}</div>
+        <div class="list-column">
+            <div class="titleAndCategories">
+                <div class="title-content">${allTasks[i]['title']}</div>
+                <div class="category-content">${allTasks[i]['category']}</div>
+            </div>
+            <div class="details-content">${allTasks[i]['description']}</div>
+        </div>
+        <div class="deleteList">
+            <img title="delete" class="delete-img" src="img/delete.svg" onclick="openDeleteWindowList(${task['id']})">
+        </div>
+    </div>
+
 </div>`;
     }
 }
@@ -42,7 +51,6 @@ function generateImgRow(task) {
  * @param {number} taskId - This is the ID of the selected task.
  */
 function openDeleteWindowList(taskId) {
-    document.getElementById('delete-container-overlay-list').classList.remove('d-none');
     document.getElementById('delete-container-list').classList.remove('d-none');
 
     document.getElementById('delete-container-list').innerHTML = `
@@ -59,7 +67,6 @@ function openDeleteWindowList(taskId) {
  * This function is used to close the delete window.
  */
 function closeDeleteWindowList() {
-    document.getElementById('delete-container-overlay-list').classList.add('d-none');
     document.getElementById('delete-container-list').classList.add('d-none');
 }
 
@@ -77,5 +84,3 @@ function deleteTaskList(taskId) {
     document.getElementById('taskdelegate').innerHTML = '';
     generateListItem();
 }
-
-

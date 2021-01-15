@@ -1,6 +1,6 @@
 let users = [{
     "username": "Guest",
-    "email": "guest@join.maill",
+    "email": "guest@join.mail",
     "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
     "profilePicture": "img/profileimg/nutzer.svg"
 },
@@ -36,7 +36,7 @@ let users = [{
 },
 {
     "username": "Manuel Thaler",
-    "email": "manuel@thaler.maill",
+    "email": "manuel@thaler.mail",
     "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
     "profilePicture": "img/profileimg/manuel.jpg"
 }
@@ -236,4 +236,3 @@ function loadCurrentUser() {
         currentUser = JSON.parse(currentUserAsString);
     }
 }
-

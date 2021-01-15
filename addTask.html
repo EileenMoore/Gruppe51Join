@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 
 <head>
@@ -8,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/sidebar.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/addTask.css" />
-    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="icon" href="img/logo.png" type="image/png" />
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
-    <script src="./js/mini_backend.js"></script> 
+    <script src="js/mini_backend.js"></script>
     <script src="js/index.js"></script>
     <script src="js/addTask.js"></script>
     <script src="js/sidebar.js"></script>
@@ -30,8 +29,9 @@
 
         <div>
             <div class="profile-picture" id="profilePicture"></div>
-
+            <a href="help.html" class="menulink link-unselected">Help</a>
             <a href="impressum.html" class="menulink link-unselected">Impressum</a>
+            <a href="datenschutz.html" class="menulink link-unselected">Datenschutz</a>
             <a href="index.html" class="menulink link-unselected">Log Out</a>
         </div>
     </div>
@@ -45,12 +45,13 @@
         </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link" aria-current="page" href="matrix.html">Matrix</a>
+                    <a class="nav-link" href="matrix.html">Matrix</a>
                     <a class="nav-link" href="list.html">List</a>
                     <a class="nav-link active disaled" href="addTask.html">AddTask</a>
+                    <a class="nav-link" href="help.html">Help</a>
                     <a class="nav-link" href="impressum.html">Impressum</a>
+                    <a class="nav-link" href="datenschutz.html">Datenschutz</a>
                     <a class="nav-link" href="index.html" tabindex="">Log Out</a>
-
                 </div>
             </div>
         </div>
@@ -73,8 +74,8 @@
                     <div class="category-section">
                         <h3>Category</h3>
 
-                        <select class="custom-select" onclick="selectOnlyThreeCategories()" aria-placeholder="Choose a Categorie" aria-required ria-label="Default select example" aria-placeholder="Choose Category" id="category" multiple max="3" size="3">
-                <option >Management</option>
+                        <select class="custom-select" onclick="selectOnlyThreeCategories()" aria-placeholder="Choose a Categorie" required ria-label="Default select example" aria-placeholder="Choose Category" id="category" multiple max="3" size="3">
+                <option>Management</option>
                 <option>Sales</option>
                 <option>HR</option>
                 <option>IT</option>
@@ -96,8 +97,8 @@
                     </div>
                     <div class="importance-section">
                         <h3>Importance</h3>
-                        <select class="form-select" aria-placeholder="Chosse a Importance" required aria-label="Default select example" id="importance">
-                <option selected>High</option>
+                        <select class="form-select" placeholder="Chosse an Importance" required aria-label="Default select example" id="importance">
+                <option>High</option>
                 <option>Low</option>
               </select>
                     </div>

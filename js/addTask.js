@@ -17,8 +17,8 @@ async function displayUsers() {
     loadCurrentUser();
     let loggedInUser = users.find((e) => e.username == currentUser[0].username);
     selectedUsers.push(loggedInUser);
-    displaySelectedUsers();
     getUserPicker();
+    displaySelectedUsers();
     blendCurrentUser();
 }
 
@@ -138,6 +138,7 @@ function createTask($event) {
     $event.preventDefault();
     defurgency();
     validateCategories();
+
     newTask();
     taskSubmission(task);
     alert("New Task is created. You will be redirected to list.");
@@ -157,9 +158,9 @@ function newTask() {
 
     task = {
         id: new Date().getTime(),
-        title: title.value,
+        title: title.value.replace("<", ""),
         category: selectedCategories,
-        description: description.value,
+        description: description.value.replace("<", ""),
         date: date.value,
         importance: importance.value,
         assignedPeople: selectedUsers,
@@ -179,24 +180,36 @@ function taskSubmission(task) {
         alert("Please select at least one person for the task");
     } else {
         allTasks.push(task);
-        backend.setItem('allTasks', JSON.stringify(allTasks));
+        backend.setItem("allTasks", JSON.stringify(allTasks));
         console.log(allTasks);
     }
 }
 
 async function loadAllTasks() {
     await downloadFromServer();
-    allTasks = JSON.parse(backend.getItem('allTasks')) || [];
+    allTasks = JSON.parse(backend.getItem("allTasks")) || [];
+    sortAssignePeople();
     updateUrgency();
     updateSection();
 }
 
 /**
  *
+ * sort Assigned People
+ *
+ *
+ */
+
+function sortAssignePeople() {
+    for (let i = 0; i < allTasks.length; i++) {
+        allTasks[i].assignedPeople = allTasks[i].assignedPeople.sort((a, b) => a['username'].localeCompare(b['username']));
+    }
+}
+
+/**
+ *
  *  Defines Urgency and Section after creating a Task
- *
- *
- *
+ 
  */
 
 let dateSelected;

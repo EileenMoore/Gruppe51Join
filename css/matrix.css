@@ -238,7 +238,7 @@
             flex-wrap: wrap-reverse;
             justify-content: flex-end;
             align-items: flex-start;
-            width: 100%;
+            flex-grow: 1;
         }
 
         .delete-container-overlay {
@@ -309,5 +309,4 @@
                 padding-right: 4px !important;
                 padding-left: 4px !important;
             }
-
         }

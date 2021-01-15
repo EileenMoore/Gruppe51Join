@@ -19,12 +19,13 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left: 30px;
     height: 15vh;
 }
 
 .projects {
     padding-left: 190px;
+    padding-right: 30px;
+    padding-bottom: 30px;
     width: 100%;
 }
 
@@ -37,17 +38,15 @@ p {
 
 .assignee-section {
     display: flex;
+    align-items: center;
 }
 
 .task-container {
     width: 100%;
     height: auto;
     margin-top: 2rem;
-    display: grid;
-    grid-template-columns: 30% 20% 38% 8%;
-    grid-auto-rows: min-content;
-    grid-template-areas: "label label label label" "task task task task";
     align-items: center;
+    justify-content: space-between;
 }
 
 .task-container label {
@@ -58,52 +57,34 @@ p {
     color: rgb(30, 49, 144);
 }
 
+#assigned {
+    width: 35%;
+}
+
+#title {
+    width: 29.5%;
+}
+
 .task-listed {
     box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.1);
     border-left: 8px;
     border-left-style: solid;
-    grid-area: task;
-    display: grid;
-    grid-template-columns: 0.5% 23.5% 20% 50% 5%;
-    grid-row: auto;
     background-color: #F4F3FB;
     border-radius: 8px;
     height: auto;
     margin-bottom: 16px;
     transition: all 125ms ease-in-out;
+    padding: 0.5rem;
+    position: relative;
 }
 
-.task-item-description {
-    background-color: white;
-    top: 20%;
-    width: 88%;
+.list-first-line {
     display: flex;
-    color: rgb(30, 49, 144);
 }
 
-.task-item-description p {
-    margin-bottom: 0 !important;
-    font-weight: 700;
-    font-size: 15px;
+.list-labels {
+    width: 100%;
 }
-
-/*#assigned {
-    width: 25%;
-    min-width: 230px;
-    overflow: auto;
-}
-
-#category {
-    width: 25%;
-    min-width: 70px;
-    overflow: auto;
-    text-align: center;
-}
-
-#details {
-    width: 25%;
-    text-align: end;
-}*/
 
 /*colors for the list-item-content depending of the eisenhowerMatrixCategorie value of the assigment*/
 
@@ -125,72 +106,45 @@ p {
 
 .assigned-content {
     display: flex;
-    align-items: center;
-    height: 100%;
-}
-
-.assigned-img {
-    object-fit: cover;
-    display: flex;
-    margin: 0.5rem 0.5rem 0.5rem 0;
     flex-direction: column;
-    height: 100%;
-    justify-content: space-evenly;
+    width: 35%;
+    padding-right: 0.5rem;
 }
 
 .assigned-img img {
-    display: flex;
-    justify-content: center;
-    align-content: center;
     width: 3rem;
     height: 3rem;
-    margin: 2px 0 0 0;
     border-radius: 50%;
     object-fit: cover;
+    margin: 0.5rem 0.5rem 0.5rem 0;
 }
 
 .contact-data-section {
     display: flex;
-    margin: 4px 0 0 0;
     flex-direction: column;
 }
 
 .category-content {
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 1.3rem;
-    grid-column: 3;
+    color: #007bff;
+    font-weight: bold;
+    width: 50%;
 }
 
 .details-content {
-    grid-row: 2;
-    grid-column: 4;
     display: flex;
-    justify-content: center;
+    flex-grow: 1;
     align-items: center;
-    font-size: 1.3rem;
-    padding: 2% 2%;
+    margin-top: 0.5rem;
 }
 
 .title-content {
     font-weight: bold;
     display: flex;
-    grid-row: 1;
-    grid-column: 4;
+    width: 50%;
     align-items: center;
-    justify-content: center;
-}
-
-#category {
-    display: flex;
-    justify-content: center;
-}
-
-#details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding-right: 0.5rem;
 }
 
 .task-item-content {
@@ -205,21 +159,12 @@ p {
 }
 
 .delete-container-overlay-list {
-    z-index: 2;
     position: fixed;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
-}
-
-.delete-container-list {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -233,8 +178,7 @@ p {
     width: 30px;
     height: 30px;
     cursor: pointer;
-    grid-column: 5;
-    margin-top: 20px;
+    margin-top: 4px;
     vertical-align: middle;
 }
 
@@ -271,76 +215,63 @@ p {
     margin-top: 16px;
 }
 
+.list-column {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.titleAndCategories {
+    display: flex;
+    justify-content: space-between;
+}
+
+.deleteList {
+    width: 5%;
+}
+
 @media(max-width: 990px) {
     .projects {
         padding-top: 100px !important;
         width: 100% !important;
-        padding-left: 5px;
+        padding-left: 12px;
+        padding-right: 12px;
     }
-    .task-item-content {
-        display: flex;
-        align-items: center;
-        height: 70px;
-        width: 100%;
-        background-color: #F4F3FB;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        border-left-style: solid;
-        border-left-width: 5px;
-    }
-    .assigned-content {
-        grid-column: 1;
-        align-items: center;
-    }
-    .category-content {
-        font-weight: bold;
-        font-size: 1rem;
-        max-height: 40px;
-        align-items: baseline;
-        margin-top: 0.5rem;
-        grid-column: 1;
-        grid-row: 2;
-        justify-content: center;
-    }
-    .details-content {
-        grid-area: details;
-        grid-row: 3;
-        justify-content: center;
-    }
-    .title-content {
-        justify-content: center;
-        align-items: center;
-        grid-row: 2;
-        grid-column: 2;
+    .list-first-line {
+        flex-direction: column;
     }
     .task-container {
-        margin-top: 16vh;
+        margin-top: 4px;
     }
-    .task-item-description {
-        background-color: white;
-        position: relative !important;
-        top: 30%;
-        display: flex;
-        color: rgb(30, 49, 144);
+    .assigned-content {
+        width: 90%;
     }
-    .task-listed {
-        display: grid;
-        grid-template-columns: 30% 60% 10%;
-        grid-template-areas: "assignee details delete" "assignee details delete" "assignee details delete";
+    .category-content {
+        width: 100%;
     }
-    .assignee-section {
-        overflow: auto;
-        align-items: center;
-        grid-area: assignee;
+    .title-content {
+        width: 100%;
     }
     .delete-img {
-        grid-column: 3;
-        grid-row: 1;
+        position: absolute;
+        right: 0.5rem;
+        top: 0.5rem;
     }
     #category {
-        padding-left: 50px;
+        display: none;
     }
-    #details {
-        padding-left: 50px;
+    #title {
+        display: none;
     }
+    #assigned {
+        display: none;
+    }
+    .titleAndCategories {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .list-column {
+        width: 100%;
+    }
+    
 }
