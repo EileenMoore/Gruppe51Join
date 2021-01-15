@@ -84,5 +84,3 @@ function deleteTaskList(taskId) {
     document.getElementById('taskdelegate').innerHTML = '';
     generateListItem();
 }
-
-

@@ -59,7 +59,6 @@ function selectUser(i) {
     let id = "user-picker-row" + i;
     checkIfUserIsAlreadySelected(i, id);
     displaySelectedUsers();
-    Array.Sort(selectedUsers);
 }
 
 /**
@@ -139,6 +138,7 @@ function createTask($event) {
     $event.preventDefault();
     defurgency();
     validateCategories();
+
     newTask();
     taskSubmission(task);
     alert("New Task is created. You will be redirected to list.");
@@ -188,8 +188,22 @@ function taskSubmission(task) {
 async function loadAllTasks() {
     await downloadFromServer();
     allTasks = JSON.parse(backend.getItem("allTasks")) || [];
+    sortAssignePeople();
     updateUrgency();
     updateSection();
+}
+
+/**
+ *
+ * sort Assigned People
+ *
+ *
+ */
+
+function sortAssignePeople() {
+    for (let i = 0; i < allTasks.length; i++) {
+        allTasks[i].assignedPeople = allTasks[i].assignedPeople.sort((a, b) => a['username'].localeCompare(b['username']));
+    }
 }
 
 /**
