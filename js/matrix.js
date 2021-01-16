@@ -116,14 +116,12 @@ function insertTasks(subTasks) {
  */
 function generateTask(task) {
     return `
-    <div class="task-card ${
-      task.section
-    }" id="drag" draggable="true" ondragstart="drag(${task["id"]})">
+    <div class="task-card ${task.section
+        }" id="drag" draggable="true" ondragstart="drag(${task["id"]})">
         <div class="task-card-top">
             <div class="date">${task["date"]}</div> 
-            <img title="delete" class="delete-icon" src="./img/delete.png" onclick="openDeleteWindow(${
-              task["id"]
-            })">
+            <img title="delete" class="delete-icon" src="./img/delete.png" onclick="openDeleteWindow(${task["id"]
+        })">
         </div>
         <div class="task-card-bottom">
             <div class="task-card-left">
@@ -219,9 +217,12 @@ function moveTo(section) {
     let currentTask = allTasks.find((t) => t["id"] == draggingTask); // Findet aktuellen Task
     currentTask.section = section;
     update(currentTask);
-    console.log('This task should be moved to "Schedule"', currentTask);
+    console.log('current task:', currentTask);
+    allTasks = allTasks.filter(t => t['id'] != draggingTask);
+    allTasks.push(currentTask);
+    console.log(allTasks);
+    backend.setItem("allTasks", JSON.stringify(allTasks));
     updateHTML();
-    // TODO: Update on Server
 }
 /**
  * This method performs drop of the dropdown
@@ -242,19 +243,19 @@ function performDropTask(ev) {
  */
 function update(currentTask) {
     if (currentTask.section == "do") {
-        currentTask.urgency = "high";
-        currentTask.importance = "high";
+        currentTask.urgency = "High";
+        currentTask.importance = "High";
     }
     if (currentTask.section == "schedule") {
-        currentTask.urgency = "low";
-        currentTask.importance = "high";
+        currentTask.urgency = "Low";
+        currentTask.importance = "High";
     }
     if (currentTask.section == "delegate") {
-        currentTask.urgency = "high";
-        currentTask.importance = "low";
+        currentTask.urgency = "High";
+        currentTask.importance = "Low";
     }
     if (currentTask.section == "eliminate") {
-        currentTask.urgency = "low";
-        currentTask.importance = "low";
+        currentTask.urgency = "Low";
+        currentTask.importance = "Low";
     }
 }
