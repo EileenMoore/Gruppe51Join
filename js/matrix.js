@@ -116,11 +116,14 @@ function insertTasks(subTasks) {
  */
 function generateTask(task) {
     return `
-    <div class="task-card ${task.section}" id="drag" draggable="true" ondragstart="drag(${task['id']})">
+    <div class="task-card ${
+      task.section
+    }" id="drag" draggable="true" ondragstart="drag(${task["id"]})">
         <div class="task-card-top">
             <div class="date">${task["date"]}</div> 
-            <img title="delete" class="delete-icon" src="./img/delete.png" onclick="openDeleteWindow(${task["id"]
-        })">
+            <img title="delete" class="delete-icon" src="./img/delete.png" onclick="openDeleteWindow(${
+              task["id"]
+            })">
         </div>
         <div class="task-card-bottom">
             <div class="task-card-left">
@@ -180,8 +183,8 @@ function closeDeleteWindow() {
  * @param {string} task - This is the task to be deleted.
  */
 function deleteTask(taskId) {
-    allTasks = allTasks.filter(t => t['id'] != taskId);
-    backend.setItem('allTasks', JSON.stringify(allTasks));
+    allTasks = allTasks.filter((t) => t["id"] != taskId);
+    backend.setItem("allTasks", JSON.stringify(allTasks));
     closeDeleteWindow();
     sortTasks();
 }
@@ -213,8 +216,9 @@ function drop(ev) {
 }
 
 function moveTo(section) {
-    let currentTask = allTasks.find(t => t['id'] == draggingTask); // Findet aktuellen Task
+    let currentTask = allTasks.find((t) => t["id"] == draggingTask); // Findet aktuellen Task
     currentTask.section = section;
+    update(currentTask);
     console.log('This task should be moved to "Schedule"', currentTask);
     updateHTML();
     // TODO: Update on Server
@@ -222,10 +226,35 @@ function moveTo(section) {
 /**
  * This method performs drop of the dropdown
  * and switches the task to its new place & calls the update function
- * @param {DataTransfer} ev 
+ * @param {DataTransfer} ev
  */
 function performDropTask(ev) {
     ev.preventDefault();
     let id = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(id));
+}
+
+
+/**
+ * This function will update the importance and urgency after drag and drop to each section
+ * 
+ * @param {object} currentTask 
+ */
+function update(currentTask) {
+    if (currentTask.section == "do") {
+        currentTask.urgency = "high";
+        currentTask.importance = "high";
+    }
+    if (currentTask.section == "schedule") {
+        currentTask.urgency = "low";
+        currentTask.importance = "high";
+    }
+    if (currentTask.section == "delegate") {
+        currentTask.urgency = "high";
+        currentTask.importance = "low";
+    }
+    if (currentTask.section == "eliminate") {
+        currentTask.urgency = "low";
+        currentTask.importance = "low";
+    }
 }
