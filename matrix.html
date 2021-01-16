@@ -85,24 +85,24 @@
 
             <div class="matrix">
                 <div class="matrix-row">
-                    <div class="matrix-quarter drop-area" ondrop="moveTo('do')" ondragover="drop()">
+                    <div class="matrix-quarter drop-area" ondrop="moveTo('do')" ondragover="allowDrop(event)">
                         <span class="matrix-quarter-headline">DO</span>
                         <div id="do" class="matrix-bg"></div>
                     </div>
 
-                    <div class="matrix-quarter drop-area" ondrop="moveTo('schedule')" ondragover="drop()">
+                    <div class="matrix-quarter drop-area" ondrop="moveTo('schedule')" ondragover="allowDrop(event)">
                         <span class="matrix-quarter-headline">SCHEDULE</span>
                         <div id="schedule" class="matrix-bg"></div>
                     </div>
                 </div>
 
                 <div class="matrix-row">
-                    <div class="matrix-quarter drop-area" ondrop="moveTo('delegate')" ondragover="drop()">
+                    <div class="matrix-quarter drop-area" ondrop="moveTo('delegate')" ondragover="allowDrop(event)">
                         <span class="matrix-quarter-headline">DELEGATE</span>
                         <div id="delegate" class="matrix-bg"></div>
                     </div>
 
-                    <div class="matrix-quarter drop-area" ondrop="moveTo('eliminate')" ondragover="drop()">
+                    <div class="matrix-quarter drop-area" ondrop="moveTo('eliminate')" ondragover="allowDrop(event)">
                         <span class="matrix-quarter-headline">ELIMINATE</span>
                         <div id="eliminate" class="matrix-bg"></div>
                     </div>

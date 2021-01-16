@@ -10,6 +10,7 @@ async function sortTasks() {
     await loadAllTasks();
     updateHTML();
 }
+
 function updateHTML() {
     clearSubTasks();
     clearMatrixFields();
@@ -210,6 +211,7 @@ function drop(ev) {
         }
     });
 }
+
 function moveTo(section) {
     let currentTask = allTasks.find(t => t['id'] == draggingTask); // Findet aktuellen Task
     currentTask.section = section;
