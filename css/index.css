@@ -18,7 +18,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 32px;
+    margin: 16px;
 }
 
 .joinlogo-large {
@@ -29,7 +29,7 @@ body {
 .login-container {
     background-color: #f4f3fb;
     padding: 24px;
-    margin: 24px;
+    margin: 16px;
     border-radius: 8px;
 }
 
@@ -154,4 +154,8 @@ input:focus {
 .inputfile+label:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+h1 {
+    text-align: center;
 }
