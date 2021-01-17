@@ -3,38 +3,41 @@
  */
 async function generateListItem() {
     await loadAllTasks();
+    showHTML();
+}
 
+function showHTML() {
     for (i = 0; i < allTasks.length; i++) {
         let task = allTasks[i];
 
-        document.getElementById('taskdelegate').innerHTML += `
-<div class="task-listed ${allTasks[i].section}">
-    <div class="list-first-line">
-        <div class="assigned-content">${generateImgRow(allTasks[i])}</div>
-        <div class="list-column">
-            <div class="titleAndCategories">
-                <div class="title-content">${allTasks[i]['title']}</div>
-                <div class="category-content">${allTasks[i]['category']}</div>
+        document.getElementById("taskdelegate").innerHTML += `
+        <div class="task-listed ${allTasks[i].section}">
+            <div class="list-first-line">
+                <div class="assigned-content">${generateImgRow(allTasks[i])}</div>
+                <div class="list-column">
+                    <div class="titleAndCategories">
+                        <div class="title-content">${allTasks[i]["title"]}</div>
+                        <div class="category-content">${allTasks[i]["category"]}</div>
+                    </div>
+                    <div class="details-content">${allTasks[i]["description"]}</div>
+                </div>
+                <div class="deleteList">
+                    <img title="delete" class="delete-img" src="img/delete.svg" onclick="openDeleteWindowList(${
+                    task["id"]
+                    })">
+                </div>
             </div>
-            <div class="details-content">${allTasks[i]['description']}</div>
-        </div>
-        <div class="deleteList">
-            <img title="delete" class="delete-img" src="img/delete.svg" onclick="openDeleteWindowList(${task['id']})">
-        </div>
-    </div>
-
-</div>`;
+        </div>`;
     }
 }
 
 /**
  * This function generates the details of the current user
- * @param {string} task 
+ * @param {string} task
  */
 function generateImgRow(task) {
-    let html = '';
+    let html = "";
     for (let j = 0; j < task.assignedPeople.length; j++) {
-
         const asignee = task.assignedPeople[j];
 
         html += `<div class = "assignee-section"><div class="assigned-img"><img src="${asignee.profilePicture}"></div>
@@ -43,17 +46,16 @@ function generateImgRow(task) {
     return html;
 }
 
-
 /**
  * This function is used to open the delete window in the list.
- * 
- * 
+ *
+ *
  * @param {number} taskId - This is the ID of the selected task.
  */
 function openDeleteWindowList(taskId) {
-    document.getElementById('delete-container-list').classList.remove('d-none');
+    document.getElementById("delete-container-list").classList.remove("d-none");
 
-    document.getElementById('delete-container-list').innerHTML = `
+    document.getElementById("delete-container-list").innerHTML = `
     <div class="delete-window">
         <span>Do you really want to delete this task?</span>
             <div class="button-order">
@@ -67,20 +69,19 @@ function openDeleteWindowList(taskId) {
  * This function is used to close the delete window.
  */
 function closeDeleteWindowList() {
-    document.getElementById('delete-container-list').classList.add('d-none');
+    document.getElementById("delete-container-list").classList.add("d-none");
 }
-
 
 /**
  * This function deletes a task.
- * 
- * 
+ *
+ *
  * @param {string} task - This is the task to be deleted.
  */
 function deleteTaskList(taskId) {
-    allTasks = allTasks.filter(t => t['id'] != taskId);
-    backend.setItem('allTasks', JSON.stringify(allTasks));
+    allTasks = allTasks.filter((t) => t["id"] != taskId);
+    backend.setItem("allTasks", JSON.stringify(allTasks));
     closeDeleteWindowList();
-    document.getElementById('taskdelegate').innerHTML = '';
-    generateListItem();
+    document.getElementById("taskdelegate").innerHTML = "";
+    showHTML();
 }
