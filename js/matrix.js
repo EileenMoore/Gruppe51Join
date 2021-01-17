@@ -254,6 +254,8 @@ function moveTo(section) {
 /**
  * This method performs drop of the dropdown
  * and switches the task to its new place & calls the update function
+ * 
+ * 
  * @param {DataTransfer} ev
  */
 function performDropTask(ev) {
@@ -263,10 +265,10 @@ function performDropTask(ev) {
 }
 
 /**
- * This function will update the importance and urgency and the Due Date after drag and drop to each section
+ * This function will update the importance and urgency and the Due Date after drag and drop of a task to a section.
  *
- * @param {object} currentTask
- * 
+ * @param {object} currentTask - The task that is dragged.
+ * @param {object} originSection - The section of the task before being dragged.
  */
 function updateUandIandDate(currentTask, originSection) {
     updateDoSection(currentTask, originSection);
@@ -279,16 +281,11 @@ function updateUandIandDate(currentTask, originSection) {
  * This function updates the urgency, importance and due date of the task that is dragged into the do-section.
  * 
  * 
- * @param {string} currentTask 
- * @param {string} originSection 
+ * @param {string} currentTask - The task that is dragged.
+ * @param {string} originSection - The section of the task before being dragged.
  */
 function updateDoSection(currentTask, originSection) {
-    if (currentTask.section == "do" && originSection == "schedule") {
-        currentTask.urgency = "High";
-        currentTask.importance = "High";
-        today(currentTask);
-    }
-    if (currentTask.section == "do" && originSection == "eliminate") {
+    if (currentTask.section == "do" && (originSection == "schedule" || originSection == "eliminate")) {
         currentTask.urgency = "High";
         currentTask.importance = "High";
         today(currentTask);
@@ -303,16 +300,11 @@ function updateDoSection(currentTask, originSection) {
  * This function updates the urgency, importance and due date of the task that is dragged into the schedule-section.
  * 
  * 
- * @param {string} currentTask 
- * @param {string} originSection 
+ * @param {string} currentTask - The task that is dragged.
+ * @param {string} originSection - The section of the task before being dragged.
  */
 function updateScheduleSection(currentTask, originSection) {
-    if (currentTask.section == "schedule" && originSection == "do") {
-        currentTask.urgency = "Low";
-        currentTask.importance = "High";
-        inFourDays(currentTask);
-    }
-    if (currentTask.section == "schedule" && originSection == "delegate") {
+    if (currentTask.section == "schedule" && (originSection == "do" || originSection == "delegate")) {
         currentTask.urgency = "Low";
         currentTask.importance = "High";
         inFourDays(currentTask);
@@ -327,16 +319,11 @@ function updateScheduleSection(currentTask, originSection) {
  * This function updates the urgency, importance and due date of the task that is dragged into the delegate-section.
  * 
  * 
- * @param {string} currentTask 
- * @param {string} originSection 
+ * @param {string} currentTask - The task that is dragged.
+ * @param {string} originSection - The section of the task before being dragged.
  */
 function updateDelegateSection(currentTask, originSection) {
-    if (currentTask.section == "delegate" && originSection == "eliminate") {
-        currentTask.urgency = "High";
-        currentTask.importance = "Low";
-        today(currentTask);
-    }
-    if (currentTask.section == "delegate" && originSection == "schedule") {
+    if (currentTask.section == "delegate" && (originSection == "eliminate" || originSection == "schedule")) {
         currentTask.urgency = "High";
         currentTask.importance = "Low";
         today(currentTask);
@@ -351,16 +338,11 @@ function updateDelegateSection(currentTask, originSection) {
  * This function updates the urgency, importance and due date of the task that is dragged into the eliminate-section.
  * 
  * 
- * @param {string} currentTask 
- * @param {string} originSection 
+ * @param {string} currentTask - The task that is dragged.
+ * @param {string} originSection - The section of the task before being dragged.
  */
 function updateEliminateSection(currentTask, originSection) {
-    if (currentTask.section == "eliminate" && originSection == "do") {
-        currentTask.urgency = "Low";
-        currentTask.importance = "Low";
-        inFourDays(currentTask);
-    }
-    if (currentTask.section == "eliminate" && originSection == "delegate") {
+    if (currentTask.section == "eliminate" && (originSection == "do" || originSection == "delegate")) {
         currentTask.urgency = "Low";
         currentTask.importance = "Low";
         inFourDays(currentTask);
@@ -376,7 +358,7 @@ function updateEliminateSection(currentTask, originSection) {
  * This function generates today'S date as due date fpr the task.
  * 
  * 
- * @param {object} currentTask 
+ * @param {object} currentTask - The task that is dragged.
  */
 function today(currentTask) {
     let today = new Date();
@@ -392,7 +374,7 @@ function today(currentTask) {
  * This function generates the date four days in the furture from today'S date as due date for the task.
  * 
  * 
- * @param {object} currentTask 
+ * @param {object} currentTask - The task that is dragged.
  */
 function inFourDays(currentTask) {
     let today = new Date();
