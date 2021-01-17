@@ -186,7 +186,7 @@ function openDeleteWindow(taskId) {
  */
 function closeDeleteWindow() {
     document.getElementById("delete-container-overlay").classList.add("d-none");
-  
+
     document.getElementById("delete-container").classList.add("d-none");
 }
 /**
@@ -199,7 +199,7 @@ function deleteTask(taskId) {
     allTasks = allTasks.filter((t) => t["id"] != taskId);
     backend.setItem("allTasks", JSON.stringify(allTasks));
     closeDeleteWindow();
-    sortTasks();
+    updateHTML();
 }
 
 /**
@@ -233,14 +233,14 @@ function drop(ev) {
 
 /**
  * This function changes the section-value of the task that is dragged into another section.
- * 
- * 
- * @param {string} section 
+ *
+ *
+ * @param {string} section
  */
 function moveTo(section) {
     let currentTask = allTasks.find((t) => t["id"] == draggingTask); // Finds current task
 
-    originSection= currentTask.section;
+    originSection = currentTask.section;
     currentTask.section = section;
     updateUandIandDate(currentTask, originSection);
 
@@ -266,7 +266,7 @@ function performDropTask(ev) {
  * This function will update the importance and urgency and the Due Date after drag and drop to each section
  *
  * @param {object} currentTask
- * 
+ *
  */
 function updateUandIandDate(currentTask, originSection) {
     updateDoSection(currentTask, originSection);
@@ -277,10 +277,10 @@ function updateUandIandDate(currentTask, originSection) {
 
 /**
  * This function updates the urgency, importance and due date of the task that is dragged into the do-section.
- * 
- * 
- * @param {string} currentTask 
- * @param {string} originSection 
+ *
+ *
+ * @param {string} currentTask
+ * @param {string} originSection
  */
 function updateDoSection(currentTask, originSection) {
     if (currentTask.section == "do" && originSection == "schedule") {
@@ -301,10 +301,10 @@ function updateDoSection(currentTask, originSection) {
 
 /**
  * This function updates the urgency, importance and due date of the task that is dragged into the schedule-section.
- * 
- * 
- * @param {string} currentTask 
- * @param {string} originSection 
+ *
+ *
+ * @param {string} currentTask
+ * @param {string} originSection
  */
 function updateScheduleSection(currentTask, originSection) {
     if (currentTask.section == "schedule" && originSection == "do") {
@@ -325,10 +325,10 @@ function updateScheduleSection(currentTask, originSection) {
 
 /**
  * This function updates the urgency, importance and due date of the task that is dragged into the delegate-section.
- * 
- * 
- * @param {string} currentTask 
- * @param {string} originSection 
+ *
+ *
+ * @param {string} currentTask
+ * @param {string} originSection
  */
 function updateDelegateSection(currentTask, originSection) {
     if (currentTask.section == "delegate" && originSection == "eliminate") {
@@ -346,13 +346,12 @@ function updateDelegateSection(currentTask, originSection) {
         currentTask.importance = "Low";
     }
 }
-
 /**
  * This function updates the urgency, importance and due date of the task that is dragged into the eliminate-section.
- * 
- * 
- * @param {string} currentTask 
- * @param {string} originSection 
+ *
+ *
+ * @param {string} currentTask
+ * @param {string} originSection
  */
 function updateEliminateSection(currentTask, originSection) {
     if (currentTask.section == "eliminate" && originSection == "do") {
@@ -370,13 +369,11 @@ function updateEliminateSection(currentTask, originSection) {
         currentTask.importance = "Low";
     }
 }
-
-
 /**
  * This function generates today'S date as due date fpr the task.
- * 
- * 
- * @param {object} currentTask 
+ *
+ *
+ * @param {object} currentTask
  */
 function today(currentTask) {
     let today = new Date();
@@ -387,12 +384,11 @@ function today(currentTask) {
 
     currentTask.date = dmy;
 }
-
 /**
  * This function generates the date four days in the furture from today'S date as due date for the task.
- * 
- * 
- * @param {object} currentTask 
+ *
+ *
+ * @param {object} currentTask
  */
 function inFourDays(currentTask) {
     let today = new Date();
