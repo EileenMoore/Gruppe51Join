@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/sidebar.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/list.css" />
-    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="icon" href="img/logo.png" type="image/png" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
@@ -16,7 +16,6 @@
     <script src="js/index.js"></script>
     <script src="js/list.js"></script>
     <script src="js/addTask.js"></script>
-    <script src="js/matrix.js"></script>
     <script src="js/sidebar.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -33,21 +32,24 @@
             </div>
 
             <div>
-                <div class="profile-picture" id="profilePicture"> </div>
+                <div class="profile-picture" id="profilePicture"></div>
                 <a href="help.html" class="menulink link-unselected">Help</a>
-                <a href="impressum.html" class="menulink link-unselected">Impressum</a>
-                <a href="datenschutz.html" class="menulink link-unselected">Datenschutz</a>
-                <a href="index.html" class="menulink link-unselected">Log Out</a>
+                <a href="impressum.html" class="menulink link-unselected">Impressum</a
+          >
+          <a href="datenschutz.html" class="menulink link-unselected"
+            >Datenschutz</a
+          >
+          <a href="index.html" class="menulink link-unselected">Log Out</a>
             </div>
         </div>
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-primare show-mobile">
             <div class="container-fluid">
                 <a href="matrix.html"><img src="img/joinlogo.png" class="joinlogo" /></a>
-                <div class="profile-picture" id="profilePictureResponsive"> </div>
+                <div class="profile-picture" id="profilePictureResponsive"></div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <span class="navbar-toggler-icon"></span>
+          </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-link" href="matrix.html">Matrix</a>
@@ -70,22 +72,16 @@
                 </div>
             </div>
             <div class="task-container" id="taskdelegate">
-
-                <div class="list-labels ">
+                <div class="list-labels">
                     <label id="assigned">ASSIGNED TO</label>
                     <label id="title">TITLE</label>
                     <label id="category">CATEGORY</label>
                 </div>
-
             </div>
-
         </div>
     </div>
 
-
-    <div class="delete-container-overlay-list d-none" id="delete-container-list"> </div>
-
-
+    <div class="delete-container-overlay-list d-none" id="delete-container-list"></div>
 </body>
 
 </html>
