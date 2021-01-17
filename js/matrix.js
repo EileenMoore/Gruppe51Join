@@ -3,6 +3,7 @@ let scheduleTasks = [];
 let delegateTasks = [];
 let eliminateTasks = [];
 let draggingTask;
+
 /**
  * This function sorts the entries of the allTasks array into subsections.
  */
@@ -21,6 +22,7 @@ function updateHTML() {
         sortEliminateTasks(i);
     }
 }
+
 /**
  * This function empties the sub tasks arrays.
  */
@@ -30,6 +32,7 @@ function clearSubTasks() {
     delegateTasks = [];
     eliminateTasks = [];
 }
+
 /**
  * This function empties the tasks in matrix fields.
  */
@@ -39,6 +42,7 @@ function clearMatrixFields() {
     document.getElementById("delegate").innerHTML = "";
     document.getElementById("eliminate").innerHTML = "";
 }
+
 /**
  * This function sorts the tasks with do-section into the doTasks array.
  *
@@ -53,6 +57,7 @@ function sortDoTasks(i) {
         insertTasks(subTasks);
     }
 }
+
 /**
  * This function sorts the tasks with schedule-section into the scheduleTasks array.
  *
@@ -67,6 +72,7 @@ function sortScheduleTasks(i) {
         insertTasks(subTasks);
     }
 }
+
 /**
  * This function sorts the tasks with delegate-section into the delegateTasks array.
  *
@@ -81,6 +87,7 @@ function sortDelegateTasks(i) {
         insertTasks(subTasks);
     }
 }
+
 /**
  * This function sorts the tasks with eliminate-section into the eliminateTasks array.
  *
@@ -95,6 +102,7 @@ function sortEliminateTasks(i) {
         insertTasks(subTasks);
     }
 }
+
 /**
  * This function inserts the tasks from the subsections into the subsection-fields in the matrix.
  *
@@ -107,6 +115,7 @@ function insertTasks(subTasks) {
         document.getElementById(task.section).innerHTML += generateTask(task);
     }
 }
+
 /**
  * This function generates a task card for the matrix
  *
@@ -116,12 +125,14 @@ function insertTasks(subTasks) {
  */
 function generateTask(task) {
     return `
-    <div class="task-card ${task.section
-        }" id="drag" draggable="true" ondragstart="drag(${task["id"]})">
+    <div class="task-card ${
+      task.section
+    }" id="drag" draggable="true" ondragstart="drag(${task["id"]})">
         <div class="task-card-top">
             <div class="date">${task["date"]}</div> 
-            <img title="delete" class="delete-icon" src="./img/delete.png" onclick="openDeleteWindow(${task["id"]
-        })">
+            <img title="delete" class="delete-icon" src="./img/delete.png" onclick="openDeleteWindow(${
+              task["id"]
+            })">
         </div>
         <div class="task-card-bottom">
             <div class="task-card-left">
@@ -133,6 +144,7 @@ function generateTask(task) {
          </div>
     </div>`;
 }
+
 /**
  * This function generates an image-row of the profile pictures that are involved in the task.
  *
@@ -147,6 +159,7 @@ function generateImageRow(task) {
     imgRow += `</div>`;
     return imgRow;
 }
+
 /**
  * This function is used to open the delete window.
  *
@@ -167,11 +180,13 @@ function openDeleteWindow(taskId) {
             </div>
     </div>`;
 }
+
 /**
  * This function is used to close the delete window.
  */
 function closeDeleteWindow() {
     document.getElementById("delete-container-overlay").classList.add("d-none");
+  
     document.getElementById("delete-container").classList.add("d-none");
 }
 /**
@@ -186,6 +201,7 @@ function deleteTask(taskId) {
     closeDeleteWindow();
     sortTasks();
 }
+
 /**
  * This method allows to drop an element over an area
  * @param {DataTransfer} ev
@@ -193,6 +209,7 @@ function deleteTask(taskId) {
 function allowDrop(ev) {
     ev.preventDefault();
 }
+
 /**
  * This method saves the id of the element that is being dragged
  * @param {DataTransfer} ev
@@ -201,6 +218,7 @@ function drag(id) {
     draggingTask = id;
     // ev.dataTransfer.setData("text", ev.target.id);
 }
+
 /**
  * This method controls if drop is performed inside the correct area marked with "drop-area"
  * @param {DataTransfer} ev
@@ -213,18 +231,26 @@ function drop(ev) {
     });
 }
 
+/**
+ * This function changes the section-value of the task that is dragged into another section.
+ * 
+ * 
+ * @param {string} section 
+ */
 function moveTo(section) {
-    let currentTask = allTasks.find((t) => t["id"] == draggingTask); // Findet aktuellen Task
+    let currentTask = allTasks.find((t) => t["id"] == draggingTask); // Finds current task
+
+    originSection= currentTask.section;
     currentTask.section = section;
-    update(currentTask);
-    console.log('current task:', currentTask);
-    
-    allTasks = allTasks.filter(t => t['id'] != draggingTask);
+    updateUandIandDate(currentTask, originSection);
+
+    allTasks = allTasks.filter((t) => t["id"] != draggingTask);
     allTasks.push(currentTask);
-    console.log(allTasks);
     backend.setItem("allTasks", JSON.stringify(allTasks));
+
     updateHTML();
 }
+
 /**
  * This method performs drop of the dropdown
  * and switches the task to its new place & calls the update function
@@ -236,27 +262,143 @@ function performDropTask(ev) {
     ev.target.appendChild(document.getElementById(id));
 }
 
+/**
+ * This function will update the importance and urgency and the Due Date after drag and drop to each section
+ *
+ * @param {object} currentTask
+ * 
+ */
+function updateUandIandDate(currentTask, originSection) {
+    updateDoSection(currentTask, originSection);
+    updateScheduleSection(currentTask, originSection);
+    updateDelegateSection(currentTask, originSection);
+    updateEliminateSection(currentTask, originSection);
+}
 
 /**
- * This function will update the importance and urgency after drag and drop to each section
+ * This function updates the urgency, importance and due date of the task that is dragged into the do-section.
+ * 
+ * 
+ * @param {string} currentTask 
+ * @param {string} originSection 
+ */
+function updateDoSection(currentTask, originSection) {
+    if (currentTask.section == "do" && originSection == "schedule") {
+        currentTask.urgency = "High";
+        currentTask.importance = "High";
+        today(currentTask);
+    }
+    if (currentTask.section == "do" && originSection == "eliminate") {
+        currentTask.urgency = "High";
+        currentTask.importance = "High";
+        today(currentTask);
+    }
+    if (currentTask.section == "do" && originSection == "delegate") {
+        currentTask.urgency = "High";
+        currentTask.importance = "High";
+    }
+}
+
+/**
+ * This function updates the urgency, importance and due date of the task that is dragged into the schedule-section.
+ * 
+ * 
+ * @param {string} currentTask 
+ * @param {string} originSection 
+ */
+function updateScheduleSection(currentTask, originSection) {
+    if (currentTask.section == "schedule" && originSection == "do") {
+        currentTask.urgency = "Low";
+        currentTask.importance = "High";
+        inFourDays(currentTask);
+    }
+    if (currentTask.section == "schedule" && originSection == "delegate") {
+        currentTask.urgency = "Low";
+        currentTask.importance = "High";
+        inFourDays(currentTask);
+    }
+    if (currentTask.section == "schedule" && originSection == "eliminate") {
+        currentTask.urgency = "Low";
+        currentTask.importance = "High";
+    }
+}
+
+/**
+ * This function updates the urgency, importance and due date of the task that is dragged into the delegate-section.
+ * 
+ * 
+ * @param {string} currentTask 
+ * @param {string} originSection 
+ */
+function updateDelegateSection(currentTask, originSection) {
+    if (currentTask.section == "delegate" && originSection == "eliminate") {
+        currentTask.urgency = "High";
+        currentTask.importance = "Low";
+        today(currentTask);
+    }
+    if (currentTask.section == "delegate" && originSection == "schedule") {
+        currentTask.urgency = "High";
+        currentTask.importance = "Low";
+        today(currentTask);
+    }
+    if (currentTask.section == "delegate" && originSection == "do") {
+        currentTask.urgency = "High";
+        currentTask.importance = "Low";
+    }
+}
+
+/**
+ * This function updates the urgency, importance and due date of the task that is dragged into the eliminate-section.
+ * 
+ * 
+ * @param {string} currentTask 
+ * @param {string} originSection 
+ */
+function updateEliminateSection(currentTask, originSection) {
+    if (currentTask.section == "eliminate" && originSection == "do") {
+        currentTask.urgency = "Low";
+        currentTask.importance = "Low";
+        inFourDays(currentTask);
+    }
+    if (currentTask.section == "eliminate" && originSection == "delegate") {
+        currentTask.urgency = "Low";
+        currentTask.importance = "Low";
+        inFourDays(currentTask);
+    }
+    if (currentTask.section == "eliminate" && originSection == "schedule") {
+        currentTask.urgency = "Low";
+        currentTask.importance = "Low";
+    }
+}
+
+
+/**
+ * This function generates today'S date as due date fpr the task.
+ * 
  * 
  * @param {object} currentTask 
  */
-function update(currentTask) {
-    if (currentTask.section == "do") {
-        currentTask.urgency = "High";
-        currentTask.importance = "High";
-    }
-    if (currentTask.section == "schedule") {
-        currentTask.urgency = "Low";
-        currentTask.importance = "High";
-    }
-    if (currentTask.section == "delegate") {
-        currentTask.urgency = "High";
-        currentTask.importance = "Low";
-    }
-    if (currentTask.section == "eliminate") {
-        currentTask.urgency = "Low";
-        currentTask.importance = "Low";
-    }
+function today(currentTask) {
+    let today = new Date();
+    var d = today.getDate();
+    var m = today.getMonth() + 1;
+    var y = today.getFullYear();
+    let dmy = y + "." + m + "." + d;
+
+    currentTask.date = dmy;
+}
+
+/**
+ * This function generates the date four days in the furture from today'S date as due date for the task.
+ * 
+ * 
+ * @param {object} currentTask 
+ */
+function inFourDays(currentTask) {
+    let today = new Date();
+    var d = today.getDate() + 4;
+    var m = today.getMonth() + 1;
+    var y = today.getFullYear();
+    let dmy = y + "." + m + "." + d;
+    currentTask.date = dmy;
 }

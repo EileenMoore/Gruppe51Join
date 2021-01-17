@@ -181,7 +181,6 @@ function taskSubmission(task) {
     } else {
         allTasks.push(task);
         backend.setItem("allTasks", JSON.stringify(allTasks));
-        console.log(allTasks);
     }
 }
 
@@ -191,6 +190,7 @@ async function loadAllTasks() {
     sortAssignePeople();
     updateUrgency();
     updateSection();
+
 }
 
 /**
@@ -199,6 +199,8 @@ async function loadAllTasks() {
  *
  *
  */
+
+
 function sortAssignePeople() {
     for (let i = 0; i < allTasks.length; i++) {
         allTasks[i].assignedPeople = allTasks[i].assignedPeople.sort((a, b) =>
@@ -206,6 +208,7 @@ function sortAssignePeople() {
         );
     }
 }
+
 
 /**
  *
@@ -298,9 +301,7 @@ function pickOnlyfutureDays() {
     document.getElementById("dateInput").setAttribute("min", today);
 }
 
-function showAllTasks() {
-    console.log(allTasks);
-}
+
 
 /**
  *
