@@ -116,12 +116,14 @@ function insertTasks(subTasks) {
  */
 function generateTask(task) {
     return `
-    <div class="task-card ${task.section
-        }" id="drag" draggable="true" ondragstart="drag(${task["id"]})">
+    <div class="task-card ${
+      task.section
+    }" id="drag" draggable="true" ondragstart="drag(${task["id"]})">
         <div class="task-card-top">
             <div class="date">${task["date"]}</div> 
-            <img title="delete" class="delete-icon" src="./img/delete.png" onclick="openDeleteWindow(${task["id"]
-        })">
+            <img title="delete" class="delete-icon" src="./img/delete.png" onclick="openDeleteWindow(${
+              task["id"]
+            })">
         </div>
         <div class="task-card-bottom">
             <div class="task-card-left">
@@ -216,14 +218,18 @@ function drop(ev) {
 function moveTo(section) {
     let currentTask = allTasks.find((t) => t["id"] == draggingTask); // Findet aktuellen Task
     currentTask.section = section;
-    update(currentTask);
-    console.log('current task:', currentTask);
-    allTasks = allTasks.filter(t => t['id'] != draggingTask);
+
+    updateUandIandDate(currentTask);
+
+
+
+    allTasks = allTasks.filter((t) => t["id"] != draggingTask);
     allTasks.push(currentTask);
-    console.log(allTasks);
+
     backend.setItem("allTasks", JSON.stringify(allTasks));
     updateHTML();
 }
+
 /**
  * This method performs drop of the dropdown
  * and switches the task to its new place & calls the update function
@@ -235,27 +241,52 @@ function performDropTask(ev) {
     ev.target.appendChild(document.getElementById(id));
 }
 
-
 /**
- * This function will update the importance and urgency after drag and drop to each section
+ * This function will update the importance and urgency and the Due Date after drag and drop to each section
+ *
+ * @param {object} currentTask
  * 
- * @param {object} currentTask 
  */
-function update(currentTask) {
+function updateUandIandDate(currentTask) {
     if (currentTask.section == "do") {
         currentTask.urgency = "High";
         currentTask.importance = "High";
+        today(currentTask);
     }
     if (currentTask.section == "schedule") {
         currentTask.urgency = "Low";
         currentTask.importance = "High";
+        inFourDays(currentTask);
     }
     if (currentTask.section == "delegate") {
         currentTask.urgency = "High";
         currentTask.importance = "Low";
+        today(currentTask);
     }
+
     if (currentTask.section == "eliminate") {
         currentTask.urgency = "Low";
         currentTask.importance = "Low";
+        inFourDays(currentTask);
     }
+}
+
+
+function today(currentTask) {
+    let today = new Date();
+    var d = today.getDate();
+    var m = today.getMonth() + 1;
+    var y = today.getFullYear();
+    let dmy = y + "." + m + "." + d;
+
+    currentTask.date = dmy;
+}
+
+function inFourDays(currentTask) {
+    let today = new Date();
+    var d = today.getDate() + 4;
+    var m = today.getMonth() + 1;
+    var y = today.getFullYear();
+    let dmy = y + "." + m + "." + d;
+    currentTask.date = dmy;
 }

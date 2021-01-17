@@ -75,7 +75,7 @@ function saveJSONToServer() {
             }
         };
 
-        console.log('Posten', jsonFromServer);
+
         xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         xhttp.send(JSON.stringify(jsonFromServer));
 
