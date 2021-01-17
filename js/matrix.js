@@ -218,6 +218,7 @@ function moveTo(section) {
     currentTask.section = section;
     update(currentTask);
     console.log('current task:', currentTask);
+    
     allTasks = allTasks.filter(t => t['id'] != draggingTask);
     allTasks.push(currentTask);
     console.log(allTasks);
