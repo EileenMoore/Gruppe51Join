@@ -377,24 +377,27 @@ function updateEliminateSection(currentTask, originSection) {
  */
 function today(currentTask) {
     let today = new Date();
-    var d = today.getDate();
-    var m = today.getMonth() + 1;
-    var y = today.getFullYear();
-    let dmy = y + "." + m + "." + d;
+    let d = today.getDate();
+    let m = today.getMonth() + 1;
+    let y = today.getFullYear();
+    let ymd = y + "." + m + "." + d;
 
-    currentTask.date = dmy;
+    currentTask.date = ymd;
 }
 /**
- * This function generates the date four days in the furture from today'S date as due date for the task.
+ * This function generates the date four days in the furture from today's date as due date for the task.
  *
  *
  * @param {object} currentTask
  */
+
 function inFourDays(currentTask) {
-    let today = new Date();
-    var d = today.getDate() + 4;
-    var m = today.getMonth() + 1;
-    var y = today.getFullYear();
-    let dmy = y + "." + m + "." + d;
-    currentTask.date = dmy;
+    let today = new Date().getTime(); // milliseconds
+    let inFourDays = today + 345600000; // 4 days in milliseconds
+    inFourDays = new Date(inFourDays);
+    let d = inFourDays.getDate();
+    let m = inFourDays.getMonth() + 1;
+    let y = inFourDays.getFullYear();
+    let ymd = y + "." + m + "." + d;
+    currentTask.date = ymd;
 }
