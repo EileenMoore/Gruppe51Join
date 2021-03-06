@@ -377,10 +377,10 @@ function updateEliminateSection(currentTask, originSection) {
  */
 function today(currentTask) {
     let today = new Date();
-    let d = today.getDate();
-    let m = today.getMonth() + 1;
+    let d = (today.getDate() < 10 ? '0' : '') + today.getDate();
+    let m = ((today.getMonth() + 1) < 10 ? '0' : '') + (today.getMonth() + 1);
     let y = today.getFullYear();
-    let ymd = y + "." + m + "." + d;
+    let ymd = y + "-" + m + "-" + d;
 
     currentTask.date = ymd;
 }
@@ -395,9 +395,9 @@ function inFourDays(currentTask) {
     let today = new Date().getTime(); // milliseconds
     let inFourDays = today + 345600000; // 4 days in milliseconds
     inFourDays = new Date(inFourDays);
-    let d = inFourDays.getDate();
-    let m = inFourDays.getMonth() + 1;
+    let d = (inFourDays.getDate() < 10 ? '0' : '') + inFourDays.getDate();
+    let m = ((inFourDays.getMonth() + 1) < 10 ? '0' : '') + (inFourDays.getMonth() + 1);
     let y = inFourDays.getFullYear();
-    let ymd = y + "." + m + "." + d;
+    let ymd = y + "-" + m + "-" + d;
     currentTask.date = ymd;
 }
