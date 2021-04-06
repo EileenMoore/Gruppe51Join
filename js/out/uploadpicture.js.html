@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: uploadpicture.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: uploadpicture.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * This function is used to upload a profile picture and display it on a canvas.
+ * 
+ * 
+ * @param {string} input - The profile picture.
+ */
+function readURL(input) {
+  if (input.files &amp;&amp; input.files[0]) {
+    var reader = new FileReader();
+
+    reader.addEventListener("load",function() {
+        let profileImg = new Image();
+        let src = reader.result;
+        profileImg.src = src;
+        profilePictureAsDataURL = src;
+        profileImg.onload = function() {
+          let c = document.getElementById("newProfilePicture");
+          let ctx = c.getContext("2d");
+          ctx.canvas.width = profileImg.width;
+          ctx.canvas.height = profileImg.height;
+          
+          ctx.drawImage(profileImg, 0, 0);
+        };
+      },
+      false
+    );
+
+    reader.readAsDataURL(input.files[0]);
+    showNewProfilePicture();
+    hideOldProfilePicture();
+  }
+}
+
+/**
+ * This function displays the new profile picture in the signup box.
+ */
+function showNewProfilePicture() {
+    document.getElementById('newProfilePicture').classList.remove('d-none');
+}
+
+/**
+ * This function hides the standard profile picture in the signup box.
+ */
+function hideOldProfilePicture() {
+    document.getElementById('standardProfilePicture').classList.add('d-none');
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addPersonBlend">addPersonBlend</a></li><li><a href="global.html#addUser">addUser</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#blendCurrentUser">blendCurrentUser</a></li><li><a href="global.html#cancelTask">cancelTask</a></li><li><a href="global.html#checkIfLoginIsCorrect">checkIfLoginIsCorrect</a></li><li><a href="global.html#checkIfUserIsAlreadySelected">checkIfUserIsAlreadySelected</a></li><li><a href="global.html#clearMatrixFields">clearMatrixFields</a></li><li><a href="global.html#clearSubTasks">clearSubTasks</a></li><li><a href="global.html#closeDeleteWindow">closeDeleteWindow</a></li><li><a href="global.html#closeDeleteWindowList">closeDeleteWindowList</a></li><li><a href="global.html#closeRegistration">closeRegistration</a></li><li><a href="global.html#createTask">createTask</a></li><li><a href="global.html#dateSelected">dateSelected</a></li><li><a href="global.html#deleteTask">deleteTask</a></li><li><a href="global.html#deleteTaskList">deleteTaskList</a></li><li><a href="global.html#displaySelectedUsers">displaySelectedUsers</a></li><li><a href="global.html#displayUsers">displayUsers</a></li><li><a href="global.html#drag">drag</a></li><li><a href="global.html#drop">drop</a></li><li><a href="global.html#findProfile">findProfile</a></li><li><a href="global.html#generateImageRow">generateImageRow</a></li><li><a href="global.html#generateImgRow">generateImgRow</a></li><li><a href="global.html#generateListItem">generateListItem</a></li><li><a href="global.html#generateTask">generateTask</a></li><li><a href="global.html#generateUser">generateUser</a></li><li><a href="global.html#generateUserLogin">generateUserLogin</a></li><li><a href="global.html#getUserPicker">getUserPicker</a></li><li><a href="global.html#hideOldProfilePicture">hideOldProfilePicture</a></li><li><a href="global.html#inFourDays">inFourDays</a></li><li><a href="global.html#insertTasks">insertTasks</a></li><li><a href="global.html#loadAllUsers">loadAllUsers</a></li><li><a href="global.html#loadCurrentUser">loadCurrentUser</a></li><li><a href="global.html#loadJSONFromServer">loadJSONFromServer</a></li><li><a href="global.html#loadProfilePicture">loadProfilePicture</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#loginCurrentUser">loginCurrentUser</a></li><li><a href="global.html#logOutCurrentUser">logOutCurrentUser</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#newTask">newTask</a></li><li><a href="global.html#openDeleteWindow">openDeleteWindow</a></li><li><a href="global.html#openDeleteWindowList">openDeleteWindowList</a></li><li><a href="global.html#openRegistration">openRegistration</a></li><li><a href="global.html#performDropTask">performDropTask</a></li><li><a href="global.html#pickOnlyfutureDays">pickOnlyfutureDays</a></li><li><a href="global.html#readURL">readURL</a></li><li><a href="global.html#removePerson">removePerson</a></li><li><a href="global.html#removePersonBlend">removePersonBlend</a></li><li><a href="global.html#saveCurrentUserInLocalStorage">saveCurrentUserInLocalStorage</a></li><li><a href="global.html#saveJSONToServer">saveJSONToServer</a></li><li><a href="global.html#selectOnlyThreeCategories">selectOnlyThreeCategories</a></li><li><a href="global.html#selectUser">selectUser</a></li><li><a href="global.html#showNewProfilePicture">showNewProfilePicture</a></li><li><a href="global.html#signUp">signUp</a></li><li><a href="global.html#sortAssignePeople">sortAssignePeople</a></li><li><a href="global.html#sortDelegateTasks">sortDelegateTasks</a></li><li><a href="global.html#sortDoTasks">sortDoTasks</a></li><li><a href="global.html#sortEliminateTasks">sortEliminateTasks</a></li><li><a href="global.html#sortScheduleTasks">sortScheduleTasks</a></li><li><a href="global.html#sortTasks">sortTasks</a></li><li><a href="global.html#taskSubmission">taskSubmission</a></li><li><a href="global.html#today">today</a></li><li><a href="global.html#updateDelegateSection">updateDelegateSection</a></li><li><a href="global.html#updateDoSection">updateDoSection</a></li><li><a href="global.html#updateEliminateSection">updateEliminateSection</a></li><li><a href="global.html#updateScheduleSection">updateScheduleSection</a></li><li><a href="global.html#updateUandIandDate">updateUandIandDate</a></li><li><a href="global.html#updateUrgency">updateUrgency</a></li><li><a href="global.html#validateCategories">validateCategories</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Feb 27 2021 16:31:15 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
