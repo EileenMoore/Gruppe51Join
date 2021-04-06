@@ -1,3 +1,4 @@
+<< << << < HEAD
 let doTasks = [];
 let scheduleTasks = [];
 let delegateTasks = [];

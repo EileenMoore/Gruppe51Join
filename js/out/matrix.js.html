@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -451,3 +452,458 @@ function inFourDays(currentTask) {
 <script src="scripts/linenumber.js"> </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: matrix.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: matrix.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let doTasks = [];
+let scheduleTasks = [];
+let delegateTasks = [];
+let eliminateTasks = [];
+let draggingTask;
+
+/**
+ * This function sorts the entries of the allTasks array into subsections.
+ */
+async function sortTasks() {
+    await loadAllTasks();
+    updateHTML();
+}
+
+function updateHTML() {
+    clearSubTasks();
+    clearMatrixFields();
+    for (let i = 0; i &lt; allTasks.length; i++) {
+        sortDoTasks(i);
+        sortScheduleTasks(i);
+        sortDelegateTasks(i);
+        sortEliminateTasks(i);
+    }
+}
+
+/**
+ * This function empties the sub tasks arrays.
+ */
+function clearSubTasks() {
+    doTasks = [];
+    scheduleTasks = [];
+    delegateTasks = [];
+    eliminateTasks = [];
+}
+
+/**
+ * This function empties the tasks in matrix fields.
+ */
+function clearMatrixFields() {
+    document.getElementById("do").innerHTML = "";
+    document.getElementById("schedule").innerHTML = "";
+    document.getElementById("delegate").innerHTML = "";
+    document.getElementById("eliminate").innerHTML = "";
+}
+
+/**
+ * This function sorts the tasks with do-section into the doTasks array.
+ *
+ *
+ * @param {number} i - This represents the number of all tasks.
+ */
+function sortDoTasks(i) {
+    if (allTasks[i].section == "do") {
+        doTasks.push(allTasks[i]);
+        let subTasks = doTasks;
+        document.getElementById("do").innerHTML = "";
+        insertTasks(subTasks);
+    }
+}
+
+/**
+ * This function sorts the tasks with schedule-section into the scheduleTasks array.
+ *
+ *
+ * @param {number} i - This represents the number of all tasks.
+ */
+function sortScheduleTasks(i) {
+    if (allTasks[i].section == "schedule") {
+        scheduleTasks.push(allTasks[i]);
+        let subTasks = scheduleTasks;
+        document.getElementById("schedule").innerHTML = "";
+        insertTasks(subTasks);
+    }
+}
+
+/**
+ * This function sorts the tasks with delegate-section into the delegateTasks array.
+ *
+ *
+ * @param {number} i - This represents the number of all tasks.
+ */
+function sortDelegateTasks(i) {
+    if (allTasks[i].section == "delegate") {
+        delegateTasks.push(allTasks[i]);
+        let subTasks = delegateTasks;
+        document.getElementById("delegate").innerHTML = "";
+        insertTasks(subTasks);
+    }
+}
+
+/**
+ * This function sorts the tasks with eliminate-section into the eliminateTasks array.
+ *
+ *
+ * @param {number} i - This represents the number of all tasks.
+ */
+function sortEliminateTasks(i) {
+    if (allTasks[i].section == "eliminate") {
+        eliminateTasks.push(allTasks[i]);
+        let subTasks = eliminateTasks;
+        document.getElementById("eliminate").innerHTML = "";
+        insertTasks(subTasks);
+    }
+}
+
+/**
+ * This function inserts the tasks from the subsections into the subsection-fields in the matrix.
+ *
+ *
+ * @param {string} subTasks - This string represents a task-section.
+ */
+function insertTasks(subTasks) {
+    for (i = 0; i &lt; subTasks.length; i++) {
+        let task = subTasks[i];
+        document.getElementById(task.section).innerHTML += generateTask(task);
+    }
+}
+
+/**
+ * This function generates a task card for the matrix
+ *
+ *
+ * @param {string} task - This is the task that is put into the matrix.
+ * @param {string} section - This string represents a task-section.
+ */
+function generateTask(task) {
+    return `
+    &lt;div class="task-card ${
+      task.section
+    }" id="drag" draggable="true" ondragstart="drag(${task["id"]})">
+        &lt;div class="task-card-top">
+            &lt;div class="date">${task["date"]}&lt;/div> 
+            &lt;img title="delete" class="delete-icon" src="./img/delete.png" onclick="openDeleteWindow(${
+              task["id"]
+            })">
+        &lt;/div>
+        &lt;div class="task-card-bottom">
+            &lt;div class="task-card-left">
+                &lt;div class="task-card-headline">${task["title"]}&lt;/div>
+                &lt;div class="task-card-description">${task["description"]}&lt;/div>
+                &lt;div class="category">&lt;span>${task["category"]}&lt;/span>&lt;/div>
+            &lt;/div>
+        ${generateImageRow(task)}
+         &lt;/div>
+    &lt;/div>`;
+}
+
+/**
+ * This function generates an image-row of the profile pictures that are involved in the task.
+ *
+ *
+ * @param {string} task - This is the task that is put into the matrix.
+ */
+function generateImageRow(task) {
+    let imgRow = `&lt;div class="profile-pictures">`;
+    for (j = 0; j &lt; task["assignedPeople"].length; j++) {
+        imgRow += `&lt;img class="profile-picture-small" src="${task["assignedPeople"][j]["profilePicture"]}">`;
+    }
+    imgRow += `&lt;/div>`;
+    return imgRow;
+}
+
+/**
+ * This function is used to open the delete window.
+ *
+ *
+ * @param {number} taskId - This is the ID of the selected task.
+ */
+function openDeleteWindow(taskId) {
+    document
+        .getElementById("delete-container-overlay")
+        .classList.remove("d-none");
+    document.getElementById("delete-container").classList.remove("d-none");
+    document.getElementById("delete-container").innerHTML = `
+    &lt;div class="delete-window">
+        &lt;span>Do you really want to delete this task?&lt;/span>
+            &lt;div class="button-order">
+                &lt;button onclick="deleteTask(${taskId})" class="btn btn-primary">Yes&lt;/button>
+                &lt;button onclick="closeDeleteWindow()" class="btn btn-primary">No&lt;/button>
+            &lt;/div>
+    &lt;/div>`;
+}
+
+/**
+ * This function is used to close the delete window.
+ */
+function closeDeleteWindow() {
+    document.getElementById("delete-container-overlay").classList.add("d-none");
+
+    document.getElementById("delete-container").classList.add("d-none");
+}
+/**
+ * This function deletes a task.
+ *
+ *
+ * @param {string} task - This is the task to be deleted.
+ */
+function deleteTask(taskId) {
+    allTasks = allTasks.filter((t) => t["id"] != taskId);
+    backend.setItem("allTasks", JSON.stringify(allTasks));
+    closeDeleteWindow();
+    updateHTML();
+}
+
+/**
+ * This method allows to drop an element over an area
+ * @param {DataTransfer} ev
+ */
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+/**
+ * This method saves the id of the element that is being dragged
+ * @param {DataTransfer} ev
+ */
+function drag(id) {
+    draggingTask = id;
+    // ev.dataTransfer.setData("text", ev.target.id);
+}
+
+/**
+ * This method controls if drop is performed inside the correct area marked with "drop-area"
+ * @param {DataTransfer} ev
+ */
+function drop(ev) {
+    ev.target.classList.forEach((cssClass) => {
+        if (cssClass === "drop-area") {
+            performDropTask(ev);
+        }
+    });
+}
+
+/**
+ * This function changes the section-value of the task that is dragged into another section.
+ *
+ *
+ * @param {string} section
+ */
+function moveTo(section) {
+    let currentTask = allTasks.find((t) => t["id"] == draggingTask); // Finds current task
+
+    originSection = currentTask.section;
+    currentTask.section = section;
+    updateUandIandDate(currentTask, originSection);
+
+    allTasks = allTasks.filter((t) => t["id"] != draggingTask);
+    allTasks.push(currentTask);
+    backend.setItem("allTasks", JSON.stringify(allTasks));
+
+    updateHTML();
+}
+
+/**
+ * This method performs drop of the dropdown
+ * and switches the task to its new place &amp; calls the update function
+ * @param {DataTransfer} ev
+ */
+function performDropTask(ev) {
+    ev.preventDefault();
+    let id = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(id));
+}
+
+/**
+ * This function will update the importance and urgency and the Due Date after drag and drop to each section
+ *
+ * @param {object} currentTask
+ *
+ */
+function updateUandIandDate(currentTask, originSection) {
+    updateDoSection(currentTask, originSection);
+    updateScheduleSection(currentTask, originSection);
+    updateDelegateSection(currentTask, originSection);
+    updateEliminateSection(currentTask, originSection);
+}
+
+/**
+ * This function updates the urgency, importance and due date of the task that is dragged into the do-section.
+ *
+ *
+ * @param {string} currentTask
+ * @param {string} originSection
+ */
+function updateDoSection(currentTask, originSection) {
+    if (currentTask.section == "do" &amp;&amp; originSection == "schedule") {
+        currentTask.urgency = "High";
+        currentTask.importance = "High";
+        today(currentTask);
+    }
+    if (currentTask.section == "do" &amp;&amp; originSection == "eliminate") {
+        currentTask.urgency = "High";
+        currentTask.importance = "High";
+        today(currentTask);
+    }
+    if (currentTask.section == "do" &amp;&amp; originSection == "delegate") {
+        currentTask.urgency = "High";
+        currentTask.importance = "High";
+    }
+}
+
+/**
+ * This function updates the urgency, importance and due date of the task that is dragged into the schedule-section.
+ *
+ *
+ * @param {string} currentTask
+ * @param {string} originSection
+ */
+function updateScheduleSection(currentTask, originSection) {
+    if (currentTask.section == "schedule" &amp;&amp; originSection == "do") {
+        currentTask.urgency = "Low";
+        currentTask.importance = "High";
+        inFourDays(currentTask);
+    }
+    if (currentTask.section == "schedule" &amp;&amp; originSection == "delegate") {
+        currentTask.urgency = "Low";
+        currentTask.importance = "High";
+        inFourDays(currentTask);
+    }
+    if (currentTask.section == "schedule" &amp;&amp; originSection == "eliminate") {
+        currentTask.urgency = "Low";
+        currentTask.importance = "High";
+    }
+}
+
+/**
+ * This function updates the urgency, importance and due date of the task that is dragged into the delegate-section.
+ *
+ *
+ * @param {string} currentTask
+ * @param {string} originSection
+ */
+function updateDelegateSection(currentTask, originSection) {
+    if (currentTask.section == "delegate" &amp;&amp; originSection == "eliminate") {
+        currentTask.urgency = "High";
+        currentTask.importance = "Low";
+        today(currentTask);
+    }
+    if (currentTask.section == "delegate" &amp;&amp; originSection == "schedule") {
+        currentTask.urgency = "High";
+        currentTask.importance = "Low";
+        today(currentTask);
+    }
+    if (currentTask.section == "delegate" &amp;&amp; originSection == "do") {
+        currentTask.urgency = "High";
+        currentTask.importance = "Low";
+    }
+}
+/**
+ * This function updates the urgency, importance and due date of the task that is dragged into the eliminate-section.
+ *
+ *
+ * @param {string} currentTask
+ * @param {string} originSection
+ */
+function updateEliminateSection(currentTask, originSection) {
+    if (currentTask.section == "eliminate" &amp;&amp; originSection == "do") {
+        currentTask.urgency = "Low";
+        currentTask.importance = "Low";
+        inFourDays(currentTask);
+    }
+    if (currentTask.section == "eliminate" &amp;&amp; originSection == "delegate") {
+        currentTask.urgency = "Low";
+        currentTask.importance = "Low";
+        inFourDays(currentTask);
+    }
+    if (currentTask.section == "eliminate" &amp;&amp; originSection == "schedule") {
+        currentTask.urgency = "Low";
+        currentTask.importance = "Low";
+    }
+}
+/**
+ * This function generates today'S date as due date fpr the task.
+ *
+ *
+ * @param {object} currentTask
+ */
+function today(currentTask) {
+    let today = new Date();
+    let d = today.getDate();
+    let m = today.getMonth() + 1;
+    let y = today.getFullYear();
+    let ymd = y + "." + m + "." + d;
+
+    currentTask.date = ymd;
+}
+/**
+ * This function generates the date four days in the furture from today's date as due date for the task.
+ *
+ *
+ * @param {object} currentTask
+ */
+
+function inFourDays(currentTask) {
+    let today = new Date().getTime(); // milliseconds
+    let inFourDays = today + 345600000; // 4 days in milliseconds
+    inFourDays = new Date(inFourDays);
+    let d = inFourDays.getDate();
+    let m = inFourDays.getMonth() + 1;
+    let y = inFourDays.getFullYear();
+    let ymd = y + "." + m + "." + d;
+    currentTask.date = ymd;
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addPersonBlend">addPersonBlend</a></li><li><a href="global.html#addUser">addUser</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#blendCurrentUser">blendCurrentUser</a></li><li><a href="global.html#cancelTask">cancelTask</a></li><li><a href="global.html#checkIfLoginIsCorrect">checkIfLoginIsCorrect</a></li><li><a href="global.html#checkIfUserIsAlreadySelected">checkIfUserIsAlreadySelected</a></li><li><a href="global.html#clearMatrixFields">clearMatrixFields</a></li><li><a href="global.html#clearSubTasks">clearSubTasks</a></li><li><a href="global.html#closeDeleteWindow">closeDeleteWindow</a></li><li><a href="global.html#closeDeleteWindowList">closeDeleteWindowList</a></li><li><a href="global.html#closeRegistration">closeRegistration</a></li><li><a href="global.html#createTask">createTask</a></li><li><a href="global.html#dateSelected">dateSelected</a></li><li><a href="global.html#deleteTask">deleteTask</a></li><li><a href="global.html#deleteTaskList">deleteTaskList</a></li><li><a href="global.html#displaySelectedUsers">displaySelectedUsers</a></li><li><a href="global.html#displayUsers">displayUsers</a></li><li><a href="global.html#drag">drag</a></li><li><a href="global.html#drop">drop</a></li><li><a href="global.html#findProfile">findProfile</a></li><li><a href="global.html#generateImageRow">generateImageRow</a></li><li><a href="global.html#generateImgRow">generateImgRow</a></li><li><a href="global.html#generateListItem">generateListItem</a></li><li><a href="global.html#generateTask">generateTask</a></li><li><a href="global.html#generateUser">generateUser</a></li><li><a href="global.html#generateUserLogin">generateUserLogin</a></li><li><a href="global.html#getUserPicker">getUserPicker</a></li><li><a href="global.html#hideOldProfilePicture">hideOldProfilePicture</a></li><li><a href="global.html#inFourDays">inFourDays</a></li><li><a href="global.html#insertTasks">insertTasks</a></li><li><a href="global.html#loadAllUsers">loadAllUsers</a></li><li><a href="global.html#loadCurrentUser">loadCurrentUser</a></li><li><a href="global.html#loadJSONFromServer">loadJSONFromServer</a></li><li><a href="global.html#loadProfilePicture">loadProfilePicture</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#loginCurrentUser">loginCurrentUser</a></li><li><a href="global.html#logOutCurrentUser">logOutCurrentUser</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#newTask">newTask</a></li><li><a href="global.html#openDeleteWindow">openDeleteWindow</a></li><li><a href="global.html#openDeleteWindowList">openDeleteWindowList</a></li><li><a href="global.html#openRegistration">openRegistration</a></li><li><a href="global.html#performDropTask">performDropTask</a></li><li><a href="global.html#pickOnlyfutureDays">pickOnlyfutureDays</a></li><li><a href="global.html#readURL">readURL</a></li><li><a href="global.html#removePerson">removePerson</a></li><li><a href="global.html#removePersonBlend">removePersonBlend</a></li><li><a href="global.html#saveCurrentUserInLocalStorage">saveCurrentUserInLocalStorage</a></li><li><a href="global.html#saveJSONToServer">saveJSONToServer</a></li><li><a href="global.html#selectOnlyThreeCategories">selectOnlyThreeCategories</a></li><li><a href="global.html#selectUser">selectUser</a></li><li><a href="global.html#showNewProfilePicture">showNewProfilePicture</a></li><li><a href="global.html#signUp">signUp</a></li><li><a href="global.html#sortAssignePeople">sortAssignePeople</a></li><li><a href="global.html#sortDelegateTasks">sortDelegateTasks</a></li><li><a href="global.html#sortDoTasks">sortDoTasks</a></li><li><a href="global.html#sortEliminateTasks">sortEliminateTasks</a></li><li><a href="global.html#sortScheduleTasks">sortScheduleTasks</a></li><li><a href="global.html#sortTasks">sortTasks</a></li><li><a href="global.html#taskSubmission">taskSubmission</a></li><li><a href="global.html#today">today</a></li><li><a href="global.html#updateDelegateSection">updateDelegateSection</a></li><li><a href="global.html#updateDoSection">updateDoSection</a></li><li><a href="global.html#updateEliminateSection">updateEliminateSection</a></li><li><a href="global.html#updateScheduleSection">updateScheduleSection</a></li><li><a href="global.html#updateUandIandDate">updateUandIandDate</a></li><li><a href="global.html#updateUrgency">updateUrgency</a></li><li><a href="global.html#validateCategories">validateCategories</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Feb 27 2021 16:31:15 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
+>>>>>>> e07d3c572e9cfb101a681ed0ed1e27f3fa0d803e

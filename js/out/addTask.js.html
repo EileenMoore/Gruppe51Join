@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -394,3 +395,401 @@ function validateCategories() {
 <script src="scripts/linenumber.js"> </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: addTask.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: addTask.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let selectedUsers = [];
+let allTasks = [];
+let selectedCategories = [];
+
+/**
+ * This function displays the user picker.
+ */
+function addPersonBlend() {
+    document.getElementById("addPersonBlend").classList.remove("d-none");
+}
+
+/**
+ * This function is used to display all users in the "assigned to" selection.
+ */
+async function displayUsers() {
+    await loadAllUsers();
+    loadCurrentUser();
+    let loggedInUser = users.find((e) => e.username == currentUser[0].username);
+    selectedUsers.push(loggedInUser);
+    getUserPicker();
+    displaySelectedUsers();
+    blendCurrentUser();
+}
+
+/**
+ * This function is used to generate all users in the user picker.
+ */
+function getUserPicker() {
+    document.getElementById("user-picker-container").innerHTML = "";
+    for (let i = 0; i &lt; users.length; i++) {
+        document.getElementById("user-picker-container").innerHTML += `
+        &lt;div id="user-picker-row${i}" class ="user-picker-row" onclick="selectUser(${i})"> 
+        &lt;img src="${users[i]["profilePicture"]}"> 
+        &lt;span>${users[i]["username"]} &lt;/span> 
+        &lt;/div>`;
+    }
+}
+
+/**
+ * This function is used to highlight the current user in the user picker.
+ */
+function blendCurrentUser() {
+    for (let j = 0; j &lt; users.length; j++) {
+        if (users[j]["username"] == selectedUsers[0]["username"]) {
+            document
+                .getElementById("user-picker-row" + j)
+                .classList.add("user-picker-row-select");
+        }
+    }
+}
+
+/**
+ * This function is used to select an user
+ *
+ *
+ * @param {integer} i - defines the row number
+ */
+function selectUser(i) {
+    let id = "user-picker-row" + i;
+    checkIfUserIsAlreadySelected(i, id);
+    displaySelectedUsers();
+}
+
+/**
+ *
+ * This function is used to check if an User is Selected in the user picker.
+ *
+ * @param {integer} i - defines the postion of the array persons
+ * @param {string} id  - defines the row of the selected user
+ *
+ */
+function checkIfUserIsAlreadySelected(i, id) {
+    let userfound = false;
+    for (let j = 0; j &lt; selectedUsers.length; j++) {
+        if (selectedUsers[j] == users[i]) {
+            userfound = true;
+            document.getElementById(id).classList.remove("user-picker-row-select");
+            selectedUsers.splice(j, 1);
+        }
+    }
+    if (!userfound) {
+        document.getElementById(id).classList.add("user-picker-row-select");
+        selectedUsers.push(users[i]);
+    }
+}
+
+/**
+ * This function is used to display the selected users in the add tasks section.
+ */
+function displaySelectedUsers() {
+    document.getElementById("assign-person").innerHTML = "";
+    for (let j = 0; j &lt; selectedUsers.length; j++) {
+        document.getElementById("assign-person").innerHTML += `
+        &lt;img id="user" src="${selectedUsers[j]["profilePicture"]}">`;
+    }
+}
+
+/**
+ * This function is used to remove all Selected Persons
+ *
+ */
+function removePerson() {
+    selectedUsers = [];
+
+    for (let i = 0; i &lt; users.length; i++) {
+        let id = "user-picker-row" + i;
+        document.getElementById(id).classList.remove("user-picker-row-select");
+    }
+
+    displayUsers();
+}
+
+/**
+ * This function hides the user picker.
+ */
+function removePersonBlend() {
+    document.getElementById("addPersonBlend").classList.add("d-none");
+}
+
+/**
+ * This function is used to cancel the task and clear all input fields.
+ */
+function cancelTask() {
+    document.getElementById("inputTitle").value = "";
+    document.getElementById("category").value = "";
+    document.getElementById("floatingTextarea2").value = "";
+    document.getElementById("dateInput").value = "";
+    selectedCategories = [];
+    removePerson();
+}
+
+/**
+ * This function creates a new Task with provided Info
+ *
+ * @param {*} $event
+ */
+function createTask($event) {
+    $event.preventDefault();
+    defurgency();
+    validateCategories();
+
+    newTask();
+    taskSubmission(task);
+    alert("New Task is created. You will be redirected to list.");
+    location.replace("list.html");
+    cancelTask();
+}
+
+/**
+ * This function generates a new task.
+ */
+function newTask() {
+    let title = document.getElementById("inputTitle");
+
+    let description = document.getElementById("floatingTextarea2");
+    let date = document.getElementById("dateInput");
+    let importance = document.getElementById("importance");
+
+    task = {
+        id: new Date().getTime(),
+        title: title.value.replace("&lt;", ""),
+        category: selectedCategories,
+        description: description.value.replace("&lt;", ""),
+        date: date.value,
+        importance: importance.value,
+        assignedPeople: selectedUsers,
+        urgency: urgency,
+        section: resolveSection(importance.value, urgency),
+    };
+}
+
+/**
+ * This function pushes the task to allTasks-array if an user is selected.
+ *
+ * @param {object} task - object with information of the task
+ *
+ */
+function taskSubmission(task) {
+    if (selectedUsers &lt; 1) {
+        alert("Please select at least one person for the task");
+    } else {
+        allTasks.push(task);
+        backend.setItem("allTasks", JSON.stringify(allTasks));
+    }
+}
+
+async function loadAllTasks() {
+    await downloadFromServer();
+    allTasks = JSON.parse(backend.getItem("allTasks")) || [];
+    sortAssignePeople();
+    updateUrgency();
+    updateSection();
+
+}
+
+/**
+ *
+ * sort Assigned People
+ *
+ *
+ */
+
+
+function sortAssignePeople() {
+    for (let i = 0; i &lt; allTasks.length; i++) {
+        allTasks[i].assignedPeople = allTasks[i].assignedPeople.sort((a, b) =>
+            a["username"].localeCompare(b["username"])
+        );
+    }
+}
+
+
+/**
+ *
+ *  Defines Urgency and Section after creating a Task
+ *
+ */
+let dateSelected;
+let dayTime = 259200000;
+
+function getDate() {
+    dateSelected = new Date(document.getElementById("dateInput").value).getTime();
+}
+
+function defurgency() {
+    let createdDate = new Date().getTime();
+    let dateDifference = dateSelected - createdDate;
+
+    if (dateDifference &lt; dayTime) {
+        urgency = "High";
+    } else {
+        urgency = "Low";
+    }
+}
+
+function resolveSection(i, u) {
+    if (i == "High" &amp;&amp; u == "High") {
+        return "do";
+    } else if (i == "High" &amp;&amp; u == "Low") {
+        return "schedule";
+    } else if (i == "Low" &amp;&amp; u == "High") {
+        return "delegate";
+    } else if (i == "Low" &amp;&amp; u == "Low") {
+        return "eliminate";
+    } else {
+        return "Section unknown";
+    }
+}
+
+/**
+ *
+ *
+ * Update urgency and Section before onloading on list and Matrix
+ *
+ */
+function updateUrgency() {
+    for (let i = 0; i &lt; allTasks.length; i++) {
+        let thisDate = new Date().getTime();
+        let difference = new Date(allTasks[i].date).getTime() - thisDate;
+        if (difference >= dayTime) {
+            allTasks[i].urgency = "Low";
+        } else {
+            allTasks[i].urgency = "High";
+        }
+    }
+}
+
+function updateSection() {
+    for (let i = 0; i &lt; allTasks.length; i++) {
+        const task = allTasks[i];
+        if (task.importance == "High" &amp;&amp; task.urgency == "High") {
+            allTasks[i].section = "do";
+        } else if (task.importance == "High" &amp;&amp; task.urgency == "Low") {
+            allTasks[i].section = "schedule";
+        } else if (task.importance == "Low" &amp;&amp; task.urgency == "High") {
+            allTasks[i].section = "delegate";
+        } else if (task.importance == "Low" &amp;&amp; task.urgency == "Low") {
+            allTasks[i].section = "eliminate";
+        } else {
+            allTasks[i].section = "Section unknown";
+        }
+    }
+}
+
+/**
+ *  You can pick only future Days
+ *
+ */
+function pickOnlyfutureDays() {
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth() + 1; //January is 0!
+    let yyyy = today.getFullYear();
+    if (dd &lt; 10) {
+        dd = "0" + dd;
+    }
+    if (mm &lt; 10) {
+        mm = "0" + mm;
+    }
+    today = yyyy + "-" + mm + "-" + dd;
+    document.getElementById("dateInput").setAttribute("min", today);
+}
+
+
+
+/**
+ *
+ * You can only Choose 3 Categories
+ *
+ *
+ */
+function selectOnlyThreeCategories() {
+    let opt;
+    let selectChoose = document.getElementById("category").options;
+    let optionCount = 0;
+    let maxOptions = 3;
+    for (let i = 0; i &lt; selectChoose.length; i++) {
+        opt = selectChoose[i];
+
+        if (opt.selected) {
+            optionCount++;
+            if (optionCount > maxOptions) {
+                alert("You can only Choose 3 Categories");
+                document.getElementById("category").value = "";
+                selectedCategories = [];
+            }
+        }
+    }
+}
+
+/**
+ *
+ * Selected Categories will add to the Task
+ *
+ *
+ */
+function validateCategories() {
+    let opt;
+    let options = document.getElementById("category").options;
+    for (let i = 0; i &lt; options.length; i++) {
+        opt = options[i];
+        if (opt.selected) {
+            selectedCategories.push(opt.value || opt.text);
+        }
+    }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addPersonBlend">addPersonBlend</a></li><li><a href="global.html#addUser">addUser</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#blendCurrentUser">blendCurrentUser</a></li><li><a href="global.html#cancelTask">cancelTask</a></li><li><a href="global.html#checkIfLoginIsCorrect">checkIfLoginIsCorrect</a></li><li><a href="global.html#checkIfUserIsAlreadySelected">checkIfUserIsAlreadySelected</a></li><li><a href="global.html#clearMatrixFields">clearMatrixFields</a></li><li><a href="global.html#clearSubTasks">clearSubTasks</a></li><li><a href="global.html#closeDeleteWindow">closeDeleteWindow</a></li><li><a href="global.html#closeDeleteWindowList">closeDeleteWindowList</a></li><li><a href="global.html#closeRegistration">closeRegistration</a></li><li><a href="global.html#createTask">createTask</a></li><li><a href="global.html#dateSelected">dateSelected</a></li><li><a href="global.html#deleteTask">deleteTask</a></li><li><a href="global.html#deleteTaskList">deleteTaskList</a></li><li><a href="global.html#displaySelectedUsers">displaySelectedUsers</a></li><li><a href="global.html#displayUsers">displayUsers</a></li><li><a href="global.html#drag">drag</a></li><li><a href="global.html#drop">drop</a></li><li><a href="global.html#findProfile">findProfile</a></li><li><a href="global.html#generateImageRow">generateImageRow</a></li><li><a href="global.html#generateImgRow">generateImgRow</a></li><li><a href="global.html#generateListItem">generateListItem</a></li><li><a href="global.html#generateTask">generateTask</a></li><li><a href="global.html#generateUser">generateUser</a></li><li><a href="global.html#generateUserLogin">generateUserLogin</a></li><li><a href="global.html#getUserPicker">getUserPicker</a></li><li><a href="global.html#hideOldProfilePicture">hideOldProfilePicture</a></li><li><a href="global.html#inFourDays">inFourDays</a></li><li><a href="global.html#insertTasks">insertTasks</a></li><li><a href="global.html#loadAllUsers">loadAllUsers</a></li><li><a href="global.html#loadCurrentUser">loadCurrentUser</a></li><li><a href="global.html#loadJSONFromServer">loadJSONFromServer</a></li><li><a href="global.html#loadProfilePicture">loadProfilePicture</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#loginCurrentUser">loginCurrentUser</a></li><li><a href="global.html#logOutCurrentUser">logOutCurrentUser</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#newTask">newTask</a></li><li><a href="global.html#openDeleteWindow">openDeleteWindow</a></li><li><a href="global.html#openDeleteWindowList">openDeleteWindowList</a></li><li><a href="global.html#openRegistration">openRegistration</a></li><li><a href="global.html#performDropTask">performDropTask</a></li><li><a href="global.html#pickOnlyfutureDays">pickOnlyfutureDays</a></li><li><a href="global.html#readURL">readURL</a></li><li><a href="global.html#removePerson">removePerson</a></li><li><a href="global.html#removePersonBlend">removePersonBlend</a></li><li><a href="global.html#saveCurrentUserInLocalStorage">saveCurrentUserInLocalStorage</a></li><li><a href="global.html#saveJSONToServer">saveJSONToServer</a></li><li><a href="global.html#selectOnlyThreeCategories">selectOnlyThreeCategories</a></li><li><a href="global.html#selectUser">selectUser</a></li><li><a href="global.html#showNewProfilePicture">showNewProfilePicture</a></li><li><a href="global.html#signUp">signUp</a></li><li><a href="global.html#sortAssignePeople">sortAssignePeople</a></li><li><a href="global.html#sortDelegateTasks">sortDelegateTasks</a></li><li><a href="global.html#sortDoTasks">sortDoTasks</a></li><li><a href="global.html#sortEliminateTasks">sortEliminateTasks</a></li><li><a href="global.html#sortScheduleTasks">sortScheduleTasks</a></li><li><a href="global.html#sortTasks">sortTasks</a></li><li><a href="global.html#taskSubmission">taskSubmission</a></li><li><a href="global.html#today">today</a></li><li><a href="global.html#updateDelegateSection">updateDelegateSection</a></li><li><a href="global.html#updateDoSection">updateDoSection</a></li><li><a href="global.html#updateEliminateSection">updateEliminateSection</a></li><li><a href="global.html#updateScheduleSection">updateScheduleSection</a></li><li><a href="global.html#updateUandIandDate">updateUandIandDate</a></li><li><a href="global.html#updateUrgency">updateUrgency</a></li><li><a href="global.html#validateCategories">validateCategories</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Feb 27 2021 16:31:15 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
+>>>>>>> e07d3c572e9cfb101a681ed0ed1e27f3fa0d803e
