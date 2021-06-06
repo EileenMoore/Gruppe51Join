@@ -1,45 +1,45 @@
 let users = [{
-    "username": "Guest",
-    "email": "guest@join.mail",
-    "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
-    "profilePicture": "img/profileimg/nutzer.svg"
-},
-{
-    "username": "Alexander Kummerer",
-    "email": "alexander@kummerer.mail",
-    "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
-    "profilePicture": "img/profileimg/alex.jpg"
-},
-{
-    "username": "Eileen Moore",
-    "email": "eileen@moore.mail",
-    "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
-    "profilePicture": "img/profileimg/eileen.jpg"
-},
-{
-    "username": "Dan Mercurean",
-    "email": "dan@mercurean.mail",
-    "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
-    "profilePicture": "img/profileimg/dan.jpg"
-},
-{
-    "username": "Jaci jack",
-    "email": "jaci@jack.mail",
-    "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
-    "profilePicture": "img/profileimg/nutzer.svg"
-},
-{
-    "username": "Junus Ergin",
-    "email": "junus@ergin.mail",
-    "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2t",
-    "profilePicture": "img/profileimg/junus.jpg"
-},
-{
-    "username": "Manuel Thaler",
-    "email": "manuel@thaler.mail",
-    "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
-    "profilePicture": "img/profileimg/manuel.jpg"
-}
+        "username": "Guest",
+        "email": "guest@join.mail",
+        "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
+        "profilePicture": "img/profileimg/nutzer.svg"
+    },
+    {
+        "username": "Alexander Kummerer",
+        "email": "alexander@kummerer.mail",
+        "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
+        "profilePicture": "img/profileimg/alex.jpg"
+    },
+    {
+        "username": "Eileen Moore",
+        "email": "eileen@moore.mail",
+        "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
+        "profilePicture": "img/profileimg/eileen.jpg"
+    },
+    {
+        "username": "Dan Mercurean",
+        "email": "dan@mercurean.mail",
+        "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
+        "profilePicture": "img/profileimg/dan.jpg"
+    },
+    {
+        "username": "Jaci jack",
+        "email": "jaci@jack.mail",
+        "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
+        "profilePicture": "img/profileimg/nutzer.svg"
+    },
+    {
+        "username": "Junus Ergin",
+        "email": "junus@ergin.mail",
+        "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2t",
+        "profilePicture": "img/profileimg/junus.jpg"
+    },
+    {
+        "username": "Manuel Thaler",
+        "email": "manuel@thaler.mail",
+        "password": "33c5ebbb01d608c254b3b12413bdb03e46c12797e591770ccf20f5e2819929b2",
+        "profilePicture": "img/profileimg/manuel.jpg"
+    }
 ];
 
 let currentUser = [];
@@ -68,14 +68,15 @@ function signUp() {
  *
  * @param {string} picture - This is the URL of the profile picture of the user.
  */
-function addUser(picture) {
+async function addUser(picture) {
     newUsername = document.getElementById("username");
     newPassword = document.getElementById("password");
     newEmail = document.getElementById("email");
-    if (users.find((e) => e["username"] == newUsername)) {
+    if (users.find(e => e.username == newUsername)) {
         alert("This user is already taken");
     } else {
         let user = generateUser(picture);
+        await loadAllUsers();
         users.push(user);
         backend.setItem('users', JSON.stringify(users));
         closeRegistration();
